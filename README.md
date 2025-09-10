@@ -30,12 +30,25 @@ cd knight-wallet
 
 # Install dependencies
 npm install
+
+# Create a copy of the environment file
+cp .env.example .env
+
+# Generate an application key
+node ace generate:key
+
+# Create the tmp directory for database storage
+mkdir tmp
+
+# Run database migrations
+node ace migration:run
 ```
 
 ### Running the Application:
 ```bash
 npm run dev
 ```
+> You should now be able to access the application at http://localhost:3333
 
 
 ## Helpful Resources
