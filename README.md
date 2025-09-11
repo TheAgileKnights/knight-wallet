@@ -23,10 +23,10 @@
 ### Project Setup:
 ```bash
 # Clone the repository (We use GitHub CLI here, but you can also use git clone if you are already authentica)
-gh repo clone https://github.com/martipops/knight-wallet
+gh repo clone https://github.com/martipops/knights-quill
 
 # Navigate into the project directory
-cd knight-wallet
+cd knights-quill
 
 # Install dependencies
 npm install
