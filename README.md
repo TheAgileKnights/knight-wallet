@@ -23,7 +23,7 @@
 ### Project Setup:
 ```bash
 # Clone the repository (We use GitHub CLI here, but you can also use git clone if you are already authentica)
-gh repo clone https://github.com/martipops/knights-quill
+gh repo clone https://github.com/TheAgileKnights/knights-quill
 
 # Navigate into the project directory
 cd knights-quill
