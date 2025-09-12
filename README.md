@@ -1,5 +1,14 @@
 ## Installation
 
+### Pre-Pre Requisites:
+- Install VSCode
+- Install VSCOde Extenstions:
+  - ESLint
+  - Prettier - Code formatter
+  - Tailwind CSS IntelliSense
+  - Vue
+  - Github Pull Requests
+
 ### Prerequesites:
 - Git
 - Node.js
