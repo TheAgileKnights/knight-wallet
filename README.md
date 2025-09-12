@@ -44,6 +44,11 @@ mkdir tmp
 node ace migration:run
 ```
 
+### VsCode Setup (Optional but Recommended):
+1. Install [Visual Studio Code](https://code.visualstudio.com/download) if you haven't already.
+2. Open the project folder in VSCode
+3. 
+
 ### Running the Application:
 ```bash
 npm run dev
