@@ -1,14 +1,13 @@
 ## Description
 
-
 ## 🎫 Ticket
-[SD-](https://martipops.atlassian.net/browse/SD-)
 
+[SD-](https://martipops.atlassian.net/browse/SD-)
 
 ## Related Pull Requests
 
-
 ## 🧪 Testing Instructions
+
 ```bash
 git fetch --all
 git checkout {{branch_name}}
@@ -16,7 +15,6 @@ npm run build
 ```
 
 ## 📸 Screenshots (Optional)
-
 
 ## ✨ What's the context?
 

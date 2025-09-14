@@ -1,6 +1,7 @@
 ## Installation
 
 ### Pre-Pre Requisites:
+
 - Install VSCode
 - Install VSCOde Extenstions:
   - ESLint
@@ -10,15 +11,17 @@
   - Github Pull Requests
 
 ### Prerequesites:
+
 - Git
 - Node.js
 - GitHub CLI
 
 #### Windows:
+
 1. Install Chocolatey package manager if you haven't already:
-    ```powershell
-    Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-    ```
+   ```powershell
+   Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+   ```
 2. Install Git, Node.js and GitHub CLI using Chocolatey:
    ```powershell
    choco install git nodejs gh -y
@@ -30,6 +33,7 @@
    ```
 
 ### Project Setup:
+
 ```bash
 # Clone the repository (We use GitHub CLI here, but you can also use git clone if you are already authentica)
 gh repo clone https://github.com/TheAgileKnights/knight-wallet
@@ -54,18 +58,21 @@ node ace migration:run
 ```
 
 ### VsCode Setup (Optional but Recommended):
+
 1. Install [Visual Studio Code](https://code.visualstudio.com/download) if you haven't already.
 2. Open the project folder in VSCode
-3. 
+3.
 
 ### Running the Application:
+
 ```bash
 npm run dev
 ```
+
 > You should now be able to access the application at http://localhost:3333
 
-
 ## Helpful Resources
+
 - [Adonis Docs (Full Stack Framework)](https://docs.adonisjs.com/guides/preface/introduction)
 - [Vue Docs (Frontend)](https://vuejs.org/guide/introduction.html)
 - [Lucid Docs (Database)](https://docs.adonisjs.com/guides/database/lucid)
