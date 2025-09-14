@@ -2,7 +2,7 @@
 
 
 ## 🎫 Ticket
-[CS-](https://martipops.atlassian.net/browse/SD-)
+[SD-](https://martipops.atlassian.net/browse/SD-)
 
 
 ## Related Pull Requests
