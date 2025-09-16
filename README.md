@@ -32,6 +32,21 @@
    gh auth login
    ```
 
+#### MacOS:
+1. Install Homebrew package manager if you haven't already:
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+2. Install Git, Node.js and GitHub CLI using Homebrew:
+   ```bash
+   brew install git node gh
+   ```
+3. Set up GitHub CLI:
+   ```bash
+   # Choose SSH instead of HTTPS when prompted. You can press enter for everything else
+   gh auth login
+   ```
+
 ### Project Setup:
 
 ```bash
