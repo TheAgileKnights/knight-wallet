@@ -8,6 +8,11 @@
   <title inertia>Knight Wallet</title>
 
   @vite(['inertia/app/app.ts', `inertia/pages/${page.component}.vue`])
+  @if(page.props.layout)
+    @vite([`inertia/pages/${page.props.layout}`])
+  @else
+    @vite(['inertia/pages/layouts/app.vue'])
+  @endif
   @inertiaHead()
   @stack('dumper')
 </head>

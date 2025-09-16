@@ -1,12 +1,26 @@
 @import "tailwindcss";
 
-* {
-  margin: 0;
-  padding: 0;
+html, body {
+  color: var(--color-text);
+  background-color: var(--color-background);
 }
 
-html,
-body {
-  height: 100%;
-  width: 100%;
+@theme {
+  --color-text: #1b0e0e;
+  --color-background: #faf5f5;
+  --color-primary: #752936;
+  --color-secondary: #cc8585;
+  --color-accent: #a6413f;
+}
+
+@layer theme {
+  :root, :host {
+    @variant dark {
+      --color-text: #f1e4e4;
+      --color-background: #0a0505;
+      --color-primary: #d68a97;
+      --color-secondary: #7a3333;
+      --color-accent: #c05a59;
+    }
+  }
 }
