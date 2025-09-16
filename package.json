@@ -36,6 +36,7 @@
     "@adonisjs/eslint-config": "^2.0.0",
     "@adonisjs/prettier-config": "^1.4.4",
     "@adonisjs/tsconfig": "^1.4.0",
+    "@iconify/vue": "^5.0.0",
     "@japa/assert": "^4.0.1",
     "@japa/plugin-adonisjs": "^4.0.0",
     "@japa/runner": "^4.2.0",
@@ -66,10 +67,12 @@
     "@vinejs/vine": "^3.0.1",
     "better-sqlite3": "^12.2.0",
     "edge.js": "^6.2.1",
+    "ionicons": "^8.0.13",
     "luxon": "^3.7.2",
     "reflect-metadata": "^0.2.2",
     "tailwindcss": "^4.1.13",
-    "vue": "^3.5.21"
+    "vue": "^3.5.21",
+    "vue-ionicons": "^3.0.5"
   },
   "hotHook": {
     "boundaries": [
