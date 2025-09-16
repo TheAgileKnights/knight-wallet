@@ -6,6 +6,7 @@ import { createApp, h } from 'vue'
 import type { DefineComponent } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
+import { Icon } from '@iconify/vue'
 
 const appName = import.meta.env.VITE_APP_NAME || 'AdonisJS'
 
@@ -30,6 +31,7 @@ createInertiaApp({
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
       .use(plugin)
+      .component('Icon', Icon)
       .mount(el)
   },
 })
