@@ -30,6 +30,8 @@ export default {
     }
   },
   mounted() {
+    // Sets showSticky to true when scrolled down half the viewport height 
+    // (continuously updates through scroll event listener)
     window.addEventListener('scroll', () => {
       this.showSticky = window.scrollY > window.innerHeight/2
     })
@@ -38,6 +40,8 @@ export default {
 </script>
 
 <style scoped>
+
+/* See https://vuejs.org/guide/built-ins/transition for vue transitions */
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.3s ease, transform 0.3s ease;
