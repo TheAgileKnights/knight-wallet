@@ -1,4 +1,4 @@
-<template><Icon icon="mdi:home" /></template>
+<template></template>
 
 <script lang="ts">
 
