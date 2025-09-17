@@ -1,14 +1,10 @@
 <template>
-  <div class="relative">
-    <span>{{ displayedText }}<span v-if="isTyping" class="cursor">|</span></span>
-  </div>
-  <div class="invisible">
-    {{ text }}
-  </div>
+  <span class="typewriter" :class="{ typing: isTyping }">
+    {{ displayedText }}
+  </span>
 </template>
 
 <script lang="ts">
-
 export default {
   name: 'Typewriter',
   props: {
@@ -23,60 +19,69 @@ export default {
     byWord: {
       type: Boolean,
       default: true,
-    }
+    },
   },
   data() {
     return {
       displayedText: '',
       currentIndex: 0,
       isTyping: true,
-      lastTime: 0,
-      words: [] as string[],
-      isReady: false
+      intervalId: null as NodeJS.Timeout | null,
     }
   },
   mounted() {
-    requestAnimationFrame(() => {
-      this.words = this.byWord ? this.text.split(' ') : this.text.split('')
-      this.isReady = true
-      this.startTyping()
-    })
+    this.startTyping()
+  },
+  beforeUnmount() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId)
+    }
   },
   methods: {
     startTyping() {
-      if (!this.isReady) return
-      const animate = (currentTime: number) => {
-        if (currentTime - this.lastTime >= this.speed) {
-          if (this.currentIndex < this.words.length) {
-            if (this.byWord) {
-              this.displayedText += (this.currentIndex > 0 ? ' ' : '') + this.words[this.currentIndex]
-            } else {
-              this.displayedText += this.words[this.currentIndex]
-            }
-            this.currentIndex++
-            this.lastTime = currentTime
+      if (this.byWord) {
+        const words = this.text.split(' ')
+        let wordIndex = 0
+
+        this.intervalId = setInterval(() => {
+          if (wordIndex < words.length) {
+            this.displayedText += (wordIndex > 0 ? ' ' : '') + words[wordIndex]
+            wordIndex++
           } else {
             this.isTyping = false
-            return
+            if (this.intervalId) clearInterval(this.intervalId)
           }
-        }
-        if (this.currentIndex < this.words.length) {
-          requestAnimationFrame(animate)
-        }
+        }, this.speed)
+      } else {
+        this.intervalId = setInterval(() => {
+          if (this.currentIndex < this.text.length) {
+            this.displayedText = this.text.substring(0, this.currentIndex + 1)
+            this.currentIndex++
+          } else {
+            this.isTyping = false
+            if (this.intervalId) clearInterval(this.intervalId)
+          }
+        }, this.speed)
       }
-      requestAnimationFrame(animate)
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style scoped>
-.cursor {
+.typewriter.typing::after {
+  content: '|';
   animation: blink 1s infinite;
 }
 
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
 }
 </style>
