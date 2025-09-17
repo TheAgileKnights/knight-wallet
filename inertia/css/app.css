@@ -15,7 +15,9 @@ html, body {
 
 @theme {
   --color-text: #1b0e0e;
-  --color-secondary-text: #3f3f46;
+  --color-text-secondary: #3f3f46;
+  --color-text-contrast: #f1e4e4;
+  --color-text-contrast-secondary: #c2b8b8;
   --color-border: #e5e5e5;
   --color-background: #faf5f5;
   --color-background-light: white;
@@ -28,7 +30,9 @@ html, body {
   :root, :host {
     @variant dark {
       --color-text: #f1e4e4;
-      --color-secondary-text: #a19a9a;
+      --color-text-secondary: #c2b8b8;
+      --color-text-contrast: #1b0e0e;
+      --color-text-contrast-secondary: #3f3f46;
       --color-border: #4a2f34;
       --color-background: #0a0505;
       --color-background-light: #100a0f;
