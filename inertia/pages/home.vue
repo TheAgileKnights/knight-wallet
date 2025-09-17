@@ -6,6 +6,13 @@
         <div class="drop-shadow-[0_10px_60px_rgba(0,0,0,1)]">
           <h1 class="text-[6rem] font-extrabold">Knight Wallet</h1>
           <p class="text-2xl font-medium">"Track Together, Settle Smarter"</p>
+          <div class="mt-6 text-lg font-light max-w-2xl">
+            <Typewriter
+              text="Simplify shared expenses among friends and family. Add costs, split bills, and settle up seamlessly for trips, events, and everyday life."
+              :speed="60"
+              :delay="2000"
+            />
+          </div>
         </div>
       </div>
       <div class="flex justify-center items-center px-24">
@@ -30,7 +37,12 @@
 </template>
 
 <script lang="ts">
+import Typewriter from './components/Typewriter.vue'
+
 export default {
+  components: {
+    Typewriter
+  },
   data() {
     return {
       showSticky: false

@@ -2,7 +2,7 @@
   <div>{{ displayedText }}<span v-if="isTyping" class="cursor-blink font-bold">|</span></div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: 'Typewriter',
   props: {
@@ -24,10 +24,16 @@ export default {
       displayedText: '',
       currentIndex: 0,
       isTyping: false,
+      timeoutId: null as NodeJS.Timeout | null
     }
   },
   mounted() {
-    setTimeout(this.startTyping, this.delay)
+    this.timeoutId = setTimeout(this.startTyping, this.delay)
+  },
+  beforeUnmount() {
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId)
+    }
   },
   methods: {
     startTyping() {
@@ -40,9 +46,9 @@ export default {
         this.currentIndex++
 
         const char = this.text[this.currentIndex - 1]
-        const delay = char === '.' ? 200 : char === ',' ? 100 : Math.random() * this.speed + 25
+        const delay = char === '.' ? 300 : char === ',' ? 150 : Math.random() * this.speed + 30
 
-        setTimeout(this.typeNext, delay)
+        this.timeoutId = setTimeout(this.typeNext, delay)
       } else {
         this.isTyping = false
         this.$emit('complete')
