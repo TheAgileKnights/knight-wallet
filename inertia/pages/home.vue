@@ -72,10 +72,10 @@ export default {
   },
   methods: {
     shuffleCards() {
-      this.featureCards = this.featureCards
-        .map((card) => ({ card, sort: Math.random() }))
-        .sort((a, b) => a.sort - b.sort)
-        .map(({ card }) => card)
+      for (let i = this.featureCards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [this.featureCards[i], this.featureCards[j]] = [this.featureCards[j], this.featureCards[i]];
+      }
     },
   },
 }
