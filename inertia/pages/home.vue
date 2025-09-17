@@ -31,20 +31,22 @@
       </div>
     </Transition>
   </div>
-  <div class="lg:mx-[12.5%] mx-0">
-    <p class="font-bold text-6xl w-full text-center mt-8">Features</p>
-    <p class="text-center text-3xl mt-2 mb-8 text-secondary-text">
-      Discover the powerful features that make our app stand out.
-    </p>
-    <div class="grid 2xl:grid-cols-3 sm:grid-cols-2">
-      <div
-        v-for="(card, index) in featureCards"
-        :key="index"
-        class="card flex flex-col justify-center items-center p-10 m-4 hover:scale-105 transition-transform duration-300"
-      >
-        <Icon class="text-9xl my-8 text-accent text-center" :icon="card.icon" />
-        <p class="font-bold text-5xl text-center">{{ card.name }}</p>
-        <p class="text-2xl mb-2 mt-6 text-center !text-secondary-text">{{ card.description }}</p>
+  <div class="min-h-screen w-full flex justify-center items-center">
+    <div class="lg:mx-[12.5%] mx-0">
+      <p class="font-bold text-6xl w-full text-center mt-8">Features</p>
+      <p class="text-center text-3xl mt-2 mb-8 text-secondary-text">
+        Discover the powerful features that make our app stand out.
+      </p>
+      <div class="grid 2xl:grid-cols-3 sm:grid-cols-2">
+        <div
+          v-for="(card, index) in featureCards"
+          :key="index"
+          class="card flex flex-col justify-center items-center p-10 m-4 hover:scale-105 transition-transform duration-300"
+        >
+          <Icon class="text-9xl my-8 text-accent text-center" :icon="card.icon" />
+          <p class="font-bold text-5xl text-center">{{ card.name }}</p>
+          <p class="text-2xl mb-2 mt-6 text-center !text-secondary-text">{{ card.description }}</p>
+        </div>
       </div>
     </div>
   </div>
