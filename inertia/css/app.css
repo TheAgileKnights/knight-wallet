@@ -5,6 +5,13 @@ html, body {
   background-color: var(--color-background);
 }
 
+.card {
+  background-color: white;
+  color: var(--color-text);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+}
+
 @theme {
   --color-text: #1b0e0e;
   --color-background: #faf5f5;
