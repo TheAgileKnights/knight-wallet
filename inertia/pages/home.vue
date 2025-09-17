@@ -1,6 +1,6 @@
 <template>
   <!-- Title Area -->
-  <div class="flex flex-col h-screen w-full bg-gradient-to-br from-primary to-accent text-white">
+  <div class="flex flex-col h-screen w-full bg-gradient-to-br from-primary to-accent text-white]">
     <div class="flex w-full h-full px-24">
       <div class="flex flex-col justify-center items-center w-full">
         <div class="">
@@ -25,9 +25,9 @@
     <Transition>
       <div
         v-if="showSticky"
-        class="fixed top-4 left-4 bg-white text-black px-4 py-2 rounded-lg shadow-lg z-50"
+        class="fixed top-4 left-4 bg-text px-4 py-2 rounded-lg shadow-lg z-50"
       >
-        <h3 class="font-bold text-2xl text-primary">Knight Wallet</h3>
+        <h3 class="font-bold text-2xl text-text-contrast">Knight Wallet</h3>
       </div>
     </Transition>
   </div>
