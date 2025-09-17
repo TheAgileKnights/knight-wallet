@@ -1,8 +1,8 @@
 <template>
-  <div class="mx-[12.5%]">
+  <div class="lg:mx-[12.5%] mx-0">
   <p class="font-bold text-6xl w-full text-center mt-8">Features</p>
   <p class="text-center text-3xl mt-2 mb-8 text-secondary-text">Discover the powerful features that make our app stand out.</p>
-  <div class="grid grid-cols-3">
+  <div class="grid 2xl:grid-cols-3 sm:grid-cols-2">
     <div v-for="(card, index) in featureCards" :key="index" class="card flex flex-col justify-center items-center p-10 m-4 hover:scale-105 transition-transform duration-300">
         <Icon class="text-9xl my-8 text-accent text-center" :icon="card.icon"/>
         <p class="font-bold text-5xl text-center">{{ card.name }}</p>
