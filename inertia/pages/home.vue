@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen w-full flex justify-center items-center">
+  <div class="min-h-screen w-full flex justify-center items-center">
     <div class="lg:mx-[12.5%] mx-0">
       <p class="font-bold text-6xl w-full text-center mt-8">Features</p>
       <p class="text-center text-3xl mt-2 mb-8 text-secondary-text">
