@@ -13,12 +13,12 @@
         <div
           v-for="card in featureCards"
           :key="card.id"
-          class="card flex flex-col justify-center items-center p-10 m-4 hover:scale-105 transition-transform duration-300"
+          class="card flex flex-col justify-center items-center p-10 m-4 hover:cursor-pointer hover:scale-105 transition-transform duration-300"
           @click="shuffleCards()"
         >
           <Icon class="text-9xl my-8 text-accent text-center" :icon="card.icon" />
-          <p class="font-bold text-5xl text-center">{{ card.name }}</p>
-          <p class="text-2xl mb-2 mt-6 text-center !text-secondary-text">{{ card.description }}</p>
+          <p class="font-bold text-5xl text-center select-none">{{ card.name }}</p>
+          <p class="text-2xl mb-2 mt-6 text-center !text-secondary-text select-none">{{ card.description }}</p>
         </div>
       </transition-group>
     </div>
