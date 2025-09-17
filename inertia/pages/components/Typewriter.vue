@@ -1,8 +1,14 @@
 <template>
-  <div>{{ displayedText }}<span v-if="isTyping" class="cursor-blink font-bold">|</span></div>
+  <div class="relative">
+    <span>{{ displayedText }}<span v-if="isTyping" class="cursor">|</span></span>
+  </div>
+  <div class="invisible">
+    {{ text }}
+  </div>
 </template>
 
 <script lang="ts">
+
 export default {
   name: 'Typewriter',
   props: {
@@ -12,65 +18,65 @@ export default {
     },
     speed: {
       type: Number,
-      default: 50,
+      default: 150,
     },
-    delay: {
-      type: Number,
-      default: 1000,
-    },
+    byWord: {
+      type: Boolean,
+      default: true,
+    }
   },
   data() {
     return {
       displayedText: '',
       currentIndex: 0,
-      isTyping: false,
-      timeoutId: null as NodeJS.Timeout | null
+      isTyping: true,
+      lastTime: 0,
+      words: [] as string[],
+      isReady: false
     }
   },
   mounted() {
-    this.timeoutId = setTimeout(this.startTyping, this.delay)
-  },
-  beforeUnmount() {
-    if (this.timeoutId) {
-      clearTimeout(this.timeoutId)
-    }
+    requestAnimationFrame(() => {
+      this.words = this.byWord ? this.text.split(' ') : this.text.split('')
+      this.isReady = true
+      this.startTyping()
+    })
   },
   methods: {
     startTyping() {
-      this.isTyping = true
-      this.typeNext()
-    },
-    typeNext() {
-      if (this.currentIndex < this.text.length) {
-        this.displayedText += this.text[this.currentIndex]
-        this.currentIndex++
-
-        const char = this.text[this.currentIndex - 1]
-        const delay = char === '.' ? 300 : char === ',' ? 150 : Math.random() * this.speed + 30
-
-        this.timeoutId = setTimeout(this.typeNext, delay)
-      } else {
-        this.isTyping = false
-        this.$emit('complete')
+      if (!this.isReady) return
+      const animate = (currentTime: number) => {
+        if (currentTime - this.lastTime >= this.speed) {
+          if (this.currentIndex < this.words.length) {
+            if (this.byWord) {
+              this.displayedText += (this.currentIndex > 0 ? ' ' : '') + this.words[this.currentIndex]
+            } else {
+              this.displayedText += this.words[this.currentIndex]
+            }
+            this.currentIndex++
+            this.lastTime = currentTime
+          } else {
+            this.isTyping = false
+            return
+          }
+        }
+        if (this.currentIndex < this.words.length) {
+          requestAnimationFrame(animate)
+        }
       }
-    },
-  },
+      requestAnimationFrame(animate)
+    }
+  }
 }
 </script>
 
 <style scoped>
-.cursor-blink {
+.cursor {
   animation: blink 1s infinite;
 }
 
 @keyframes blink {
-  0%,
-  50% {
-    opacity: 1;
-  }
-  51%,
-  100% {
-    opacity: 0;
-  }
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
 </style>

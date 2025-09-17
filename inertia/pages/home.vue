@@ -1,18 +1,17 @@
 <template>
   <!-- Title Area -->
   <div class="flex flex-col h-screen w-full bg-gradient-to-br from-primary to-accent text-white">
-    <div class="flex w-full h-full">
+    <div class="flex w-full h-full px-24">
       <div class="flex flex-col justify-center items-center w-full">
-        <div class="drop-shadow-[0_10px_60px_rgba(0,0,0,1)]">
-          <h1 class="text-[6rem] font-extrabold">Knight Wallet</h1>
-          <p class="text-2xl font-medium">"Track Together, Settle Smarter"</p>
-          <div class="mt-6 text-lg font-light max-w-2xl">
-            <Typewriter
-              text="Simplify shared expenses among friends and family. Add costs, split bills, and settle up seamlessly for trips, events, and everyday life."
-              :speed="60"
-              :delay="2000"
-            />
+        <div class="">
+          <div class="drop-shadow-[0_10px_60px_rgba(0,0,0,1)]">
+            <h1 class="text-[6rem] font-extrabold">Knight Wallet</h1>
+            <p class="text-2xl font-medium">"Track Together, Settle Smarter"</p>
           </div>
+          <Typewriter
+            text="Simplify shared expenses among friends and family. Add costs, split bills, and settle up seamlessly for trips, events, and everyday life."
+            :speed="100"
+          />
         </div>
       </div>
       <div class="flex justify-center items-center px-24">
