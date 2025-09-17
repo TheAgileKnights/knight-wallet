@@ -1,9 +1,16 @@
 <template>
   <!-- Title Area -->
   <div class="flex flex-col h-screen w-full bg-gradient-to-br from-primary to-accent text-white">
-    <div class="flex flex-col w-full h-full justify-center items-center">
-      <h1 class="text-[6rem] font-extrabold">Knight Wallet</h1>
-      <p class="text-2xl font-medium">"Track Together, Settle Smarter"</p>
+    <div class="flex w-full h-full">
+      <div class="flex flex-col justify-center items-center w-full">
+        <div class="drop-shadow-[0_10px_60px_rgba(0,0,0,1)]">
+          <h1 class="text-[6rem] font-extrabold">Knight Wallet</h1>
+          <p class="text-2xl font-medium">"Track Together, Settle Smarter"</p>
+        </div>
+      </div>
+      <div class="flex justify-center items-center px-24">
+        <img src="/resources/images/iphone-screenshot.png" alt="Knight Wallet iPhone Screenshot" class="w-[800px] h-auto drop-shadow-[0_10px_30px_rgba(0,0,0,1)]" />
+      </div>
     </div>
     <Transition>
       <div v-if="showSticky" class="fixed top-4 left-4 bg-white text-black px-4 py-2 rounded-lg shadow-lg z-50">
