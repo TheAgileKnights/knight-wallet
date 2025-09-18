@@ -5,13 +5,12 @@
       <p class="text-center text-3xl mt-2 mb-8 text-secondary-text">
         Discover the powerful features that make our app stand out.
       </p>
-      <div class="grid lg:grid-cols-3 sm:grid-cols-2 gap-4">
         <transition-group 
           name="card-shuffle" 
           tag="div" 
-          class="grid 2xl:grid-cols-3 sm:grid-cols-2"
+          class="grid lg:grid-cols-3 sm:grid-cols-2 gap-4"
         >
-          <Card v-for="(card, index) in featureCards" :key="index">
+          <Card v-for="(card, index) in featureCards" :key="index" id="card">
             <template #icon>
               <Icon class="text-7xl text-accent" :icon="card.icon" />
             </template>
@@ -24,7 +23,6 @@
           </Card>
         </transition-group>
       </div>
-    </div>
   </div>
 </template>
 
