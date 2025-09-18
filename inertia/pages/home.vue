@@ -8,7 +8,7 @@
       <div class="grid lg:grid-cols-3 sm:grid-cols-2 gap-4">
         <Card v-for="(card, index) in featureCards" :key="index">
           <template #icon>
-            <Icon class="text-7xl text-accent text-center" :icon="card.icon" />
+            <Icon class="text-7xl text-accent" :icon="card.icon" />
           </template>
           <template #title>
             {{ card.name }}
