@@ -5,10 +5,10 @@
       <div class="flex justify-center items-center mb-12">
         <div class="flex flex-col text-text-contrast w-min">
           <div class="drop-shadow-[0_10px_60px_rgba(0,0,0,1)] shrink">
-            <h1 class="text-[6rem] font-extrabold text-nowrap">Knight Wallet</h1>
+            <h1 class="md:text-[6rem] text-[4rem] font-extrabold text-nowrap">Knight Wallet</h1>
             <p class="text-3xl font-medium">"Track Together, Settle Smarter"</p>
           </div>
-          <div class="mt-4 text-xl font-mono shrink">
+          <div class="mt-4 text-xl font-mono shrink min-h-[6rem]">
             <Typewriter
               text="Simplify shared expenses among friends and family. Add costs, split bills, and settle up seamlessly for trips, events, and everyday life."
               :speed="100"
@@ -33,7 +33,7 @@
       </div>
     </Transition>
   </div>
-  <div class="flex min-h-screen w-full">
+  <div class="flex min-h-screen w-full py-16">
     <div class="mx-8 md:mx-16 lg:mx-32 my-auto">
       <p class="font-bold text-6xl w-full text-center">Features</p>
       <p class="text-center text-3xl mt-2 mb-8 text-secondary-text">
