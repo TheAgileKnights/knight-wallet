@@ -1,28 +1,34 @@
 <template>
-  <div class="min-h-screen w-full flex justify-center items-center">
-    <div class="lg:mx-[12.5%] mx-0">
-      <p class="font-bold text-6xl w-full text-center mt-8">Features</p>
+  <div class="flex min-h-screen w-full">
+    <div class="mx-8 md:mx-16 lg:mx-32 my-auto">
+      <p class="font-bold text-6xl w-full text-center">Features</p>
       <p class="text-center text-3xl mt-2 mb-8 text-secondary-text">
         Discover the powerful features that make our app stand out.
       </p>
-      <div class="grid 2xl:grid-cols-3 sm:grid-cols-2">
-        <div
-          v-for="(card, index) in featureCards"
-          :key="index"
-          class="card flex flex-col justify-center items-center p-10 m-4 hover:scale-105 transition-transform duration-300"
-        >
-          <Icon class="text-9xl my-8 text-accent text-center" :icon="card.icon" />
-          <p class="font-bold text-5xl text-center">{{ card.name }}</p>
-          <p class="text-2xl mb-2 mt-6 text-center !text-secondary-text">{{ card.description }}</p>
-        </div>
+      <div class="grid lg:grid-cols-3 sm:grid-cols-2 gap-4">
+        <Card v-for="(card, index) in featureCards" :key="index">
+          <template #icon>
+            <Icon class="text-7xl text-accent text-center" :icon="card.icon" />
+          </template>
+          <template #title>
+            {{ card.name }}
+          </template>
+          <template #description>
+            {{ card.description }}
+          </template>
+        </Card>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import Card from './components/Card.vue'
+
 export default {
-  components: {},
+  components: {
+    Card,
+  },
   data() {
     return {
       featureCards: [
