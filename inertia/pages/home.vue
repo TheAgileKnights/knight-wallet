@@ -1,5 +1,39 @@
 <template>
-  <div class="flex min-h-screen w-full">
+  <!-- Title Area -->
+  <div class="flex flex-col min-h-screen w-full bg-gradient-to-br from-primary to-accent">
+    <div class="p-12 md:p-24 w-full grid xl:grid-cols-2 text-center xl:text-left grid-cols-1 grow">
+      <div class="flex justify-center items-center mb-12">
+        <div class="flex flex-col text-text-contrast w-min">
+          <div class="drop-shadow-[0_10px_60px_rgba(0,0,0,1)] shrink">
+            <h1 class="md:text-[6rem] text-[4rem] font-extrabold text-nowrap">Knight Wallet</h1>
+            <p class="text-3xl font-medium">"Track Together, Settle Smarter"</p>
+          </div>
+          <div class="mt-4 text-xl font-mono shrink min-h-[6rem]">
+            <Typewriter
+              text="Simplify shared expenses among friends and family. Add costs, split bills, and settle up seamlessly for trips, events, and everyday life."
+              :speed="100"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-center items-center w-full grow">
+        <img
+          src="/resources/images/iphone-screenshot.png"
+          alt="Knight Wallet iPhone Screenshot"
+          class="max-h-[75vh] w-auto drop-shadow-[0_10px_30px_rgba(0,0,0,1)]"
+        />
+      </div>
+    </div>
+    <Transition>
+      <div
+        v-if="showSticky"
+        class="fixed top-4 left-4 bg-primary px-4 py-2 rounded-lg shadow-lg z-50"
+      >
+        <h3 class="font-bold text-2xl text-text-contrast">Knight Wallet</h3>
+      </div>
+    </Transition>
+  </div>
+  <div class="flex min-h-screen w-full py-16">
     <div class="mx-8 md:mx-16 lg:mx-32 my-auto">
       <p class="font-bold text-6xl w-full text-center">Features</p>
       <p class="text-center text-3xl mt-2 mb-8 text-secondary-text">
@@ -24,9 +58,11 @@
 
 <script lang="ts">
 import Card from './components/Card.vue'
+import Typewriter from './components/Typewriter.vue'
 
 export default {
   components: {
+    Typewriter,
     Card,
   },
   data() {
@@ -63,7 +99,35 @@ export default {
           icon: 'si:credit-card-detailed-fill',
         },
       ],
+      showSticky: false,
     }
+  },
+  mounted() {
+    // Sets showSticky to true when scrolled down half the viewport height
+    // (continuously updates through scroll event listener)
+    window.addEventListener('scroll', () => {
+      this.showSticky = window.scrollY > window.innerHeight / 2
+    })
   },
 }
 </script>
+
+<style scoped>
+/* See https://vuejs.org/guide/built-ins/transition for vue transitions */
+.v-enter-active,
+.v-leave-active {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.v-enter-from {
+  opacity: 0;
+  transform: translateY(-100px);
+}
+
+.v-leave-to {
+  opacity: 0;
+  transform: translateY(-100px);
+}
+</style>
