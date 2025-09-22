@@ -54,6 +54,30 @@
       </div>
     </div>
   </div>
+
+  <hr class="border-t-4 border-accent w-full" />
+
+  <div class="flex min-h-screen w-full py-16">
+    <div class="mx-8 md:mx-16 lg:mx-32 my-auto">
+      <p class="font-bold text-6xl w-full text-center mb-12">Meet the Development Team</p>
+      <div class="grid lg:grid-cols-4 sm:grid-cols-1 gap-4">
+        <Card v-for="(card, index) in bioCards" :key="index">
+          <template #icon>
+            <img :src="card.photo"
+              alt="Profile Photo"
+              class="w-32 h-32 object-cover rounded-full border-4 border-accent mx-auto"
+            />
+          </template>
+          <template #title>
+            {{ card.name }}
+          </template>
+          <template #description>
+            {{ card.description }}
+          </template>
+        </Card>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -97,6 +121,28 @@ export default {
           name: 'Payment App Integration',
           description: 'Integration with Venmo and other payment platforms.',
           icon: 'si:credit-card-detailed-fill',
+        },
+      ],
+      bioCards: [
+        {
+          name: 'Marti Lonnemann',
+          description: "Software developer and Bellarmine student with a passion for web development. Enjoys creating user-friendly applications that solve real-world problems.",
+          photo: '/resources/images/MartiHeadshot.jpeg',
+        },
+        {
+          name: 'Sam Kauffman',
+          description: "Aspiring software developer and designer attending Bellarmine University pursuing a degree in computer science. Enjoys creating and designing websites using a unique and creative style.",
+          photo: '/resources/images/SamHeadshot.jpg',
+        },
+        {
+          name: 'Ronish Gautam',
+          description: "Computer scince student at Bellarmine University with a passion for software development, who also enjoys traveling the world and staying active through fitness.",
+          photo: '/resources/images/RonishHeadshot.jpg',
+        },
+        {
+          name: 'Kirin Sharma',
+          description: "College senior at Bellarmine University and aspiring software engineer passionate about developing impactful, innovative, and efficient software solutions to solve real-world challenges.",
+          photo: '/resources/images/KirinHeadshot.jpeg',
         },
       ],
       showSticky: false,
