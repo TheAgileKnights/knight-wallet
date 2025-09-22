@@ -14,7 +14,7 @@ export default defineConfig({
   ],
 
   server: {
-    allowedHosts: ['vps.martipops.net', 'kw.martipops.net', 'localhost'],
+    allowedHosts: ['kw.martipops.net', 'localhost'],
   },
 
   /**
