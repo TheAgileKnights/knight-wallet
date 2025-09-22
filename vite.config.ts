@@ -13,6 +13,10 @@ export default defineConfig({
     tailwindcss(),
   ],
 
+  server: {
+    allowedHosts: ['vps.martipops.net', 'localhost'],
+  },
+
   /**
    * Define aliases for importing modules from
    * your frontend code
