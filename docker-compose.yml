@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  knight-wallet:
+    container_name: knight-wallet
+    restart: always
+    build:
+      context: .
+      target: dependencies
+    ports:
+      - "3333:3333"
+      - "9229:9229"  # Debug port
+    env_file:
+      - .env
+    volumes:
+      - ./:/home/node/app
+      # Uncomment the below line if you developing on MacOS
+      - /home/node/app/node_modules
+    # Correct way: pass node args BEFORE the ace command
+    command: dumb-init node --inspect=0.0.0.0:9229 ace serve --watch
