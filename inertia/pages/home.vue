@@ -60,7 +60,7 @@
   <div class="flex min-h-screen w-full py-16">
     <div class="mx-8 md:mx-16 lg:mx-32 my-auto">
       <p class="font-bold text-6xl w-full text-center mb-12">Meet the Development Team</p>
-      <div class="grid lg:grid-cols-4 sm:grid-cols-1 gap-4">
+      <div class="grid xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4">
         <Card v-for="(card, index) in bioCards" :key="index">
           <template #icon>
             <img :src="card.photo"
