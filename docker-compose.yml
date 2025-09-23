@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   knight-wallet:
     container_name: knight-wallet
@@ -16,5 +14,4 @@ services:
       - ./:/home/node/app
       # Uncomment the below line if you developing on MacOS
       - /home/node/app/node_modules
-    # Correct way: pass node args BEFORE the ace command
     command: dumb-init node --inspect=0.0.0.0:9229 ace serve --watch
