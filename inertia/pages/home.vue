@@ -33,7 +33,7 @@
       </div>
     </Transition>
   </div>
-  <div class="flex min-h-screen w-full py-16">
+  <div class="flex justify-center min-h-screen w-full py-16">
     <div class="mx-8 md:mx-16 lg:mx-32 my-auto">
       <p class="font-bold text-6xl w-full text-center">Features</p>
       <p class="text-center text-3xl mt-2 mb-8 text-secondary-text">
