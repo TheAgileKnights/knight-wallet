@@ -39,8 +39,17 @@
       <p class="text-center text-3xl mt-2 mb-8 text-secondary-text">
         Discover the powerful features that make our app stand out.
       </p>
-      <div class="grid lg:grid-cols-3 sm:grid-cols-2 gap-4">
-        <Card v-for="(card, index) in featureCards" :key="index">
+      <transition-group
+        name="card-shuffle"
+        tag="div"
+        class="grid lg:grid-cols-3 sm:grid-cols-2 gap-4"
+      >
+        <Card
+          v-for="card in featureCards"
+          :key="card.id"
+          @click="shuffleCards()"
+          class="cursor-pointer"
+        >
           <template #icon>
             <Icon class="text-7xl text-accent" :icon="card.icon" />
           </template>
@@ -51,7 +60,7 @@
             {{ card.description }}
           </template>
         </Card>
-      </div>
+      </transition-group>
     </div>
   </div>
 
@@ -63,7 +72,8 @@
       <div class="grid xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4">
         <Card v-for="(card, index) in bioCards" :key="index">
           <template #icon>
-            <img :src="card.photo"
+            <img
+              :src="card.photo"
               alt="Profile Photo"
               class="w-32 h-32 object-cover rounded-full border-4 border-accent mx-auto"
             />
@@ -93,31 +103,37 @@ export default {
     return {
       featureCards: [
         {
+          id: 1,
           name: 'Group Creation',
           description: 'Create friend groups and manage members on the go.',
           icon: 'mdi:people',
         },
         {
+          id: 2,
           name: 'Organization',
           description: 'Add and categorize expenses with ease.',
           icon: 'eos-icons:organization',
         },
         {
+          id: 3,
           name: 'Multiple Groups',
           description: 'Split expenses among selectable group members.',
           icon: 'material-symbols:groups',
         },
         {
+          id: 4,
           name: 'Multi-Currency',
           description: 'Multi-currency support for international use.',
           icon: 'bi:currency-exchange',
         },
         {
+          id: 5,
           name: 'Real-Time Updates',
           description: 'Instantly see payment updates.',
           icon: 'tabler:clock-filled',
         },
         {
+          id: 6,
           name: 'Payment App Integration',
           description: 'Integration with Venmo and other payment platforms.',
           icon: 'si:credit-card-detailed-fill',
@@ -126,22 +142,26 @@ export default {
       bioCards: [
         {
           name: 'Marti Lonnemann',
-          description: "Software developer and Bellarmine student with a passion for web development. Enjoys creating user-friendly applications that solve real-world problems.",
+          description:
+            'Software developer and Bellarmine student with a passion for web development. Enjoys creating user-friendly applications that solve real-world problems.',
           photo: '/resources/images/MartiHeadshot.jpeg',
         },
         {
           name: 'Sam Kauffman',
-          description: "Aspiring software developer and designer attending Bellarmine University pursuing a degree in computer science. Enjoys creating and designing websites using a unique and creative style.",
+          description:
+            'Aspiring software developer and designer attending Bellarmine University pursuing a degree in computer science. Enjoys creating and designing websites using a unique and creative style.',
           photo: '/resources/images/SamHeadshot.jpg',
         },
         {
           name: 'Ronish Gautam',
-          description: "Computer scince student at Bellarmine University with a passion for software development, who also enjoys traveling the world and staying active through fitness.",
+          description:
+            'Computer scince student at Bellarmine University with a passion for software development, who also enjoys traveling the world and staying active through fitness.',
           photo: '/resources/images/RonishHeadshot.jpg',
         },
         {
           name: 'Kirin Sharma',
-          description: "College senior at Bellarmine University and aspiring software engineer passionate about developing impactful, innovative, and efficient software solutions to solve real-world challenges.",
+          description:
+            'College senior at Bellarmine University and aspiring software engineer passionate about developing impactful, innovative, and efficient software solutions to solve real-world challenges.',
           photo: '/resources/images/KirinHeadshot.jpeg',
         },
       ],
@@ -155,25 +175,19 @@ export default {
       this.showSticky = window.scrollY > window.innerHeight / 2
     })
   },
+  methods: {
+    shuffleCards() {
+      for (let i = this.featureCards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[this.featureCards[i], this.featureCards[j]] = [this.featureCards[j], this.featureCards[i]]
+      }
+    },
+  },
 }
 </script>
 
 <style scoped>
-/* See https://vuejs.org/guide/built-ins/transition for vue transitions */
-.v-enter-active,
-.v-leave-active {
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
-}
-
-.v-enter-from {
-  opacity: 0;
-  transform: translateY(-100px);
-}
-
-.v-leave-to {
-  opacity: 0;
-  transform: translateY(-100px);
+.card-shuffle-move {
+  transition: transform 0.5s cubic-bezier(0.55, 0, 0.1, 1);
 }
 </style>
