@@ -81,7 +81,7 @@
   <div class="flex flex-col items-center justify-center min-h-screen p-16">
     <div>
       <p class="font-bold text-6xl w-full text-center mb-12">Watch Our Introduction Video</p>
-      <div class="rounded-4xl bg-accent border-border p-8 shadow-[0_10px_30px_rgba(0,0,0,0.4)]">
+      <div class="rounded-4xl bg-gradient-to-br from-primary to-accent border-border p-8 shadow-[0_10px_30px_rgba(0,0,0,0.4)]">
         <iframe
           id="kaltura_player"
           class="m-auto aspect-video"
