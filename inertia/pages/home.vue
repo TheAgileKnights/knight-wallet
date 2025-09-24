@@ -55,15 +55,14 @@
     </div>
   </div>
 
-  <hr class="border-t-4 border-accent w-full" />
-
-  <div class="flex min-h-screen w-full py-16">
+  <div class="flex min-h-screen w-full py-16 bg-gradient-to-br from-primary to-accent">
     <div class="mx-8 md:mx-16 lg:mx-32 my-auto">
-      <p class="font-bold text-6xl w-full text-center mb-12">Meet the Development Team</p>
+      <p class="font-bold text-6xl w-full text-center mb-12 text-text-contrast drop-shadow-[0_10px_60px_rgba(0,0,0,1)]">Meet the Development Team</p>
       <div class="grid xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4">
         <Card v-for="(card, index) in bioCards" :key="index">
           <template #icon>
-            <img :src="card.photo"
+            <img
+              :src="card.photo"
               alt="Profile Photo"
               class="w-32 h-32 object-cover rounded-full border-4 border-accent mx-auto"
             />
@@ -75,6 +74,26 @@
             {{ card.description }}
           </template>
         </Card>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col items-center justify-center min-h-screen p-16">
+    <div>
+      <p class="font-bold text-6xl w-full text-center mb-12">Watch Our Introduction Video</p>
+      <div class="rounded-4xl bg-accent border-border p-8 shadow-[0_10px_30px_rgba(0,0,0,0.4)]">
+        <iframe
+          id="kaltura_player"
+          class="m-auto aspect-video"
+          src="https://cdnapisec.kaltura.com/p/2619912/sp/261991200/embedIframeJs/uiconf_id/45753661/partner_id/2619912?iframeembed=true&playerId=kaltura_player&entry_id=1_oltyq32v&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[hotspots.plugin]=1&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_6ker1nld"
+          allowfullscreen
+          webkitallowfullscreen
+          mozAllowFullScreen
+          allow="autoplay *; fullscreen *; encrypted-media *"
+          sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation"
+          frameborder="0"
+          title="Knight Wallet"
+        ></iframe>
       </div>
     </div>
   </div>
@@ -126,22 +145,26 @@ export default {
       bioCards: [
         {
           name: 'Marti Lonnemann',
-          description: "Software developer and Bellarmine student with a passion for web development. Enjoys creating user-friendly applications that solve real-world problems.",
+          description:
+            'Software developer and Bellarmine student with a passion for web development. Enjoys creating user-friendly applications that solve real-world problems.',
           photo: '/resources/images/MartiHeadshot.jpeg',
         },
         {
           name: 'Sam Kauffman',
-          description: "Aspiring software developer and designer attending Bellarmine University pursuing a degree in computer science. Enjoys creating and designing websites using a unique and creative style.",
+          description:
+            'Aspiring software developer and designer attending Bellarmine University pursuing a degree in computer science. Enjoys creating and designing websites using a unique and creative style.',
           photo: '/resources/images/SamHeadshot.jpg',
         },
         {
           name: 'Ronish Gautam',
-          description: "Computer scince student at Bellarmine University with a passion for software development, who also enjoys traveling the world and staying active through fitness.",
+          description:
+            'Computer scince student at Bellarmine University with a passion for software development, who also enjoys traveling the world and staying active through fitness.',
           photo: '/resources/images/RonishHeadshot.jpg',
         },
         {
           name: 'Kirin Sharma',
-          description: "College senior at Bellarmine University and aspiring software engineer passionate about developing impactful, innovative, and efficient software solutions to solve real-world challenges.",
+          description:
+            'College senior at Bellarmine University and aspiring software engineer passionate about developing impactful, innovative, and efficient software solutions to solve real-world challenges.',
           photo: '/resources/images/KirinHeadshot.jpeg',
         },
       ],
