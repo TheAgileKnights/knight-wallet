@@ -217,4 +217,22 @@ export default {
 .card-shuffle-move {
   transition: transform 0.5s cubic-bezier(0.55, 0, 0.1, 1);
 }
+
+/* See https://vuejs.org/guide/built-ins/transition for vue transitions */
+.v-enter-active,
+.v-leave-active {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.v-enter-from {
+  opacity: 0;
+  transform: translateY(-100px);
+}
+
+.v-leave-to {
+  opacity: 0;
+  transform: translateY(-100px);
+}
 </style>
