@@ -98,12 +98,12 @@
   </div>
 
   <div class="flex flex-col items-center justify-center min-h-screen p-16">
-    <div>
+    <div class="">
       <p class="font-bold text-6xl w-full text-center mb-12">Watch Our Introduction Video</p>
-      <div class="rounded-4xl bg-gradient-to-br from-primary to-accent border-border p-8 shadow-[0_10px_30px_rgba(0,0,0,0.4)]">
+      <div class="flex rounded-4xl bg-gradient-to-br grow from-primary to-accent border-border p-8 shadow-[0_10px_30px_rgba(0,0,0,0.4)]">
         <iframe
           id="kaltura_player"
-          class="m-auto aspect-video"
+          class="m-auto aspect-video grow"
           src="https://cdnapisec.kaltura.com/p/2619912/sp/261991200/embedIframeJs/uiconf_id/45753661/partner_id/2619912?iframeembed=true&playerId=kaltura_player&entry_id=1_oltyq32v&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[hotspots.plugin]=1&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_6ker1nld"
           allowfullscreen
           webkitallowfullscreen
