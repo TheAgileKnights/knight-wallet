@@ -1,4 +1,13 @@
 <template>
+  <!-- Nav Bar -->
+  <Transition>
+    <div
+      v-if="showSticky"
+      class="fixed top-4 left-4 bg-primary px-4 py-2 rounded-lg shadow-lg z-50"
+    >
+      <h3 class="font-bold text-2xl text-text-contrast">Knight Wallet</h3>
+    </div>
+  </Transition>
   <!-- Title Area -->
   <div class="flex flex-col min-h-screen w-full bg-gradient-to-br from-primary to-accent">
     <div class="p-12 md:p-24 w-full grid xl:grid-cols-2 text-center xl:text-left grid-cols-1 grow">
@@ -24,22 +33,17 @@
         />
       </div>
     </div>
-    <Transition>
-      <div
-        v-if="showSticky"
-        class="fixed top-4 left-4 bg-primary px-4 py-2 rounded-lg shadow-lg z-50"
-      >
-        <h3 class="font-bold text-2xl text-text-contrast">Knight Wallet</h3>
-      </div>
-    </Transition>
   </div>
-    <div class="flex min-w-full min-h-auto w-full py-16 bg-gradient-to-br from-primary to-accent">
+  <div class="flex min-w-full min-h-auto w-full py-16 bg-gradient-to-br from-primary to-accent">
     <div class="xs:mx-2 mx-8 md:mx-16 lg:mx-32 my-auto drop-shadow-[0_10px_60px_rgba(0,0,0,1)]">
-      <p class="font-bold text-text-contrast text-6xl w-full text-center mb-12 ">Our Mission</p>
+      <p class="font-bold text-text-contrast text-6xl w-full text-center mb-12">Our Mission</p>
       <p class="text-center text-text-contrast text-3xl mt-2 mb-8 text-secondary-text">
-        The Knight Wallet is a shared expense tracker designed to simplify the process of managing and settling shared expenses among groups of people.
-         It aims to provide a user-friendly platform where users can easily add expenses, split costs, and view balances in real-time.
-         The app is designed to assist in various scenarios such as trips, events, or household expenses, making it easier for people to keep track of who owes what and conveniently settle up at the end.
+        The Knight Wallet is a shared expense tracker designed to simplify the process of managing
+        and settling shared expenses among groups of people. It aims to provide a user-friendly
+        platform where users can easily add expenses, split costs, and view balances in real-time.
+        The app is designed to assist in various scenarios such as trips, events, or household
+        expenses, making it easier for people to keep track of who owes what and conveniently settle
+        up at the end.
       </p>
     </div>
   </div>
@@ -76,7 +80,11 @@
 
   <div class="flex min-h-screen w-full py-16 bg-gradient-to-br from-primary to-accent">
     <div class="mx-8 md:mx-16 lg:mx-32 my-auto">
-      <p class="font-bold text-6xl w-full text-center mb-12 text-text-contrast drop-shadow-[0_10px_60px_rgba(0,0,0,1)]">Meet the Development Team</p>
+      <p
+        class="font-bold text-6xl w-full text-center mb-12 text-text-contrast drop-shadow-[0_10px_60px_rgba(0,0,0,1)]"
+      >
+        Meet the Development Team
+      </p>
       <div class="grid xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4">
         <Card v-for="(card, index) in bioCards" :key="index">
           <template #icon>
@@ -100,7 +108,9 @@
   <div class="flex flex-col items-center justify-center min-h-screen p-16">
     <div class="">
       <p class="font-bold text-6xl w-full text-center mb-12">Watch Our Introduction Video</p>
-      <div class="flex rounded-4xl bg-gradient-to-br grow from-primary to-accent border-border p-8 shadow-[0_10px_30px_rgba(0,0,0,0.4)]">
+      <div
+        class="flex rounded-4xl bg-gradient-to-br grow from-primary to-accent border-border p-8 shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
+      >
         <iframe
           id="kaltura_player"
           class="m-auto aspect-video grow"
