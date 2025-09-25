@@ -34,7 +34,8 @@
       </div>
     </div>
   </div>
-  <div class="flex min-w-full min-h-auto w-full py-16 bg-gradient-to-br from-primary to-accent">
+  <!-- Mission Statement -->
+  <div class="flex min-w-full min-h-auto w-full py-16 bg-gradient-to-br from-primary to-accent shadow-[0_0_20px_rgba(0,0,0,0.4)_inset]">
     <div class="xs:mx-2 mx-8 md:mx-16 lg:mx-32 my-auto drop-shadow-[0_10px_60px_rgba(0,0,0,1)]">
       <p class="font-bold text-text-contrast text-6xl w-full text-center mb-12">Our Mission</p>
       <p class="text-center text-text-contrast text-3xl mt-2 mb-8 text-secondary-text">
