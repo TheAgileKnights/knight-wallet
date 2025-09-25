@@ -74,11 +74,9 @@
     </div>
   </div>
 
-  <hr class="border-t-4 border-accent w-full" />
-
-  <div class="flex min-h-screen w-full py-16">
+  <div class="flex min-h-screen w-full py-16 bg-gradient-to-br from-primary to-accent">
     <div class="mx-8 md:mx-16 lg:mx-32 my-auto">
-      <p class="font-bold text-6xl w-full text-center mb-12">Meet the Development Team</p>
+      <p class="font-bold text-6xl w-full text-center mb-12 text-text-contrast drop-shadow-[0_10px_60px_rgba(0,0,0,1)]">Meet the Development Team</p>
       <div class="grid xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4">
         <Card v-for="(card, index) in bioCards" :key="index">
           <template #icon>
@@ -95,6 +93,25 @@
             {{ card.description }}
           </template>
         </Card>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col items-center justify-center min-h-screen p-16">
+    <div>
+      <p class="font-bold text-6xl w-full text-center mb-12">Watch Our Introduction Video</p>
+      <div class="rounded-4xl bg-gradient-to-br from-primary to-accent border-border p-8 shadow-[0_10px_30px_rgba(0,0,0,0.4)]">
+        <iframe
+          id="kaltura_player"
+          class="m-auto aspect-video"
+          src="https://cdnapisec.kaltura.com/p/2619912/sp/261991200/embedIframeJs/uiconf_id/45753661/partner_id/2619912?iframeembed=true&playerId=kaltura_player&entry_id=1_oltyq32v&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[hotspots.plugin]=1&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_6ker1nld"
+          allowfullscreen
+          webkitallowfullscreen
+          mozAllowFullScreen
+          allow="autoplay *; fullscreen *; encrypted-media *"
+          sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation"
+          title="Knight Wallet"
+        ></iframe>
       </div>
     </div>
   </div>
