@@ -1,7 +1,7 @@
 <template>
   <div class="px-8">
     <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <Card class="col-span-full">
+      <Card class="col-span-full" :hover-effect="false">
         <p class="text-3xl font-bold">Interview with {{ name }}</p>
       </Card>
       <Card class="mb-4" v-for="(interview, index) in interview" :key="index">
