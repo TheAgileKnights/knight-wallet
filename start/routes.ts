@@ -30,7 +30,7 @@ router.get('/design-artifacts/features', ({ inertia }) => {
 router.get('/design-artifacts/video', ({ inertia }) => {
   return inertia.render('designArtifacts', {
     type: 'video',
-    url: designArtifactsData.videoUrl,
+    videoUrl: designArtifactsData.videoUrl,
   })
 })
 

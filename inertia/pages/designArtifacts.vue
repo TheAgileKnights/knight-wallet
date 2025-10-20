@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 overflow-x-hidden px-8 grow">
+  <div class="flex flex-col p-4 overflow-x-hidden px-8 grow">
     <!-- Main navigation -->
     <div class="flex flex-col items-center justify-center gap-1 mb-4 relative">
       <TabMenu
@@ -11,7 +11,7 @@
       <!-- Person selector for non-features pages -->
       <Transition name="slide-up">
         <TabMenu
-          v-if="type !== 'features'"
+          v-if="type !== 'features' && type !== 'video'"
           class="relative z-0"
           :tabs="personNavItems"
           :model-value="activeHref"
@@ -19,27 +19,25 @@
         />
       </Transition>
     </div>
-    <Transition name="slide-right" mode="out-in">
-      <div v-if="type === 'personas' && person">
-        <Personas :name="person.name" :age="person.age" :persona="person.persona" />
-      </div>
-
-      <div v-else-if="type === 'scenarios' && person">
-        <Scenarios :scenarios="person.scenarios" />
-      </div>
-
-      <div v-else-if="type === 'stories' && person">
-        <Stories :name="person.name" :scenarios="person.scenarios"/>
-      </div>
-
-      <div v-else-if="type === 'interviews' && person">
-        <Interview :interview="person.interview" :name="person.name" />
-      </div>
-
-      <div v-else-if="type === 'features' && features">
-        <Features :features="features" />
-      </div>
-    </Transition>
+    <Personas
+      v-if="type === 'personas' && person"
+      :name="person.name"
+      :age="person.age"
+      :persona="person.persona"
+    />
+    <Scenarios v-else-if="type === 'scenarios' && person" :scenarios="person.scenarios" />
+    <Stories
+      v-else-if="type === 'stories' && person"
+      :name="person.name"
+      :scenarios="person.scenarios"
+    />
+    <Interview
+      v-else-if="type === 'interviews' && person"
+      :interview="person.interview"
+      :name="person.name"
+    />
+    <Features v-else-if="type === 'features' && features" :features="features" />
+    <ArtifactVideo v-else-if="type === 'video'" :url="videoUrl" />
   </div>
 </template>
 
@@ -51,6 +49,7 @@ import Interview from './components/designArtifacts/Interview.vue'
 import Stories from './components/designArtifacts/Stories.vue'
 import Features from './components/designArtifacts/Features.vue'
 import Scenarios from './components/designArtifacts/Scenarios.vue'
+import ArtifactVideo from './components/designArtifacts/ArtifactVideo.vue'
 
 export interface Person {
   name: string
@@ -89,7 +88,8 @@ export default {
     Personas,
     Stories,
     Features,
-    Scenarios
+    Scenarios,
+    ArtifactVideo,
   },
   props: {
     type: String,
@@ -97,6 +97,7 @@ export default {
     person: Object as () => Person,
     people: Array as () => Person[],
     features: Array as () => Feature[],
+    videoUrl: String,
   },
   data() {
     return {
@@ -111,6 +112,7 @@ export default {
         { label: 'Scenarios', value: `/design-artifacts/scenarios/${this.selectedPersonId}` },
         { label: 'Stories', value: `/design-artifacts/stories/${this.selectedPersonId}` },
         { label: 'Features', value: '/design-artifacts/features' },
+        { label: 'Video', value: '/design-artifacts/video' },
       ]
     },
     personNavItems() {
@@ -121,12 +123,14 @@ export default {
       }))
     },
     activeIndex() {
-      const types = ['personas', 'scenarios', 'stories', 'interviews', 'features']
+      const types = ['interviews', 'personas', 'scenarios', 'stories', 'features', 'video']
       return types.indexOf(this.type || 'interviews')
     },
     activeHref() {
       if (this.type === 'features') {
         return `/design-artifacts/features`
+      } else if (this.type === 'video') {
+        return `/design-artifacts/video`
       }
       return `/design-artifacts/${this.type}/${this.selectedPersonId}`
     },
@@ -148,21 +152,6 @@ export default {
 </script>
 
 <style>
-.slide-right-enter-active,
-.slide-right-leave-active {
-  transition: all 0.15s ease-out;
-}
-
-.slide-right-enter-from {
-  opacity: 0;
-  transform: translateX(25vw);
-}
-
-.slide-right-leave-to {
-  opacity: 0;
-  transform: translateX(-25vw);
-}
-
 .slide-up-enter-active,
 .slide-up-leave-active {
   transition: all 0.15s ease-out;

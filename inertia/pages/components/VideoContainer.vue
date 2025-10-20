@@ -1,6 +1,7 @@
 <template>
   <div
-    class="flex rounded-4xl bg-gradient-to-br grow from-primary to-accent border-border p-8 shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
+    v-if="url"
+    class="flex rounded-4xl grow bg-gradient-to-br from-primary to-accent border-border p-8 shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
   >
     <iframe
       id="kaltura_player"
@@ -14,6 +15,7 @@
       title="Knight Wallet"
     ></iframe>
   </div>
+  <p class="m-auto text-2xl text-center" v-if="!url">No video URL provided.</p>
 </template>
 
 <script lang="ts">
@@ -22,7 +24,7 @@ export default {
   props: {
     url: {
       type: String,
-      required: true
+      required: false
     }
   }
 };
