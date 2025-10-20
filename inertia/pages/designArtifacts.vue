@@ -106,10 +106,10 @@ export default {
   computed: {
     navItems() {
       return [
+        { label: 'Interviews', value: `/design-artifacts/interviews/${this.selectedPersonId}` },
         { label: 'Personas', value: `/design-artifacts/personas/${this.selectedPersonId}` },
         { label: 'Scenarios', value: `/design-artifacts/scenarios/${this.selectedPersonId}` },
         { label: 'Stories', value: `/design-artifacts/stories/${this.selectedPersonId}` },
-        { label: 'Interviews', value: `/design-artifacts/interviews/${this.selectedPersonId}` },
         { label: 'Features', value: '/design-artifacts/features' },
       ]
     },

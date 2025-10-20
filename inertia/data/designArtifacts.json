@@ -364,5 +364,6 @@
       "constraints": "Event grouping logic must allow flexible date ranges and participant lists. Multi-day trips require expense categorization across different days and activities. Storage requirements increase with detailed trip documentation.",
       "comments": "Based on Paul's, Frank's, and Utsav's user stories."
     }
-  ]
+  ],
+  "videoUrl": "https://www.loom.com/share/your-video-id-here"
 }
