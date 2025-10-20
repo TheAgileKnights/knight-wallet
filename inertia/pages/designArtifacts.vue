@@ -1,25 +1,29 @@
 <template>
-  <div class="p-4 overflow-x-hidden">
+  <div class="p-4 overflow-x-hidden px-8">
     <!-- Main navigation -->
-     <div class="flex flex-col items-center justify-center gap-1 mb-4">
-       <TabMenu
-         :tabs="navItems"
-         :model-value="activeHref"
-         @update:model-value="handlePersonChange"
-       />
-       <!-- Person selector for non-features pages -->
-       <TabMenu
-         v-if="type !== 'features'"
-         :tabs="personNavItems"
-         :model-value="activeHref"
-         @update:model-value="handlePersonChange"
-       />
-     </div>
+    <div class="flex flex-col items-center justify-center gap-1 mb-4 relative">
+      <TabMenu
+        class="relative z-10"
+        :tabs="navItems"
+        :model-value="activeHref"
+        @update:model-value="handlePersonChange"
+      />
+      <!-- Person selector for non-features pages -->
+      <Transition name="slide-up">
+        <TabMenu
+          v-if="type !== 'features'"
+          class="relative z-0"
+          :tabs="personNavItems"
+          :model-value="activeHref"
+          @update:model-value="handlePersonChange"
+        />
+      </Transition>
+    </div>
     <Transition name="slide-right" mode="out-in">
       <div v-if="type === 'personas' && person">
         <Personas :name="person.name" :age="person.age" :persona="person.persona" />
       </div>
-  
+
       <div v-else-if="type === 'scenarios' && person">
         <h2>{{ person.name }} - Scenarios</h2>
         <div v-for="(scenario, index) in person.scenarios" :key="index">
@@ -27,7 +31,7 @@
           <p>{{ scenario.description }}</p>
         </div>
       </div>
-  
+
       <div v-else-if="type === 'stories' && person">
         <h2>{{ person.name }} - Stories</h2>
         <div v-for="(scenario, sIndex) in person.scenarios" :key="sIndex">
@@ -37,21 +41,13 @@
           </ul>
         </div>
       </div>
-  
+
       <div v-else-if="type === 'interviews' && person">
-        <Interview :interview="person.interview" :name="person.name"/>
+        <Interview :interview="person.interview" :name="person.name" />
       </div>
-  
-      <div v-else-if="type === 'features' && data">
-        <h2>Features</h2>
-        <div v-for="(feature, index) in data" :key="index">
-          <h3>{{ feature.title }}</h3>
-          <ul>
-            <li v-for="(desc, dIndex) in feature.description" :key="dIndex">{{ desc }}</li>
-          </ul>
-          <p><strong>Constraints:</strong> {{ feature.constraints }}</p>
-          <p><strong>Comments:</strong> {{ feature.comments }}</p>
-        </div>
+
+      <div v-else-if="type === 'features' && features">
+        <Features :features="features" />
       </div>
     </Transition>
   </div>
@@ -62,6 +58,7 @@ import { router } from '@inertiajs/vue3'
 import TabMenu from './components/TabMenu.vue'
 import Personas from './components/Personas.vue'
 import Interview from './components/Interview.vue'
+import Features from './components/Features.vue'
 
 interface Person {
   name: string
@@ -86,21 +83,22 @@ interface Feature {
 }
 
 export default {
-  components: { 
+  components: {
     TabMenu,
     Interview,
-    Personas
+    Personas,
+    Features
   },
   props: {
     type: String,
     id: Number,
     person: Object as () => Person,
     people: Array as () => Person[],
-    data: Array as () => Feature[]
+    features: Array as () => Feature[],
   },
   data() {
     return {
-      selectedPersonId: this.id || 1
+      selectedPersonId: this.id || 1,
     }
   },
   computed: {
@@ -110,14 +108,14 @@ export default {
         { label: 'Scenarios', value: `/design-artifacts/scenarios/${this.selectedPersonId}` },
         { label: 'Stories', value: `/design-artifacts/stories/${this.selectedPersonId}` },
         { label: 'Interviews', value: `/design-artifacts/interviews/${this.selectedPersonId}` },
-        { label: 'Features', value: '/design-artifacts/features' }
+        { label: 'Features', value: '/design-artifacts/features' },
       ]
     },
     personNavItems() {
       if (!this.people) return []
       return this.people.map((p, index) => ({
         label: p.name,
-        value: `/design-artifacts/${this.type}/${index + 1}`
+        value: `/design-artifacts/${this.type}/${index + 1}`,
       }))
     },
     activeIndex() {
@@ -129,21 +127,21 @@ export default {
         return `/design-artifacts/features`
       }
       return `/design-artifacts/${this.type}/${this.selectedPersonId}`
-    }
+    },
   },
   methods: {
     handlePersonChange(event: any) {
       router.visit(event, {
         preserveState: true,
-        preserveScroll: true
+        preserveScroll: true,
       })
-    }
+    },
   },
   watch: {
     id(newId) {
       this.selectedPersonId = newId || 1
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -161,5 +159,18 @@ export default {
 .slide-right-leave-to {
   opacity: 0;
   transform: translateX(-25vw);
+}
+
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: all 0.15s ease-out;
+}
+
+.slide-up-enter-from {
+  transform: translateY(calc(-100% - 4px));
+}
+
+.slide-up-leave-to {
+  transform: translateY(calc(-100% - 4px));
 }
 </style>

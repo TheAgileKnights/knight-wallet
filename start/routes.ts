@@ -22,7 +22,7 @@ router.get('/design-artifacts', ({ response }) => {
 router.get('/design-artifacts/features', ({ inertia }) => {
   return inertia.render('designArtifacts', {
     type: 'features',
-    data: designArtifactsData.features,
+    features: designArtifactsData.features,
     people: designArtifactsData.people,
   })
 })

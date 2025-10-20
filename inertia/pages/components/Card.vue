@@ -4,8 +4,8 @@
     :class="{ 'hover:scale-105': hoverEffect }"
   >
     <slot>
-      <div class="my-4">
-        <slot name="icon" />
+      <div class="my-4" v-if="$slots.icon">
+        <slot name="icon"/>
       </div>
       <div class="font-bold text-2xl">
         <slot name="title" />

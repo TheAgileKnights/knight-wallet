@@ -1,7 +1,7 @@
 <template>
   <Card :hover-effect="false">
     <template #icon>
-      <icon icon="material-symbols:account-circle" class="text-primary w-32 h-32"></icon>
+      <icon icon="material-symbols:account-circle" class="text-accent w-32 h-32"></icon>
     </template>
     <template #title>
       <p>{{ `${name}, ${age} years old` }}</p>
