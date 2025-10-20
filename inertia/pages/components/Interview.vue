@@ -1,24 +1,29 @@
 <template>
-  <div class="m-20">
-    <p class="text-3xl font-bold my-4">Interview with {{ name }}</p>
+  <div class="px-8">
     <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <Card class="mb-4" v-for="(interview, index) in interview" :key="index">
-            <template #icon>
-                <icon :icon="`material-symbols:counter-${index + 1}-rounded`" class="text-accent w-16 h-16"></icon>
-            </template>
-            <template #title class="text-text">
-                {{ interview.question }}
-            </template>
-            <template #description class="text-text-secondary">
-                {{ interview.answer }}
-            </template>
-        </Card>         
+      <Card class="col-span-full">
+        <p class="text-3xl font-bold">Interview with {{ name }}</p>
+      </Card>
+      <Card class="mb-4" v-for="(interview, index) in interview" :key="index">
+        <template #icon>
+          <icon
+            :icon="`material-symbols:counter-${index + 1}-rounded`"
+            class="text-accent w-16 h-16"
+          ></icon>
+        </template>
+        <template #title class="text-text">
+          {{ interview.question }}
+        </template>
+        <template #description class="text-text-secondary">
+          {{ interview.answer }}
+        </template>
+      </Card>
     </ul>
   </div>
 </template>
 <script lang="ts">
 import { PropType } from 'vue'
-import Card from './Card.vue';
+import Card from './Card.vue'
 
 export type Interview = {
   question: string
@@ -28,7 +33,7 @@ export type Interview = {
 export default {
   name: 'Interviews',
   components: {
-    Card
+    Card,
   },
   props: {
     interview: {
@@ -38,7 +43,7 @@ export default {
     name: {
       type: String,
       required: true,
-    }, 
+    },
   },
 }
 </script>

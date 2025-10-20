@@ -1,7 +1,7 @@
 <template>
   <div class="p-4">
     <!-- Main navigation -->
-     <div class="flex flex-col items-center justify-center gap-1">
+     <div class="flex flex-col items-center justify-center gap-1 mb-4">
        <TabMenu
          :tabs="navItems"
          :model-value="activeHref"
