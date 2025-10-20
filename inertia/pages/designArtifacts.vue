@@ -29,13 +29,7 @@
       </div>
 
       <div v-else-if="type === 'stories' && person">
-        <h2>{{ person.name }} - Stories</h2>
-        <div v-for="(scenario, sIndex) in person.scenarios" :key="sIndex">
-          <h3>{{ scenario.title }}</h3>
-          <ul>
-            <li v-for="(story, stIndex) in scenario.stories" :key="stIndex">{{ story }}</li>
-          </ul>
-        </div>
+        <Stories :name="person.name" :scenarios="person.scenarios"/>
       </div>
 
       <div v-else-if="type === 'interviews' && person">
@@ -54,6 +48,7 @@ import { router } from '@inertiajs/vue3'
 import TabMenu from './components/TabMenu.vue'
 import Personas from './components/Personas.vue'
 import Interview from './components/Interview.vue'
+import Stories from './components/Stories.vue'
 import Features from './components/Features.vue'
 import Scenarios from './components/Scenarios.vue'
 
@@ -92,6 +87,7 @@ export default {
     TabMenu,
     Interview,
     Personas,
+    Stories,
     Features,
     Scenarios
   },
