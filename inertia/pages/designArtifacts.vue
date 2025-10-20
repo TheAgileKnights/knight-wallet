@@ -88,7 +88,8 @@ interface Feature {
 export default {
   components: { 
     TabMenu,
-    Interview
+    Interview,
+    Personas
   },
   props: {
     type: String,
