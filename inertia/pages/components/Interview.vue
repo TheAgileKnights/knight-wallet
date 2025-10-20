@@ -22,11 +22,8 @@
 <script lang="ts">
 import { PropType } from 'vue'
 import Card from './Card.vue'
+import { InterviewQuestion } from '../designArtifacts.vue';
 
-export type Interview = {
-  question: string
-  answer: string
-}[]
 
 export default {
   name: 'Interviews',
@@ -35,7 +32,7 @@ export default {
   },
   props: {
     interview: {
-      type: Array as PropType<Interview>,
+      type: Array as PropType<InterviewQuestion[]>,
       required: true,
     },
     name: {

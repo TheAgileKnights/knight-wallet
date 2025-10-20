@@ -35,16 +35,10 @@
 </template>
 
 <script lang="ts">
-export type Feature = {
-  title: string
-  icon?: string
-  description: string[]
-  constraints: string
-  comments: string
-}
 
 import { PropType } from 'vue'
 import Card from './Card.vue'
+import { Feature } from '../designArtifacts.vue';
 
 export default {
   name: 'Features',

@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 overflow-x-hidden px-8">
+  <div class="p-4 overflow-x-hidden px-8 grow">
     <!-- Main navigation -->
     <div class="flex flex-col items-center justify-center gap-1 mb-4 relative">
       <TabMenu
@@ -25,11 +25,7 @@
       </div>
 
       <div v-else-if="type === 'scenarios' && person">
-        <h2>{{ person.name }} - Scenarios</h2>
-        <div v-for="(scenario, index) in person.scenarios" :key="index">
-          <h3>{{ scenario.title }}</h3>
-          <p>{{ scenario.description }}</p>
-        </div>
+        <Scenarios :scenarios="person.scenarios" />
       </div>
 
       <div v-else-if="type === 'stories' && person">
@@ -59,24 +55,33 @@ import TabMenu from './components/TabMenu.vue'
 import Personas from './components/Personas.vue'
 import Interview from './components/Interview.vue'
 import Features from './components/Features.vue'
+import Scenarios from './components/Scenarios.vue'
 
-interface Person {
+export interface Person {
   name: string
   age: number
   persona: string
-  scenarios: Array<{
-    title: string
-    description: string
-    stories: string[]
-  }>
+  scenarios: Scenario[]
   interview: Array<{
     question: string
     answer: string
   }>
 }
 
-interface Feature {
+export interface Scenario {
   title: string
+  description: string
+  stories: string[]
+}
+
+export interface InterviewQuestion {
+  question: string
+  answer: string
+}
+
+export interface Feature {
+  title: string
+  icon: string
   description: string[]
   constraints: string
   comments: string
@@ -87,7 +92,8 @@ export default {
     TabMenu,
     Interview,
     Personas,
-    Features
+    Features,
+    Scenarios
   },
   props: {
     type: String,
