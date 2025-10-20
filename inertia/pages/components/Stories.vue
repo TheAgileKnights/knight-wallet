@@ -5,7 +5,7 @@
     </Card>
     <Card
       :hover-effect="false"
-      class="m-5" 
+      class="m-2" 
       v-for="(story, index) in scenario.stories" 
       :key="index"
     >
