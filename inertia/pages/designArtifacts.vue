@@ -1,7 +1,7 @@
 <template>
-  <div class="p-4">
+  <div class="p-4 overflow-x-hidden">
     <!-- Main navigation -->
-     <div class="flex flex-col items-center justify-center gap-1">
+     <div class="flex flex-col items-center justify-center gap-1 mb-4">
        <TabMenu
          :tabs="navItems"
          :model-value="activeHref"
@@ -15,48 +15,45 @@
          @update:model-value="handlePersonChange"
        />
      </div>
-    <!-- Content display -->
-    <div v-if="type === 'personas' && person">
-      <Personas :name="person.name" :age="person.age" :persona="person.persona" />
-    </div>
-
-    <div v-if="type === 'scenarios' && person">
-      <h2>{{ person.name }} - Scenarios</h2>
-      <div v-for="(scenario, index) in person.scenarios" :key="index">
-        <h3>{{ scenario.title }}</h3>
-        <p>{{ scenario.description }}</p>
+    <Transition name="slide-right" mode="out-in">
+      <div v-if="type === 'personas' && person">
+        <Personas :name="person.name" :age="person.age" :persona="person.persona" />
       </div>
-    </div>
-
-    <div v-if="type === 'stories' && person">
-      <h2>{{ person.name }} - Stories</h2>
-      <div v-for="(scenario, sIndex) in person.scenarios" :key="sIndex">
-        <h3>{{ scenario.title }}</h3>
-        <ul>
-          <li v-for="(story, stIndex) in scenario.stories" :key="stIndex">{{ story }}</li>
-        </ul>
+  
+      <div v-else-if="type === 'scenarios' && person">
+        <h2>{{ person.name }} - Scenarios</h2>
+        <div v-for="(scenario, index) in person.scenarios" :key="index">
+          <h3>{{ scenario.title }}</h3>
+          <p>{{ scenario.description }}</p>
+        </div>
       </div>
-    </div>
-
-    <div v-if="type === 'interviews' && person">
-      <h2>{{ person.name }} - Interview</h2>
-      <div v-for="(item, index) in person.interview" :key="index">
-        <h3>{{ item.question }}</h3>
-        <p>{{ item.answer }}</p>
+  
+      <div v-else-if="type === 'stories' && person">
+        <h2>{{ person.name }} - Stories</h2>
+        <div v-for="(scenario, sIndex) in person.scenarios" :key="sIndex">
+          <h3>{{ scenario.title }}</h3>
+          <ul>
+            <li v-for="(story, stIndex) in scenario.stories" :key="stIndex">{{ story }}</li>
+          </ul>
+        </div>
       </div>
-    </div>
-
-    <div v-if="type === 'features' && data">
-      <h2>Features</h2>
-      <div v-for="(feature, index) in data" :key="index">
-        <h3>{{ feature.title }}</h3>
-        <ul>
-          <li v-for="(desc, dIndex) in feature.description" :key="dIndex">{{ desc }}</li>
-        </ul>
-        <p><strong>Constraints:</strong> {{ feature.constraints }}</p>
-        <p><strong>Comments:</strong> {{ feature.comments }}</p>
+  
+      <div v-else-if="type === 'interviews' && person">
+        <Interview :interview="person.interview" :name="person.name"/>
       </div>
-    </div>
+  
+      <div v-else-if="type === 'features' && data">
+        <h2>Features</h2>
+        <div v-for="(feature, index) in data" :key="index">
+          <h3>{{ feature.title }}</h3>
+          <ul>
+            <li v-for="(desc, dIndex) in feature.description" :key="dIndex">{{ desc }}</li>
+          </ul>
+          <p><strong>Constraints:</strong> {{ feature.constraints }}</p>
+          <p><strong>Comments:</strong> {{ feature.comments }}</p>
+        </div>
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -64,6 +61,7 @@
 import { router } from '@inertiajs/vue3'
 import TabMenu from './components/TabMenu.vue'
 import Personas from './components/Personas.vue'
+import Interview from './components/Interview.vue'
 
 interface Person {
   name: string
@@ -88,7 +86,10 @@ interface Feature {
 }
 
 export default {
-  components: { TabMenu, Personas },
+  components: { 
+    TabMenu,
+    Interview
+  },
   props: {
     type: String,
     id: Number,
@@ -144,3 +145,20 @@ export default {
   }
 }
 </script>
+
+<style>
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition: all 0.15s ease-out;
+}
+
+.slide-right-enter-from {
+  opacity: 0;
+  transform: translateX(25vw);
+}
+
+.slide-right-leave-to {
+  opacity: 0;
+  transform: translateX(-25vw);
+}
+</style>
