@@ -46,11 +46,11 @@
 <script lang="ts">
 import { router } from '@inertiajs/vue3'
 import TabMenu from './components/TabMenu.vue'
-import Personas from './components/Personas.vue'
-import Interview from './components/Interview.vue'
-import Stories from './components/Stories.vue'
-import Features from './components/Features.vue'
-import Scenarios from './components/Scenarios.vue'
+import Personas from './components/designArtifacts/Personas.vue'
+import Interview from './components/designArtifacts/Interview.vue'
+import Stories from './components/designArtifacts/Stories.vue'
+import Features from './components/designArtifacts/Features.vue'
+import Scenarios from './components/designArtifacts/Scenarios.vue'
 
 export interface Person {
   name: string

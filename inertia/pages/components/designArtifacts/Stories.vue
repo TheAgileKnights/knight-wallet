@@ -23,8 +23,8 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Scenario } from '../designArtifacts.vue';
-import Card from './Card.vue';
+import Card from '../Card.vue';
+import { Scenario } from '~/pages/designArtifacts.vue';
 
 export default {
 name: "Stories",

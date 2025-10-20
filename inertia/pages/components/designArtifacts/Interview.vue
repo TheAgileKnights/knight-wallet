@@ -21,8 +21,8 @@
 </template>
 <script lang="ts">
 import { PropType } from 'vue'
-import Card from './Card.vue'
-import { InterviewQuestion } from '../designArtifacts.vue';
+import Card from '../Card.vue'
+import { InterviewQuestion } from '~/pages/designArtifacts.vue';
 
 
 export default {
