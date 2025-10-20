@@ -63,9 +63,11 @@
 <script lang="ts">
 import { router } from '@inertiajs/vue3'
 import TabMenu from './components/TabMenu.vue'
+import Personas from './components/Personas.vue'
 
 interface Person {
   name: string
+  age: number
   persona: string
   scenarios: Array<{
     title: string
@@ -86,7 +88,7 @@ interface Feature {
 }
 
 export default {
-  components: { TabMenu },
+  components: { TabMenu, Personas },
   props: {
     type: String,
     id: Number,
