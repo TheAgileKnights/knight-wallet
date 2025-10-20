@@ -1,0 +1,357 @@
+{
+  "people": [
+    {
+      "name": "Frank",
+      "persona": "A 22-year-old senior environmental science major at a university in Kentucky. Born in the Philippines, moved to the United States in 2015. Manages shared expenses primarily through Venmo but finds it cumbersome to track everything without sending payment requests immediately. Lives with two roommates and frequently organizes group activities, making him responsible for upfront payments that require subsequent reimbursement. Budget-conscious student who wants accurate expense tracking that allows him to document costs as they occur and send payment reminders later without awkwardness.",
+      "scenarios": [
+        {
+          "title": "Weekend Trip Cost Split",
+          "description": "Frank and his friends plan a Fall Break trip to Gatlinburg, Tennessee. Frank pays for the cabin rental upfront and volunteers to drive the group. Throughout the trip, he tracks expenses he pays out of pocket including the cabin rental, gas, and shared meals. At trip's end, Frank uses Knight Wallet to split costs according to what each person owes based on their participation in different activities.",
+          "stories": [
+            "Track the cost of the rental so that it can be split later.",
+            "Easily send others kind reminders to pay.",
+            "Accurately track all expenses to know what was spent on the trip.",
+            "Allow friends to easily pay back without hassle.",
+            "Show friends exactly what they are being requested to pay for so they can identify any mistakes in item assignment."
+          ]
+        },
+        {
+          "title": "Utility Bill Payments",
+          "description": "Frank lives with two roommates in an apartment where they're billed monthly for water, electricity, and internet based on usage, so amounts vary each month. Frank has his credit card on file to cover these expenses and needs to split the bills with his roommates after invoices arrive.",
+          "stories": [
+            "Input the total utility cost so that Knight Wallet can automatically divide it among roommates.",
+            "Provide roommates a clear view of the utility charges so they understand what they're paying for.",
+            "See who has and hasn't paid easily to track payment status.",
+            "Send notifications to roommates when a new bill is added so they can pay on time.",
+            "Allow roommates to request adjustments if they were away for part of the month so that payments are fair."
+          ]
+        },
+        {
+          "title": "Dinner with Friends",
+          "description": "Frank and five friends visit a new Mexican restaurant with excellent food. When the check arrives, the server explains they have a single-check policy and cannot split the bill six ways. Frank pays the entire $180 bill and leaves a generous tip for their helpful server.",
+          "stories": [
+            "Input individual meal costs so that each person is only charged for what they ordered.",
+            "Automatically calculate and split the tax and tip evenly among all friends to avoid tedious math.",
+            "Show friends their portion of the total including tax and tip so they know exactly what they owe.",
+            "Send simple payment requests with clear totals so friends can pay immediately without rechecking the receipt.",
+            "Save transaction history to see what was spent on group outings over time."
+          ]
+        }
+      ],
+      "interview": [
+        {
+          "question": "Tell me about how you currently manage your personal expenses and any shared expenses with roommates, friends, or groups.",
+          "answer": "I manage expenses mostly through a credit card, and handle shared expenses with friends and roommates mostly through venmo transactions where we just share what is owed."
+        },
+        {
+          "question": "Walk me through the last time you had to split a bill or shared expense with others. What happened?",
+          "answer": "The last time I had to split a bill was at a restaurant, and I paid for the whole table and asked everyone to pay me for their tab afterwards. It was a little confusing remembering who had what and accounting for the tip and tax as well."
+        },
+        {
+          "question": "What's the most frustrating or awkward situation you've experienced involving money and other people?",
+          "answer": "The most awkward situation I've had involving money with other people was when I had to text people to ask for payment they had forgotten about from a grocery trip."
+        },
+        {
+          "question": "How do you keep track of who owes you money or who you owe money to?",
+          "answer": "I mostly keep track of it through word of mouth and memory, and just an honor system."
+        },
+        {
+          "question": "What would make you feel more comfortable asking people to pay you back or reminding them about money they owe?",
+          "answer": "Having an easy way to show them exactly what they paid and when would be helpful."
+        },
+        {
+          "question": "If you could wave a magic wand and fix one thing about handling expenses (personal or shared), what would it be?",
+          "answer": "I would make it easier to itemize what I've been buying and keep track of who owes me an exact amount."
+        },
+        {
+          "question": "How much time per week do you spend dealing with expense-related tasks like tracking spending, paying bills, or settling up with people?",
+          "answer": "I don't spend a significant amount of time dealing with those sorts of tasks, and probably don't audit myself and my spending enough."
+        }
+      ]
+    },
+    {
+      "name": "Paul",
+      "persona": "A 56-year-old parent of four children living in a suburban area. Works in middle management and has moderate technical proficiency—comfortable with smartphones and basic apps but prefers simple, intuitive solutions over complex financial software like Quicken. Frequently manages both family expenses and occasional shared costs with friends during social outings and group trips. Values leisure time and doesn't want financial tracking to interfere with enjoying social experiences. Philosophy: without evidence, it didn't happen. Seeks automation that works in real-time without requiring him to share comprehensive financial data with others. Currently spends 1-2 hours weekly on expense-related tasks and views this as excessive.",
+      "scenarios": [
+        {
+          "title": "Group Trip Expense Settlement",
+          "description": "Paul coordinates a weekend ski trip with five friends, using his credit card for the cabin ($1,200), lift tickets ($450), and groceries ($280). He keeps receipts and asks friends to track their expenses. At trip's end, disputes arise when friends claim purchases they never documented. Paul refuses to reimburse unverified expenses, creating tension. The settlement takes over an hour and leaves him frustrated.",
+          "stories": [
+            "Automatically capture card transactions in real-time so that receipts don't need to be manually saved or remembered.",
+            "Categorize expenses as 'shared' and specify which individuals should split the cost so that settlement calculations are accurate.",
+            "Generate a clear expense summary with transaction timestamps so that documented proof can be presented to friends.",
+            "Distinguish between verified card transactions and unverified claims so that expenses can be fairly evaluated.",
+            "Send automated settlement requests to friends so that personal asking for money owed isn't necessary."
+          ]
+        },
+        {
+          "title": "Evening Out with Friends",
+          "description": "Paul meets four friends for a casual Friday dinner and drinks. He mentally estimates spending $60 but ends up paying $90 after treating the group to appetizers ($45) and buying a drink round ($38). He doesn't track the evening precisely, viewing it as social give-and-take. However, Paul lacks a consistent method for deciding which events deserve tracking versus which don't.",
+          "stories": [
+            "Quickly flag a purchase as 'personal' or 'shared' at the time of transaction so that decisions about reimbursement don't need to be made later.",
+            "Set an expected spending threshold for the evening so that it's known upfront whether tracking is necessary.",
+            "Designate certain events as 'no settlement needed' so that the app doesn't include those purchases in reimbursement calculations.",
+            "Review 'personal' expenses later and convert them to 'shared' if desired for flexibility.",
+            "Receive a weekly summary showing spending by category to understand social costs without daily monitoring."
+          ]
+        },
+        {
+          "title": "Using Friend's Google Apps Expense Tracker",
+          "description": "Paul's friend creates a shared Google Sheets tracker for a week-long beach vacation with eight people. Paul makes several purchases (parking, group dinner, supplies totaling $305) but forgets to log some immediately because manual entry during vacation feels burdensome. At settlement, friends mention unlogged expenses they 'remember' making. Paul questions these claims without documentation, creating tension.",
+          "stories": [
+            "Automatically sync card transactions to a shared expense tracker so that purchases don't need to be manually logged during activities.",
+            "Maintain own verified transaction history even when others don't participate fully so that records are always complete.",
+            "Share only specific expense transactions with the group so that friends don't see personal spending.",
+            "Clearly distinguish between auto-captured transactions and manually entered claims so that evidence quality can be assessed.",
+            "Send automatic notifications to group members when a shared expense is logged so that everyone stays informed without playing enforcer."
+          ]
+        }
+      ],
+      "interview": [
+        {
+          "question": "Tell me about how you currently manage your personal expenses and any shared expenses with roommates, friends, or groups.",
+          "answer": "I usually just keep track of how much I spent, and then I ask the others, like, when we're on a trip, how much they spend. A friend of mine actually created Google apps where they all logged in their expenses and then had a total at the bottom, and then it just subtracted the difference. But I usually just keep track and ask everybody else to do so. I'll keep receipts."
+        },
+        {
+          "question": "Walk me through the last time you had to split a bill or shared expense with others. What happened?",
+          "answer": "When I do have shared expenses, I usually try to settle up when the event's over. If it's just going out for the evening, I'll just kind of assume what I'm planning to spend regardless of whether I get it paid back or not."
+        },
+        {
+          "question": "What's the most frustrating or awkward situation you've experienced involving money and other people?",
+          "answer": "Other people not keeping records like me. Because I'll tell them to scan their thing on an app and they don't, and then they'll go, 'Well, actually, no, remember I bought this up.' They're recollecting things, and you don't want to get in an argument, but to me, if I don't have the evidence, it didn't happen."
+        },
+        {
+          "question": "How do you keep track of who owes you money or who you owe money to?",
+          "answer": "Yeah, kind of goes back to the first question. If it's just out for the evening, I'll assume what I'm planning to spend and don't worry too much about it. For bigger things, I try to settle up at the end of the event."
+        },
+        {
+          "question": "What would make you feel more comfortable asking people to pay you back or reminding them about money they owe?",
+          "answer": "It'd be cool if it was automatic—like when you made a purchase on your card, it sent you a notification that went into something to keep track of daily expenses. Then I could just say, 'Here's what I did.' Quicken is a little too complicated for that, and I don't want to share all my financial stuff with everybody, but it'd be nice if it worked in real time."
+        },
+        {
+          "question": "If you could wave a magic wand and fix one thing about handling expenses (personal or shared), what would it be?",
+          "answer": "That I wouldn't have to refer to the IRS. (laughs) But seriously, making it easier to do—it's a pain to keep track of all that stuff. Sometimes when you're in the middle of something and just want to enjoy it, you don't want to always think about ponying up. Maybe having stuff go exactly to a budget automatically would help."
+        },
+        {
+          "question": "How much time per week do you spend dealing with expense-related tasks like tracking spending, paying bills, or settling up with people?",
+          "answer": "About an hour a week, maybe one to two hours."
+        }
+      ]
+    },
+    {
+      "name": "Utsav Sapkota",
+      "persona": "A 22-year-old college student who manages personal expenses using his bank app and the Notes app on his phone. Handles shared expenses with friends and roommates through an informal trust system, relying on memory and verbal agreements rather than structured tracking. Comfortable with casual approach but finds it awkward to remind people when they forget to pay him back, worrying about sounding rude or creating tension in friendships. Frequently pays for group purchases—especially when driving for food runs—and expects friends to reimburse him later. Primary challenge is the lack of clear documentation when requesting payment.",
+      "scenarios": [
+        {
+          "title": "Drive-Thru Payment and Forgotten Reimbursement",
+          "description": "Utsav drives three friends to a late-night fast food drive-thru after studying. Since he's driving, it makes sense for him to pay the $42 total bill at the window. His friends verbally agree to send him their portions later—around $10-12 each. Two friends send payment via Venmo within an hour, but one friend forgets. Three days pass before Utsav realizes he's still owed money. He feels awkward texting his friend to remind him about the $12.",
+          "stories": [
+            "Automatically log the total amount and split it among participants so that there's a clear record of what each person owes.",
+            "Send automated reminders to people who haven't paid so that personal texting about money isn't necessary.",
+            "Clearly show each person what they ordered and when so that payment requests feel justified rather than confrontational.",
+            "Receive a notification immediately after the purchase so that payment isn't forgotten later.",
+            "See payment status for each person so that it's known who has paid and who still owes money."
+          ]
+        },
+        {
+          "title": "Grocery Run for Shared Apartment Items",
+          "description": "Utsav and his two roommates need household supplies including paper towels, dish soap, trash bags, and snacks. Utsav volunteers to make the grocery run and spends $68 at the store. He expects each roommate to contribute roughly $23 for their share. Utsav mentions the purchase to his roommates when he returns but doesn't write down the specific items or amount. A week later, neither roommate has paid him back.",
+          "stories": [
+            "Automatically capture itemized receipts so that documentation exists when requesting reimbursement later.",
+            "Show roommates exactly what household items were purchased so that they understand what they're being asked to pay for.",
+            "Timestamp purchases so that there's a clear record of when the expense occurred.",
+            "Automatically split costs evenly among participants so that calculations are done automatically.",
+            "Send reminders with purchase details attached so that roommates can verify what they agreed to split."
+          ]
+        },
+        {
+          "title": "Group Movie Night Snacks and Tickets",
+          "description": "Utsav organizes a movie night for five friends, purchasing advance tickets online for $75 total and stopping at the convenience store for candy and drinks costing $32. He keeps mental notes of the expenses, expecting each person to contribute about $21. At the theater, friends thank him for organizing but no one offers payment. After the movie, Utsav casually mentions the costs, and two friends immediately send money via Venmo. The other three say they'll pay later but don't specify when.",
+          "stories": [
+            "Combine multiple related expenses (tickets and snacks) into one group expense so that one total payment per person can be requested.",
+            "Automatically calculate each person's fair share so that mental math isn't needed.",
+            "Show an itemized breakdown of all expenses so that friends can see exactly what they're paying for.",
+            "Track who has paid immediately versus who said 'later' so that it's known who needs follow-up.",
+            "Receive a payment request right away so that payment isn't forgotten and reminders aren't needed later."
+          ]
+        }
+      ],
+      "interview": [
+        {
+          "question": "Tell me about how you currently manage your personal expenses and any shared expenses with roommates, friends, or groups.",
+          "answer": "I use my bank app and my phone's Notes to keep track of my money. We don't really write it down — we just trust each other to pay back."
+        },
+        {
+          "question": "Walk me through the last time you had to split a bill or shared expense with others. What happened?",
+          "answer": "The Last time I split a bill was at a drive-thru. I was driving, so it made sense for me to pay. Afterwards, everyone sent me what they owed—but one person forgot, so I had to remind him."
+        },
+        {
+          "question": "What's the most frustrating or awkward situation you've experienced involving money and other people?",
+          "answer": "It's always awkward when I have to remind someone to pay me back. I don't want to sound rude or make things weird."
+        },
+        {
+          "question": "How do you keep track of who owes you money or who you owe money to?",
+          "answer": "I don't really use an app or anything. I just remember it or talk about it with people. It's more of a trust system."
+        },
+        {
+          "question": "What would make you feel more comfortable asking people to pay you back or reminding them about money they owe?",
+          "answer": "If there was a way to clearly show what each person paid for and when, that would make it easier to ask for the money without it feeling awkward."
+        },
+        {
+          "question": "If you could wave a magic wand and fix one thing about handling expenses (personal or shared), what would it be?",
+          "answer": "I'd make it simple to see every item I bought and who owes me for what — kind of like an automatic tracker that splits everything for me."
+        }
+      ]
+    },
+    {
+      "name": "Hayley Bratcher",
+      "persona": "A 21-year-old waitress at Olive Garden who works Monday through Friday and manages her expenses on a tight budget. Uses Venmo for settling shared expenses with friends and maintains a monthly written budget where she tracks who she owes money to, the amounts, and payment due dates. Describes herself as straightforward and prefers direct communication about money rather than beating around the bush. Reviews her finances every Friday, calculating her weekly earnings and expenses before going to the bank, which takes approximately an hour. Primary challenge is saving money while managing numerous monthly bills and daily expenses. Finds her current manual tracking system inefficient. Values directness when requesting payment, believing that gentle reminders often don't get results.",
+      "scenarios": [
+        {
+          "title": "Year-Long Trip Reimbursement Delay",
+          "description": "Hayley organizes a trip with friends and pays for shared expenses upfront, expecting timely reimbursement. She divides costs evenly among participants and sends Venmo requests for each person's share. Most friends pay within weeks, but one person—her boyfriend at the time—delays payment for months. Hayley directly asks for the money multiple times, but gentle reminders don't produce results. Nearly a year passes before she finally receives full reimbursement.",
+          "stories": [
+            "Send automated payment reminders at regular intervals so that friends don't need to be personally asked repeatedly for money.",
+            "See a timeline showing how long each person has owed money so that follow-ups with the longest delays can be prioritized.",
+            "Escalate reminder urgency over time so that people understand payment is becoming overdue.",
+            "See total outstanding receivables so that it's known how much money is being waited for to recover.",
+            "Send clear payment requests with documented trip expenses so that friends understand exactly why they owe money."
+          ]
+        },
+        {
+          "title": "Weekly Expense Reconciliation on Fridays",
+          "description": "Every Friday after her work week ends, Hayley spends about an hour reconciling her finances before going to the bank. She reviews all money earned Monday through Friday and calculates expenses made throughout the week. She updates her monthly budget document, writing down each person she owes money to, the amounts, and due dates. This manual process involves reviewing receipts, checking her bank app, and ensuring all transactions are accounted for.",
+          "stories": [
+            "Have expenses automatically captured throughout the week so that manual receipt review isn't needed every Friday.",
+            "See a weekly summary of money earned versus money spent so that financial position can be quickly understood.",
+            "Maintain a running list of people and amounts with due dates so that this information doesn't need to be rewritten monthly.",
+            "Categorize expenses by necessity so that areas to save money can be identified.",
+            "Use automated transaction categorization so that Friday reconciliation takes minutes instead of an hour."
+          ]
+        },
+        {
+          "title": "Group Outing with Cash and Venmo Mix",
+          "description": "Hayley goes out with friends for dinner and activities. As the organizer, she pays for various shared expenses throughout the evening. When settling up, some friends give her cash while others send Venmo payments for their share of costs. The mixed payment methods create tracking confusion—she has to manually verify that the cash amounts plus Venmo transfers equal what's owed.",
+          "stories": [
+            "Log both cash and digital payments in one place so that there's a complete record of who paid.",
+            "Distinguish between people who paid immediately versus those who said 'later' so that it's known who needs follow-up.",
+            "Timestamp when cash payment was received so that the same person isn't accidentally asked twice if it's forgotten they paid.",
+            "Have documented proof of expenses and payment status so that straightforward requests are backed by clear evidence.",
+            "See total expected versus total received so that it's immediately known if money is still owed."
+          ]
+        }
+      ],
+      "interview": [
+        {
+          "question": "Tell me about how you currently manage your personal expenses and any shared expenses with roommates, friends, or groups.",
+          "answer": "When going on trips with friends where she pays for everything, Hayley divides expenses evenly between each friend. She primarily uses Venmo for reimbursement, with friends sending her the appropriate amounts through the app."
+        },
+        {
+          "question": "Walk me through the last time you had to split a bill or shared expense with others. What happened?",
+          "answer": "The last time she split a bill, everybody either gave her cash or Venmo'd her the right amount of money. The process was straightforward with people paying their share."
+        },
+        {
+          "question": "What's the most frustrating or awkward situation you've experienced involving money and other people?",
+          "answer": "The most frustrating situation was when it took nearly a year to get her money back from a trip. Specifically mentioned that her boyfriend at the time didn't pay her back for some months after the trip. However, she noted that overall she hasn't really had many frustrating or awkward situations involving money."
+        },
+        {
+          "question": "How do you keep track of who owes you money or who you owe money to?",
+          "answer": "Recently she's been keeping a budget. Every single month she writes a new budget where she writes down each name of people she owes money to, how much she owes them, and the date when she needs to pay them. She acknowledged this system is 'very inefficient.'"
+        },
+        {
+          "question": "What would make you feel more comfortable asking people to pay you back or reminding them about money they owe?",
+          "answer": "For Hayley, the most comfortable approach is being straight up and direct. She's the type of person who doesn't beat around the bush—she would rather be straightforward and explain why she needs the money. She prefers asking people to pay rather than reminding them because 'reminding never gets done.'"
+        },
+        {
+          "question": "If you could wave a magic wand and fix one thing about handling expenses, what would it be?",
+          "answer": "Saving money would be the one thing she'd fix. She feels it's very hard to save money, especially monthly when there are so many bills to pay. Her biggest problem is trying to save money."
+        },
+        {
+          "question": "How much time per week do you spend dealing with expense-related tasks like tracking spending, paying bills, or settling up with people?",
+          "answer": "Hayley spends money every day and deals with expense-related considerations daily. However, she specifically tracks her expenses every Friday. Since she only works Monday through Friday, Friday is her bank day when she calculates all the money she made throughout the week and all the expenses she made throughout the week. This Friday tracking session takes about an hour, including the time to go to the bank and handle everything."
+        }
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Automatic Expense Capture and Categorization",
+      "description": [
+        "Card transactions automatically sync to Knight Wallet in real-time without manual entry or receipt saving.",
+        "Quick categorization of expenses as 'personal' or 'shared' at the time of transaction.",
+        "Automatic capture throughout the week eliminates manual receipt review during tracking sessions.",
+        "Accurate tracking of all expenses for budget-conscious users."
+      ],
+      "constraints": "Requires integration with banking APIs and payment processors. Some banks may have restricted API access or require user authentication through secure OAuth protocols. Real-time syncing depends on bank transaction posting times, which may have delays.",
+      "comments": "Based on Paul's, Frank's, and Hayley's user stories."
+    },
+    {
+      "title": "Itemized Expense Splitting with Tax and Tip Calculation",
+      "description": [
+        "Input individual meal costs so that each person is only charged for what they ordered.",
+        "Automatic calculation and even splitting of tax and tip among all participants to avoid manual math.",
+        "Clear display of each person's portion of the total including tax and tip.",
+        "Automatic calculation of each person's fair share for any expense type."
+      ],
+      "constraints": "Receipt scanning and OCR (Optical Character Recognition) technology may have accuracy limitations requiring manual verification. Tax and tip calculation algorithms must account for regional tax variations and customizable tipping percentages.",
+      "comments": "Based on Frank's and Utsav's user stories."
+    },
+    {
+      "title": "Automated Payment Reminders and Settlement Tracking",
+      "description": [
+        "Automated payment reminders sent at regular intervals without personal asking.",
+        "Escalating reminder urgency over time so people understand payment is becoming overdue.",
+        "Clear tracking of who has paid and who hasn't for targeted follow-up.",
+        "Automatic notifications sent to group members when shared expenses are logged.",
+        "Immediate notifications after purchases so payment isn't forgotten."
+      ],
+      "constraints": "Push notification delivery depends on user permission settings and device configurations. Email reminders may be filtered to spam. Reminder escalation timing must balance effectiveness with avoiding user annoyance.",
+      "comments": "Based on Paul's, Frank's, Utsav's, and Hayley's user stories."
+    },
+    {
+      "title": "Payment Request Documentation and Verification",
+      "description": [
+        "Clear expense summaries with transaction timestamps for presenting documented proof.",
+        "Clear display of what each person paid for and when to justify payment requests.",
+        "Distinction between verified card transactions and unverified claims for fair evaluation.",
+        "Automatic capture of itemized receipts for documentation when requesting reimbursement."
+      ],
+      "constraints": "Receipt storage requires secure cloud infrastructure with appropriate data retention policies. Image quality of captured receipts must be sufficient for later reference. Data must comply with financial privacy regulations.",
+      "comments": "Based on Paul's and Utsav's user stories."
+    },
+    {
+      "title": "Multi-Payment Method Tracking (Venmo, Cash, Card)",
+      "description": [
+        "Logging of both cash and digital payments in one place for complete records.",
+        "Distinction between people who paid immediately versus those who said 'later' for follow-up tracking.",
+        "Timestamping when cash payment was received to prevent double-asking.",
+        "Easy payment options for friends to settle expenses without hassle."
+      ],
+      "constraints": "Integration with payment platforms like Venmo, PayPal, and Zelle requires API partnerships or manual entry options. Cash payments require manual logging with no automated verification capability. Payment status synchronization may have delays.",
+      "comments": "Based on Frank's, Hayley's, and Utsav's user stories."
+    },
+    {
+      "title": "Recurring Expense Management (Utilities, Bills)",
+      "description": [
+        "Input total utility costs for automatic division among roommates.",
+        "Clear view of utility charges for roommates to understand what they're paying for.",
+        "Running list of people and amounts with due dates without monthly rewriting.",
+        "Notifications to roommates when new bills are added for timely payment.",
+        "Ability to request adjustments if away for part of the month for fair payments."
+      ],
+      "constraints": "Recurring expense patterns must be user-configurable to account for variable utility costs. Historical data analysis requires sufficient transaction history. Adjustment requests need workflow approval mechanisms to prevent disputes.",
+      "comments": "Based on Frank's and Hayley's user stories."
+    },
+    {
+      "title": "Trip and Event Expense Consolidation",
+      "description": [
+        "Track rental and trip costs for later splitting.",
+        "Combine multiple related expenses (tickets, snacks, etc.) into one group expense for single payment requests.",
+        "Automatic logging of total amounts with splitting among participants for clear records.",
+        "Maintain verified transaction history even when others don't participate fully for complete records."
+      ],
+      "constraints": "Event grouping logic must allow flexible date ranges and participant lists. Multi-day trips require expense categorization across different days and activities. Storage requirements increase with detailed trip documentation.",
+      "comments": "Based on Paul's, Frank's, and Utsav's user stories."
+    }
+  ]
+}
