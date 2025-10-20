@@ -40,11 +40,7 @@
     </div>
 
     <div v-if="type === 'interviews' && person">
-      <h2>{{ person.name }} - Interview</h2>
-      <div v-for="(item, index) in person.interview" :key="index">
-        <h3>{{ item.question }}</h3>
-        <p>{{ item.answer }}</p>
-      </div>
+      <Interview :interview="person.interview" :name="person.name"/>
     </div>
 
     <div v-if="type === 'features' && data">
@@ -64,6 +60,7 @@
 <script lang="ts">
 import { router } from '@inertiajs/vue3'
 import TabMenu from './components/TabMenu.vue'
+import Interview from './components/Interview.vue'
 
 interface Person {
   name: string
@@ -87,7 +84,10 @@ interface Feature {
 }
 
 export default {
-  components: { TabMenu },
+  components: { 
+    TabMenu,
+    Interview
+  },
   props: {
     type: String,
     id: Number,
