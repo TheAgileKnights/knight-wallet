@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
     <Card class="col-span-full" :hover-effect="false">
       <p class="text-3xl font-bold">Scenarios</p>
     </Card>

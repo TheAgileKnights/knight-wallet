@@ -1,15 +1,20 @@
 <template>
-  <Card :hover-effect="false">
-    <template #icon>
-      <icon icon="material-symbols:account-circle" class="text-accent w-32 h-32"></icon>
-    </template>
-    <template #title>
-      <p>{{ `${name}, ${age} years old` }}</p>
-    </template>
-    <template #description>
-      <p class="text-2xl whitespace-pre-line text-text-secondary">{{ persona }}</p>
-    </template>
-  </Card>
+  <div class="flex flex-col gap-4">
+    <Card :hover-effect="false">
+      <p class="text-3xl font-bold">Persona for {{ name }}</p>
+    </Card>
+    <Card :hover-effect="false">
+      <template #icon>
+        <icon icon="material-symbols:account-circle" class="text-accent w-32 h-32"></icon>
+      </template>
+      <template #title>
+        <p>{{ `${name}, ${age} years old` }}</p>
+      </template>
+      <template #description>
+        <p class="text-2xl whitespace-pre-line text-text-secondary">{{ persona }}</p>
+      </template>
+    </Card>
+  </div>
 <!-- </div> -->
 </template>
 <script lang="ts">
