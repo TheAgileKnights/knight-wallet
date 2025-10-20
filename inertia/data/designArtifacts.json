@@ -280,6 +280,7 @@
   "features": [
     {
       "title": "Automatic Expense Capture and Categorization",
+      "icon": "material-symbols:category-outline-rounded",
       "description": [
         "Card transactions automatically sync to Knight Wallet in real-time without manual entry or receipt saving.",
         "Quick categorization of expenses as 'personal' or 'shared' at the time of transaction.",
@@ -291,6 +292,7 @@
     },
     {
       "title": "Itemized Expense Splitting with Tax and Tip Calculation",
+      "icon": "tabler:cash-register",
       "description": [
         "Input individual meal costs so that each person is only charged for what they ordered.",
         "Automatic calculation and even splitting of tax and tip among all participants to avoid manual math.",
@@ -302,6 +304,7 @@
     },
     {
       "title": "Automated Payment Reminders and Settlement Tracking",
+      "icon": "icon-park-outline:remind",
       "description": [
         "Automated payment reminders sent at regular intervals without personal asking.",
         "Escalating reminder urgency over time so people understand payment is becoming overdue.",
@@ -314,6 +317,7 @@
     },
     {
       "title": "Payment Request Documentation and Verification",
+      "icon": "streamline:receipt-check-remix",
       "description": [
         "Clear expense summaries with transaction timestamps for presenting documented proof.",
         "Clear display of what each person paid for and when to justify payment requests.",
@@ -325,6 +329,7 @@
     },
     {
       "title": "Multi-Payment Method Tracking (Venmo, Cash, Card)",
+      "icon": "ph:contactless-payment",
       "description": [
         "Logging of both cash and digital payments in one place for complete records.",
         "Distinction between people who paid immediately versus those who said 'later' for follow-up tracking.",
@@ -336,6 +341,7 @@
     },
     {
       "title": "Recurring Expense Management (Utilities, Bills)",
+      "icon": "fluent:clock-bill-24-regular",
       "description": [
         "Input total utility costs for automatic division among roommates.",
         "Clear view of utility charges for roommates to understand what they're paying for.",
@@ -348,6 +354,7 @@
     },
     {
       "title": "Trip and Event Expense Consolidation",
+      "icon": "material-symbols:category-outline-rounded",
       "description": [
         "Track rental and trip costs for later splitting.",
         "Combine multiple related expenses (tickets, snacks, etc.) into one group expense for single payment requests.",
