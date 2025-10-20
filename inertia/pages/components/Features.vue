@@ -1,6 +1,9 @@
 <template>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <Card v-for="(feature, index) in features" :key="index" :hover-effect="false">
+    <Card class="col-span-full" :hover-effect="false">
+      <p class="text-3xl font-bold">Features</p>
+    </Card>
+    <Card v-for="(feature, index) in features" :key="index">
       <template #icon>
         <icon :icon="feature.icon" class="text-accent w-32 h-32"/>
       </template>
