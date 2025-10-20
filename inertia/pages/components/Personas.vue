@@ -1,5 +1,5 @@
 <template>
-  <Card class="m-10" :hover-effect="false">
+  <Card :hover-effect="false">
     <template #icon>
       <icon icon="material-symbols:account-circle" class="text-primary w-32 h-32"></icon>
     </template>
