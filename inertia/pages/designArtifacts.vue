@@ -17,8 +17,7 @@
      </div>
     <Transition name="slide-right" mode="out-in">
       <div v-if="type === 'personas' && person">
-        <h2>{{ person.name }}</h2>
-        <p>{{ person.persona }}</p>
+        <Personas :name="person.name" :age="person.age" :persona="person.persona" />
       </div>
   
       <div v-else-if="type === 'scenarios' && person">
@@ -61,10 +60,12 @@
 <script lang="ts">
 import { router } from '@inertiajs/vue3'
 import TabMenu from './components/TabMenu.vue'
+import Personas from './components/Personas.vue'
 import Interview from './components/Interview.vue'
 
 interface Person {
   name: string
+  age: number
   persona: string
   scenarios: Array<{
     title: string

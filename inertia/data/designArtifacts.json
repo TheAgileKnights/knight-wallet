@@ -2,6 +2,7 @@
   "people": [
     {
       "name": "Frank",
+      "age": 22,
       "persona": "A 22-year-old senior environmental science major at a university in Kentucky. Born in the Philippines, moved to the United States in 2015. Manages shared expenses primarily through Venmo but finds it cumbersome to track everything without sending payment requests immediately. Lives with two roommates and frequently organizes group activities, making him responsible for upfront payments that require subsequent reimbursement. Budget-conscious student who wants accurate expense tracking that allows him to document costs as they occur and send payment reminders later without awkwardness.",
       "scenarios": [
         {
@@ -71,6 +72,7 @@
     },
     {
       "name": "Paul",
+      "age": 56,
       "persona": "A 56-year-old parent of four children living in a suburban area. Works in middle management and has moderate technical proficiency—comfortable with smartphones and basic apps but prefers simple, intuitive solutions over complex financial software like Quicken. Frequently manages both family expenses and occasional shared costs with friends during social outings and group trips. Values leisure time and doesn't want financial tracking to interfere with enjoying social experiences. Philosophy: without evidence, it didn't happen. Seeks automation that works in real-time without requiring him to share comprehensive financial data with others. Currently spends 1-2 hours weekly on expense-related tasks and views this as excessive.",
       "scenarios": [
         {
@@ -140,6 +142,7 @@
     },
     {
       "name": "Utsav Sapkota",
+      "age": 22,
       "persona": "A 22-year-old college student who manages personal expenses using his bank app and the Notes app on his phone. Handles shared expenses with friends and roommates through an informal trust system, relying on memory and verbal agreements rather than structured tracking. Comfortable with casual approach but finds it awkward to remind people when they forget to pay him back, worrying about sounding rude or creating tension in friendships. Frequently pays for group purchases—especially when driving for food runs—and expects friends to reimburse him later. Primary challenge is the lack of clear documentation when requesting payment.",
       "scenarios": [
         {
@@ -205,6 +208,7 @@
     },
     {
       "name": "Hayley Bratcher",
+      "age": 21,
       "persona": "A 21-year-old waitress at Olive Garden who works Monday through Friday and manages her expenses on a tight budget. Uses Venmo for settling shared expenses with friends and maintains a monthly written budget where she tracks who she owes money to, the amounts, and payment due dates. Describes herself as straightforward and prefers direct communication about money rather than beating around the bush. Reviews her finances every Friday, calculating her weekly earnings and expenses before going to the bank, which takes approximately an hour. Primary challenge is saving money while managing numerous monthly bills and daily expenses. Finds her current manual tracking system inefficient. Values directness when requesting payment, believing that gentle reminders often don't get results.",
       "scenarios": [
         {
