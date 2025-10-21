@@ -3,7 +3,7 @@
     <Card class="col-span-full" :hover-effect="false">
       <p class="text-3xl font-bold">Interview with {{ name }}</p>
     </Card>
-    <Card class="mb-4" v-for="(interview, index) in interview" :key="index">
+    <Card v-for="(interview, index) in interview" :key="index">
       <template #icon>
         <icon
           :icon="`material-symbols:counter-${index + 1}-rounded`"
@@ -21,8 +21,8 @@
 </template>
 <script lang="ts">
 import { PropType } from 'vue'
-import Card from './Card.vue'
-import { InterviewQuestion } from '../designArtifacts.vue';
+import Card from '../Card.vue'
+import { InterviewQuestion } from '~/pages/designArtifacts.vue';
 
 
 export default {

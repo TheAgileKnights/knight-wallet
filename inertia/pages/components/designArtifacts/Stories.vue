@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-5" v-for="scenario in scenarios" :key="scenario.title">
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5" v-for="scenario in scenarios" :key="scenario.title">
     <Card class="col-span-full" :hover-effect="false">
       <p class="text-3xl font-bold">{{ scenario.title }}</p>
     </Card>
@@ -22,13 +22,10 @@
 </template>
 
 <script lang="ts">
-import Card from './Card.vue';
+import { PropType } from 'vue';
+import Card from '../Card.vue';
+import { Scenario } from '~/pages/designArtifacts.vue';
 
-export type Scenarios = {
-    title: string,
-    description: string,
-    stories: string[],
-}
 export default {
 name: "Stories",
 components: { Card },
@@ -38,7 +35,7 @@ components: { Card },
       required: true
     },
     scenarios: {
-      type: Array<Scenarios>,
+      type: Array as PropType<Scenario[]>,
       required: true
     }
   }

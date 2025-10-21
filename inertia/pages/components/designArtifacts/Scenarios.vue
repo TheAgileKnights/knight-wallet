@@ -24,8 +24,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import Card from './Card.vue'
-import { Scenario } from '../designArtifacts.vue'
+import Card from '../Card.vue'
+import { Scenario } from '~/pages/designArtifacts.vue';
 
 export default defineComponent({
   name: 'Scenarios',

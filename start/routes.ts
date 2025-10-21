@@ -27,6 +27,13 @@ router.get('/design-artifacts/features', ({ inertia }) => {
   })
 })
 
+router.get('/design-artifacts/video', ({ inertia }) => {
+  return inertia.render('designArtifacts', {
+    type: 'video',
+    videoUrl: designArtifactsData.videoUrl,
+  })
+})
+
 // Redirect artifact types without ID to default (1)
 router.get('/design-artifacts/:artifact', ({ params, response }) => {
   return response.redirect(`/design-artifacts/${params.artifact}/1`)

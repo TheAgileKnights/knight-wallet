@@ -37,8 +37,8 @@
 <script lang="ts">
 
 import { PropType } from 'vue'
-import Card from './Card.vue'
-import { Feature } from '../designArtifacts.vue';
+import Card from '../Card.vue'
+import { Feature } from '~/pages/designArtifacts.vue';
 
 export default {
   name: 'Features',
