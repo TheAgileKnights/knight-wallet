@@ -18,7 +18,7 @@ router.get('/design-artifacts', ({ response }) => {
   return response.redirect('/design-artifacts/interviews/1')
 })
 
-// Features route (no ID needed)
+// Single page routes (no person ID needed)
 router.get('/design-artifacts/features', ({ inertia }) => {
   return inertia.render('designArtifacts', {
     type: 'features',
@@ -30,7 +30,14 @@ router.get('/design-artifacts/features', ({ inertia }) => {
 router.get('/design-artifacts/video', ({ inertia }) => {
   return inertia.render('designArtifacts', {
     type: 'video',
-    videoUrl: designArtifactsData.videoUrl,
+    videoUrl: designArtifactsData.singlePages.video.data.videoUrl,
+  })
+})
+
+router.get('/design-artifacts/collaboration', ({ inertia }) => {
+  return inertia.render('designArtifacts', {
+    type: 'collaboration',
+    images: designArtifactsData.singlePages.collaboration.data.images,
   })
 })
 
