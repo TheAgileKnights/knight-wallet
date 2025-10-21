@@ -21,7 +21,14 @@
             <Typewriter
               text="Simplify shared expenses among friends and family. Add costs, split bills, and settle up seamlessly for trips, events, and everyday life."
               :speed="100"
+              @update:is-typing="handleTypingStatus"
             />
+            <Transition name="slide-in">
+            <div v-if="!isTyping">
+              <button class="bg-text-contrast rounded-md text-primary mt-8 mr-2 px-5 py-2 hover:bg-white hove:text-accent hover:cursor-pointer">See Pricing (NYI)</button>
+              <button @click="$inertia.visit('/design-artifacts')" class="outline-text-contrast text-text-contrast rounded-md outline px-5 py-2 hover:cursor-pointer hover:bg-white hover:text-accent">Design Artifacts</button>
+            </div>
+            </Transition>
           </div>
         </div>
       </div>
@@ -35,7 +42,9 @@
     </div>
   </div>
   <!-- Mission Statement -->
-  <div class="flex min-w-full min-h-auto w-full py-16 bg-gradient-to-br from-primary to-accent shadow-[0_0_20px_rgba(0,0,0,0.4)_inset]">
+  <div
+    class="flex min-w-full min-h-auto w-full py-16 bg-gradient-to-br from-primary to-accent shadow-[0_0_20px_rgba(0,0,0,0.4)_inset]"
+  >
     <div class="xs:mx-2 mx-8 md:mx-16 lg:mx-32 my-auto drop-shadow-[0_10px_60px_rgba(0,0,0,1)]">
       <p class="font-bold text-text-contrast text-6xl w-full text-center mb-12">Our Mission</p>
       <p class="text-center text-text-contrast text-3xl mt-2 mb-8 text-secondary-text">
@@ -109,21 +118,9 @@
   <div class="flex flex-col items-center justify-center min-h-screen p-16">
     <div class="">
       <p class="font-bold text-6xl w-full text-center mb-12">Watch Our Introduction Video</p>
-      <div
-        class="flex rounded-4xl bg-gradient-to-br grow from-primary to-accent border-border p-8 shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
-      >
-        <iframe
-          id="kaltura_player"
-          class="m-auto aspect-video grow"
-          src="https://cdnapisec.kaltura.com/p/2619912/sp/261991200/embedIframeJs/uiconf_id/45753661/partner_id/2619912?iframeembed=true&playerId=kaltura_player&entry_id=1_oltyq32v&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[hotspots.plugin]=1&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_6ker1nld"
-          allowfullscreen
-          webkitallowfullscreen
-          mozAllowFullScreen
-          allow="autoplay *; fullscreen *; encrypted-media *"
-          sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation"
-          title="Knight Wallet"
-        ></iframe>
-      </div>
+      <VideoContainer
+        url="https://cdnapisec.kaltura.com/p/2619912/sp/261991200/embedIframeJs/uiconf_id/45753661/partner_id/2619912?iframeembed=true&playerId=kaltura_player&entry_id=1_oltyq32v&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[hotspots.plugin]=1&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_6ker1nld"
+      />
     </div>
   </div>
 </template>
@@ -131,11 +128,13 @@
 <script lang="ts">
 import Card from './components/Card.vue'
 import Typewriter from './components/Typewriter.vue'
+import VideoContainer from './components/VideoContainer.vue'
 
 export default {
   components: {
     Typewriter,
     Card,
+    VideoContainer,
   },
   data() {
     return {
@@ -204,6 +203,7 @@ export default {
         },
       ],
       showSticky: false,
+      isTyping: true,
     }
   },
   mounted() {
@@ -214,6 +214,9 @@ export default {
     })
   },
   methods: {
+    handleTypingStatus(typingStatus: boolean){
+      this.isTyping = typingStatus;
+    },
     shuffleCards() {
       for (let i = this.featureCards.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1))
@@ -245,5 +248,19 @@ export default {
 .v-leave-to {
   opacity: 0;
   transform: translateY(-100px);
+}
+
+.slide-in-enter-active {
+  transition: all 0.6s ease-out;
+}
+
+.slide-in-enter-from {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.slide-in-enter-to {
+  opacity: 1;
+  transform: translateX(0);
 }
 </style>
