@@ -365,5 +365,27 @@
       "comments": "Based on Paul's, Frank's, and Utsav's user stories."
     }
   ],
-  "videoUrl": "https://www.loom.com/share/your-video-id-here"
+  "singlePages": {
+    "features": {
+      "label": "Features",
+      "data": {
+        "features": "features",
+        "people": "people"
+      }
+    },
+    "video": {
+      "label": "Video",
+      "data": {
+        "videoUrl": "https://cdnapisec.kaltura.com/p/2619912/sp/261991200/embedIframeJs/uiconf_id/45753661/partner_id/2619912?iframeembed=true&playerId=kaltura_player&entry_id=1_ei86d4hw&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[hotspots.plugin]=1&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_mqo3bmni"
+      }
+    },
+    "collaboration": {
+      "label": "Collaboration",
+      "data": {
+        "images": [
+          "/resources/images/designArtifacts/jira.png"
+        ]
+      }
+    }
+  }
 }
