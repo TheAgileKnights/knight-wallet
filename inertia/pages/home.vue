@@ -25,7 +25,7 @@
             />
             <Transition name="slide-in">
             <div v-if="!isTyping">
-              <button class="bg-text-contrast rounded-md text-primary mt-8 mr-2 px-5 py-2 hover:bg-white hove:text-accent hover:cursor-pointer">See Pricing (NYI)</button>
+              <button @click="$inertia.visit('/dashboard')" class="bg-text-contrast rounded-md text-primary mt-8 mr-2 px-5 py-2 hover:bg-white hove:text-accent hover:cursor-pointer">Open App</button>
               <button @click="$inertia.visit('/design-artifacts')" class="outline-text-contrast text-text-contrast rounded-md outline px-5 py-2 hover:cursor-pointer hover:bg-white hover:text-accent">Design Artifacts</button>
             </div>
             </Transition>
