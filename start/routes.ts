@@ -9,9 +9,25 @@
 
 import router from '@adonisjs/core/services/router'
 import designArtifactsData from '../inertia/data/designArtifacts.json' with { type: 'json' }
+import { middleware } from './kernel.js'
 
-router.on('/').renderInertia('home')
-router.on('/debug').renderInertia('debug')
+const DashboardController = () => import('#controllers/dashboard_controller')
+const AuthController = () => import('#controllers/auth_controller')
+
+router.on('/').renderInertia('home').as('home')
+router.on('/debug').renderInertia('debug').as('debug')
+
+router.get('/auth/google/redirect', [AuthController, 'googleRedirect']).as('auth.googleRedirect')
+router.get('/auth/google/callback', [AuthController, 'googleCallback']).as('auth.googleCallback')
+
+router.get('/auth/login', [AuthController, 'login']).as('auth.login')
+
+router
+  .group(() => {
+    router.get('/dashboard', [DashboardController, 'index']).as('dashboard')
+    router.get('/auth/logout', [AuthController, 'logout']).as('auth.logout')
+  })
+  .use(middleware.auth())
 
 // Design Artifacts routes
 router.get('/design-artifacts', ({ response }) => {
