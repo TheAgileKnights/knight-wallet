@@ -9,16 +9,42 @@
 
 import router from '@adonisjs/core/services/router'
 import designArtifactsData from '../inertia/data/designArtifacts.json' with { type: 'json' }
+<<<<<<< HEAD
 
 router.on('/').renderInertia('home')
 router.on('/debug').renderInertia('debug')
+=======
+import { middleware } from './kernel.js'
+
+const DashboardController = () => import('#controllers/dashboard_controller')
+const AuthController = () => import('#controllers/auth_controller')
+
+router.on('/').renderInertia('home').as('home')
+router.on('/debug').renderInertia('debug').as('debug')
+
+router.get('/auth/google/redirect', [AuthController, 'googleRedirect']).as('auth.googleRedirect')
+router.get('/auth/google/callback', [AuthController, 'googleCallback']).as('auth.googleCallback')
+
+router.get('/auth/login', [AuthController, 'login']).as('auth.login')
+
+router
+  .group(() => {
+    router.get('/dashboard', [DashboardController, 'index']).as('dashboard')
+    router.get('/auth/logout', [AuthController, 'logout']).as('auth.logout')
+  })
+  .use(middleware.auth())
+>>>>>>> origin
 
 // Design Artifacts routes
 router.get('/design-artifacts', ({ response }) => {
   return response.redirect('/design-artifacts/interviews/1')
 })
 
+<<<<<<< HEAD
 // Features route (no ID needed)
+=======
+// Single page routes (no person ID needed)
+>>>>>>> origin
 router.get('/design-artifacts/features', ({ inertia }) => {
   return inertia.render('designArtifacts', {
     type: 'features',
@@ -30,7 +56,18 @@ router.get('/design-artifacts/features', ({ inertia }) => {
 router.get('/design-artifacts/video', ({ inertia }) => {
   return inertia.render('designArtifacts', {
     type: 'video',
+<<<<<<< HEAD
     videoUrl: designArtifactsData.videoUrl,
+=======
+    videoUrl: designArtifactsData.singlePages.video.data.videoUrl,
+  })
+})
+
+router.get('/design-artifacts/collaboration', ({ inertia }) => {
+  return inertia.render('designArtifacts', {
+    type: 'collaboration',
+    images: designArtifactsData.singlePages.collaboration.data.images,
+>>>>>>> origin
   })
 })
 

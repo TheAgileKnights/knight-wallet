@@ -21,7 +21,14 @@
             <Typewriter
               text="Simplify shared expenses among friends and family. Add costs, split bills, and settle up seamlessly for trips, events, and everyday life."
               :speed="100"
+              @update:is-typing="handleTypingStatus"
             />
+            <Transition name="slide-in">
+            <div v-if="!isTyping">
+              <button @click="$inertia.visit('/dashboard')" class="bg-text-contrast rounded-md text-primary mt-8 mr-2 px-5 py-2 hover:bg-white hove:text-accent hover:cursor-pointer">Open App</button>
+              <button @click="$inertia.visit('/design-artifacts')" class="outline-text-contrast text-text-contrast rounded-md outline px-5 py-2 hover:cursor-pointer hover:bg-white hover:text-accent">Design Artifacts</button>
+            </div>
+            </Transition>
           </div>
         </div>
       </div>
@@ -201,6 +208,7 @@ export default {
       ],
       showSticky: false,
       visible: false,
+      isTyping: true,
     }
   },
   mounted() {
@@ -211,6 +219,9 @@ export default {
     })
   },
   methods: {
+    handleTypingStatus(typingStatus: boolean){
+      this.isTyping = typingStatus;
+    },
     shuffleCards() {
       for (let i = this.featureCards.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1))
@@ -242,5 +253,19 @@ export default {
 .v-leave-to {
   opacity: 0;
   transform: translateY(-100px);
+}
+
+.slide-in-enter-active {
+  transition: all 0.6s ease-out;
+}
+
+.slide-in-enter-from {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.slide-in-enter-to {
+  opacity: 1;
+  transform: translateX(0);
 }
 </style>

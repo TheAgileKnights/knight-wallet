@@ -8,10 +8,10 @@
         :model-value="activeHref"
         @update:model-value="handlePersonChange"
       />
-      <!-- Person selector for non-features pages -->
+      <!-- Person selector for person-based pages -->
       <Transition name="slide-up">
         <TabMenu
-          v-if="type !== 'features' && type !== 'video'"
+          v-if="showPersonSelector"
           class="relative z-0"
           :tabs="personNavItems"
           :model-value="activeHref"
@@ -38,6 +38,7 @@
     />
     <Features v-else-if="type === 'features' && features" :features="features" />
     <ArtifactVideo v-else-if="type === 'video'" :url="videoUrl" />
+    <Collaboration v-else-if="type === 'collaboration'" :images="images" />
   </div>
 </template>
 
@@ -50,6 +51,7 @@ import Stories from './components/designArtifacts/Stories.vue'
 import Features from './components/designArtifacts/Features.vue'
 import Scenarios from './components/designArtifacts/Scenarios.vue'
 import ArtifactVideo from './components/designArtifacts/ArtifactVideo.vue'
+import Collaboration from './components/designArtifacts/Collaboration.vue'
 
 export interface Person {
   name: string
@@ -90,6 +92,7 @@ export default {
     Features,
     Scenarios,
     ArtifactVideo,
+    Collaboration,
   },
   props: {
     type: String,
@@ -98,6 +101,7 @@ export default {
     people: Array as () => Person[],
     features: Array as () => Feature[],
     videoUrl: String,
+    images: Array as () => string[],
   },
   data() {
     return {
@@ -106,14 +110,21 @@ export default {
   },
   computed: {
     navItems() {
-      return [
+      const personBasedTabs = [
         { label: 'Interviews', value: `/design-artifacts/interviews/${this.selectedPersonId}` },
         { label: 'Personas', value: `/design-artifacts/personas/${this.selectedPersonId}` },
         { label: 'Scenarios', value: `/design-artifacts/scenarios/${this.selectedPersonId}` },
         { label: 'Stories', value: `/design-artifacts/stories/${this.selectedPersonId}` },
+      ]
+
+      // Dynamically add single-page tabs
+      const singlePageTabs = [
         { label: 'Features', value: '/design-artifacts/features' },
         { label: 'Video', value: '/design-artifacts/video' },
+        { label: 'Collaboration', value: '/design-artifacts/collaboration' },
       ]
+
+      return [...personBasedTabs, ...singlePageTabs]
     },
     personNavItems() {
       if (!this.people) return []
@@ -126,13 +137,15 @@ export default {
       const types = ['interviews', 'personas', 'scenarios', 'stories', 'features', 'video']
       return types.indexOf(this.type || 'interviews')
     },
+    showPersonSelector() {
+      const personBasedTypes = ['interviews', 'personas', 'scenarios', 'stories']
+      return personBasedTypes.includes(this.type ?? '')
+    },
     activeHref() {
-      if (this.type === 'features') {
-        return `/design-artifacts/features`
-      } else if (this.type === 'video') {
-        return `/design-artifacts/video`
+      if (this.showPersonSelector) {
+        return `/design-artifacts/${this.type}/${this.selectedPersonId}`
       }
-      return `/design-artifacts/${this.type}/${this.selectedPersonId}`
+      return `/design-artifacts/${this.type}`
     },
   },
   methods: {

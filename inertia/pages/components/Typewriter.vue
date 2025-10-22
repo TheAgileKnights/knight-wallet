@@ -29,6 +29,7 @@ export default {
       intervalId: null as NodeJS.Timeout | null,
     }
   },
+  emits: ['update:isTyping'],
   mounted() {
     this.startTyping()
   },
@@ -49,6 +50,7 @@ export default {
             wordIndex++
           } else {
             this.isTyping = false
+            this.$emit('update:isTyping', this.isTyping)
             if (this.intervalId) clearInterval(this.intervalId)
           }
         }, this.speed)
