@@ -1,14 +1,14 @@
 <template>
   <button
     :disabled="disabled"
-    class="px-4 py-2 text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+    class="p-2 text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
     :class="buttonClasses"
   >
-  <div class="flex items-center text-center justify-center">
+  <div class="flex items-center text-center justify-center gap-2">
     <slot>
       {{ label }}
     </slot>
-    <icon v-if="icon" :icon="icon" class="ml-2 text-xl"/>
+    <icon v-if="icon" :icon="icon" class="text-xl"/>
   </div>
   </button>
 </template>

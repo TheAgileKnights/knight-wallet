@@ -3,7 +3,7 @@
   <Transition>
     <div
       v-if="showSticky"
-      class="fixed top-4 left-4 bg-primary px-4 py-2 rounded-lg shadow-lg z-50"
+      class="fixed top-4 left-4 bg-primary px-4 py-2 rounded-lg shadow-lg z-2"
     >
       <h3 class="font-bold text-2xl text-text-contrast">Knight Wallet</h3>
     </div>
@@ -123,6 +123,7 @@
       />
       <button @click="visible = true">HELLO</button>
       <Dialog v-model="visible"></Dialog>
+      {{ visible }}
     </div>
   </div>
 </template>
