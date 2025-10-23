@@ -11,6 +11,7 @@
 
 
 <script lang="ts">
+import { Severity } from '~/types/severity';
 import Button from './components/Button.vue';
 import Dialog from './components/Dialog.vue';
 
@@ -32,14 +33,14 @@ export default {
       return [
         {
           label: 'Cancel',
-          severity: 'secondary' as const,
+          severity: 'secondary' as Severity,
           action: () => {
             this.myText = 'Dialog was cancelled.';
           }
         },
         {
           label: 'Confirm',
-          severity: 'primary' as const,
+          severity: 'primary' as Severity,
           action: () => {
             this.myText = 'Dialog was confirmed.';
           }
