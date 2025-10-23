@@ -1,5 +1,5 @@
 <template>
-<div class="flex gap-2">
+<div class="flex gap-2 w-full justify-between">
   <div
     v-for="(item, index) in items"
     :key="index"
@@ -11,12 +11,8 @@
       :alt="item.name"
       class="w-8 h-8 mb-1 group-hover:scale-110 transition-transform duration-200"
     />
-    <span class="text-xs text-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-      {{ item.name }}
-    </span>
   </div>
 </div>
-{{ navStore.getVisibleMenu || 'No menu visible' }}
 </template>
 
 <script lang="ts">
@@ -35,6 +31,9 @@ export default {
   computed: {
     items() {
       return this.navStore.getItems;
+    }
+    visibleMenu() {
+      return this.navStore.getVisibleMenu;
     }
   }
 
