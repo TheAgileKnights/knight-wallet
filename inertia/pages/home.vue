@@ -121,9 +121,6 @@
       <VideoContainer
         url="https://cdnapisec.kaltura.com/p/2619912/sp/261991200/embedIframeJs/uiconf_id/45753661/partner_id/2619912?iframeembed=true&playerId=kaltura_player&entry_id=1_oltyq32v&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[hotspots.plugin]=1&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_6ker1nld"
       />
-      <button @click="visible = true">HELLO</button>
-      <Dialog v-model="visible"></Dialog>
-      {{ visible }}
     </div>
   </div>
 </template>

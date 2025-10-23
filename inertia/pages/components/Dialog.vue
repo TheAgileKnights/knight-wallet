@@ -1,19 +1,21 @@
 <template>
   <Transition name="overlay">
     <div
-      v-if="modelValue"
+      v-if="visible"
+      @keydown.esc="closeDialog"
+      @click="closeDialog"
       tabindex="0"
       class="bg-[rgba(0,0,0,0.4)] w-full h-full fixed top-0 left-0 z-10"
     ></div>
   </Transition>
   <Transition name="dialog">
     <dialog
-      v-if="modelValue"
+      v-if="visible"
       autofocus
       ref="dialog"
       popover="auto"
       @keydown.esc="closeDialog"
-      class="dialog-class z-20 p-8 max-w-screen max-h-screen rounded-3xl fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 m-0 drop-shadow-[0_10px_30px_rgba(0,0,0,0.6)]"
+      class="dialog-class z-20 p-6 max-w-screen max-h-screen rounded-2xl fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 m-0 drop-shadow-[0_10px_30px_rgba(0,0,0,0.6)]"
       open
     >
       <div class="flex flex-col">
@@ -34,13 +36,24 @@
         <div class="pt-4 overflow-auto text-wrap grow">
           <slot></slot>
         </div>
+        <div class="flex justify-end mt-4 gap-2" v-if="actions && actions.length > 0">
+          <Button v-for="action in actions" :key="action.label" :label="action.label" :severity="action.severity" @click="action.action" />
+        </div>
       </div>
     </dialog>
   </Transition>
 </template>
 
 <script lang="ts">
+import { Severity } from '~/types/severity';
 import Button from './Button.vue'
+import { PropType } from 'vue';
+
+export interface DialogAction {
+  label: string;
+  severity: Severity
+  action: () => void;
+}
 
 export default {
   name: 'Dialog',
@@ -52,23 +65,27 @@ export default {
       type: String,
       default: 'Dialog Title',
     },
-    modelValue: {
+    visible: {
       type: Boolean,
       required: true,
     },
+    actions: {
+      type: Array as PropType<DialogAction[]>,
+      required: false,
+    }
   },
-  emits: ['update:modelValue'],
+  emits: ['update:visible'],
   methods: {
     closeDialog() {
-      this.$emit('update:modelValue', false)
+      this.$emit('update:visible', false)
     },
   },
   watch: {
-    modelValue(newValue: boolean) {
+    visible(newValue: boolean) {
       if (newValue) {
         this.$nextTick(() => {
-          const dialogElement = this.$refs.dialog as HTMLDialogElement
           document.body.style.overflow = 'hidden'
+          const dialogElement = this.$refs.dialog as HTMLDialogElement
           dialogElement?.focus()
         })
       } else {
