@@ -22,8 +22,11 @@ html, body {
   --color-background: #faf5f5;
   --color-background-light: white;
   --color-primary: #752936;
+  --color-primary-hover: #5d1e29;
   --color-secondary: #cc8585;
+  --color-secondary-hover: #b56b6b;
   --color-accent: #a6413f;
+  --color-accent-hover: #8a332f;
 }
 
 @layer theme {
@@ -37,8 +40,11 @@ html, body {
       --color-background: #0a0505;
       --color-background-light: #100a0f;
       --color-primary: #d68a97;
+      --color-primary-hover: #e2a1ae;
       --color-secondary: #7a3333;
+      --color-secondary-hover: #923d3d;
       --color-accent: #c05a59;
+      --color-accent-hover: #d46b6a;
     }
   }
 }

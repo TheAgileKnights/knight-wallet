@@ -26,3 +26,13 @@ export const bgSeverityClasses: Record<Severity, string> = {
   warning: 'bg-warning',
   info: 'bg-info',
 }
+
+export const hoverSeverityClasses: Record<Severity, string> = {
+  primary: 'hover:bg-primary-hover',
+  accent: 'hover:bg-accent-hover',
+  secondary: 'hover:bg-secondary-hover',
+  success: 'hover:bg-success-hover',
+  danger: 'hover:bg-danger-hover',
+  warning: 'hover:bg-warning-hover',
+  info: 'hover:bg-info-hover',
+}
