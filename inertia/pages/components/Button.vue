@@ -1,21 +1,21 @@
 <template>
   <button
     :disabled="disabled"
-    class="px-4 py-2 text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-    :class="buttonClasses"
+    class="py-2 px-3 text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer hover:scale-102"
+    :class="[buttonClasses, hoverButtonClasses]"
   >
-  <div class="flex items-center text-center justify-center">
+  <div class="flex items-center text-center justify-center gap-2">
     <slot>
       {{ label }}
     </slot>
-    <icon v-if="icon" :icon="icon" class="ml-2 text-xl"/>
+    <icon v-if="icon" :icon="icon" class="text-xl"/>
   </div>
   </button>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { bgSeverityClasses, Severity } from '~/types/severity'
+import { bgSeverityClasses, Severity, hoverSeverityClasses } from '~/types/severity'
 
 export default defineComponent({
   name: 'Button',
@@ -40,6 +40,9 @@ export default defineComponent({
   computed: {
     buttonClasses(): string {
       return bgSeverityClasses[this.severity]
+    },
+    hoverButtonClasses(): string {
+      return hoverSeverityClasses[this.severity]
     },
   }
 })
