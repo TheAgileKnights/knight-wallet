@@ -1,8 +1,8 @@
 <template>
   <button
     :disabled="disabled"
-    class="p-2 text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-3 hover:scale-102"
-    :class="buttonClasses, hoverButtonClasses"
+    class="py-2 px-3 text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer hover:scale-102"
+    :class="[buttonClasses, hoverButtonClasses]"
   >
   <div class="flex items-center text-center justify-center gap-2">
     <slot>
