@@ -1,8 +1,8 @@
 <template>
-  <div class="absolute" :style="popoverStyle">
-    <slot>
-      No Data
-    </slot>
+  <div class="fixed" :style="popoverStyle">
+    <div class="bg-background rounded-xl">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -18,10 +18,10 @@ export default {
   computed: {
     popoverStyle() {
       if (this.lastEvent && this.isOpen) {
-        const { clientX, clientY } = this.lastEvent;
+        const { x, y } = (this.lastEvent.currentTarget as HTMLElement).getBoundingClientRect()
         return {
-          top: clientY + 'px',
-          left: clientX + 'px',
+          bottom: `calc(100vh - ${y}px)`,
+          right: `calc(100vw - ${x}px)`,
           display: 'block',
         }
       }
@@ -30,13 +30,17 @@ export default {
         left: '0px',
         display: 'none',
       }
-    }
+    },
   },
   methods: {
-    toggle(event: MouseEvent) {
-      this.lastEvent = event;
-      this.isOpen = !this.isOpen;
-    }
+    open(event: PointerEvent) {
+      this.lastEvent = event
+      this.isOpen = true
+    },
+    close() {
+      this.lastEvent = null
+      this.isOpen = false
+    },
   },
 }
 </script>

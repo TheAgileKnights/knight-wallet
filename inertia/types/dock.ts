@@ -6,8 +6,9 @@ interface DockItemBase {
   icon: string
 }
 
+export type PointerFunction = (event: PointerEvent) => void
 export interface DockItemFunction extends DockItemBase {
-  action: Function
+  action: PointerFunction
 }
 
 export interface DockItemRoute extends DockItemBase {
@@ -20,7 +21,7 @@ export interface DockItemMenu extends DockItemBase {
   menuItems: DockItemMenuItem[]
 }
 
-export type MenuAction = (itemId: string) => void
+export type MenuAction = (itemId: string, pointerEvent: PointerEvent) => void
 
 export interface DockItem extends DockItemFunction {
   type: 'route' | 'function' | 'menu'
@@ -31,5 +32,9 @@ export type DockItemTemplate = DockItemFunction | DockItemRoute | DockItemMenu
 
 export interface DockState {
   items: DockItem[]
-  visibleMenu: string | null
+  visibleMenu: MenuInfo | null
+}
+export interface MenuInfo {
+  id: string
+  pointerEvent: PointerEvent
 }

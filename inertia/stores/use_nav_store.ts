@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia'
 import { DockBuilder } from '~/classes/dock_builder'
-import type { DockItem, DockItemTemplate } from '~/types/dock'
+import type { DockItem, DockItemTemplate, MenuInfo } from '~/types/dock'
 
 export const useNavStore = defineStore('nav', {
   state: () => ({
     items: [] as DockItem[],
-    visibleMenu: null as string | null,
+    visibleMenu: null as MenuInfo | null,
   }),
   getters: {
     getVisibleMenu: (state) => state.visibleMenu,
@@ -15,8 +15,8 @@ export const useNavStore = defineStore('nav', {
     initializeDock(items: DockItemTemplate[]) {
       this.items = new DockBuilder().convertDockTemplate(items, this.toggleMenu).build()
     },
-    toggleMenu(menuId: string) {
-      this.visibleMenu = this.visibleMenu === menuId ? null : menuId
+    toggleMenu(menuId: string, pointerEvent: PointerEvent) {
+      this.visibleMenu = this.visibleMenu?.id === menuId ? null : { id: menuId, pointerEvent }
     },
     closeMenu() {
       this.visibleMenu = null

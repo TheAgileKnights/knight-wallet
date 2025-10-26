@@ -60,8 +60,8 @@ export class DockBuilder {
       name: item.name,
       icon: item.icon,
       menuItems: item.menuItems.map((menuItem) => this.menuItemToActionable(menuItem)),
-      action: () => {
-        action(item.id)
+      action: (event: PointerEvent) => {
+        action(item.id, event)
       },
     }
   }
