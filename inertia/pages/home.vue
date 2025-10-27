@@ -34,7 +34,7 @@
       </div>
       <div class="flex justify-center items-center w-full grow">
         <img
-          src="/resources/images/iphone-screenshot.png"
+          src="/images/iphone-screenshot.png"
           alt="Knight Wallet iPhone Screenshot"
           class="max-h-[75vh] w-auto drop-shadow-[0_10px_30px_rgba(0,0,0,1)]"
         />
@@ -181,25 +181,25 @@ export default {
           name: 'Marti Lonnemann',
           description:
             'Software developer and Bellarmine student with a passion for web development. Enjoys creating user-friendly applications that solve real-world problems.',
-          photo: '/resources/images/MartiHeadshot.jpeg',
+          photo: '/images/MartiHeadshot.jpeg',
         },
         {
           name: 'Sam Kauffman',
           description:
             'Aspiring software developer and designer attending Bellarmine University pursuing a degree in computer science. Enjoys creating and designing websites using a unique and creative style.',
-          photo: '/resources/images/SamHeadshot.jpg',
+          photo: '/images/SamHeadshot.jpg',
         },
         {
           name: 'Ronish Gautam',
           description:
             'Computer scince student at Bellarmine University with a passion for software development, who also enjoys traveling the world and staying active through fitness.',
-          photo: '/resources/images/RonishHeadshot.jpg',
+          photo: '/images/RonishHeadshot.jpg',
         },
         {
           name: 'Kirin Sharma',
           description:
             'College senior at Bellarmine University and aspiring software engineer passionate about developing impactful, innovative, and efficient software solutions to solve real-world challenges.',
-          photo: '/resources/images/KirinHeadshot.jpeg',
+          photo: '/images/KirinHeadshot.jpeg',
         },
       ],
       showSticky: false,
