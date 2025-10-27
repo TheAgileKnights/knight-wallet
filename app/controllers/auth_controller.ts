@@ -13,39 +13,35 @@ export default class AuthController {
     return response.redirect().toRoute('auth.login')
   }
 
-  async googleRedirect({ ally }: HttpContext) {
-    return ally.use('google').redirect()
+  async googleRedirect(ctx: HttpContext) {
+    if (process.env.FAKE_LOGIN === 'true') {
+      return UserService.registerAndLoginFakeUser(ctx)
+    }
+    return ctx.ally.use('google').redirect()
   }
 
-  async googleCallback({ ally, response, auth, session }: HttpContext) {
-    const google = ally.use('google')
+  async googleCallback(ctx: HttpContext) {
+    const google = ctx.ally.use('google')
 
     if (google.accessDenied()) {
-      session.flash('error', 'You must allow access to your Google account to log in.')
-      return response.redirect().toRoute('auth.login')
+      ctx.session.flash('error', 'You must allow access to your Google account to log in.')
+      return ctx.response.redirect().toRoute('auth.login')
     }
 
     if (google.stateMisMatch()) {
-      session.flash('error', 'Invalid state parameter. Please try logging in again.')
-      return response.redirect().toRoute('auth.login')
+      ctx.session.flash('error', 'Invalid state parameter. Please try logging in again.')
+      return ctx.response.redirect().toRoute('auth.login')
     }
 
     if (google.hasError()) {
-      session.flash(
+      ctx.session.flash(
         'error',
         google.getError() || 'Something went wrong during Google login. Please try again.'
       )
-      return response.redirect().toRoute('auth.login')
+      return ctx.response.redirect().toRoute('auth.login')
     }
 
-    const user: GoogleUser = await google.user()
-
-    const createdUser = await UserService.findOrCreateUser(user)
-
-    await auth.use('web').login(createdUser)
-
-    session.flash('success', 'You are now logged in.')
-
-    return response.redirect().toRoute('dashboard')
+    const googleUser: GoogleUser = await google.user()
+    return UserService.registerAndLoginGoogleUser(googleUser, ctx)
   }
 }
