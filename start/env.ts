@@ -31,6 +31,8 @@ export default await Env.create(new URL('../', import.meta.url), {
   | Variables for configuring ally package
   |----------------------------------------------------------
   */
-  GOOGLE_CLIENT_ID: Env.schema.string(),
-  GOOGLE_CLIENT_SECRET: Env.schema.string()
+  GOOGLE_CLIENT_ID: Env.schema.string.optionalWhen(process.env.FAKE_LOGIN === 'true'),
+  GOOGLE_CLIENT_SECRET: Env.schema.string.optionalWhen(process.env.FAKE_LOGIN === 'true'),
+
+  FAKE_LOGIN: Env.schema.boolean(),
 })

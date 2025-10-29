@@ -1,6 +1,9 @@
 <template>
   <div class="p-4">
     <h1 class="text-2xl">Debug Page</h1>
+    <div>
+      <img src="/images/headshot.jpg" class="aspect-square h-48"/>
+    </div>
     <Button @click="dialogVisible=true" label="Open Dialog"/>
     <Dialog header="Test Header" v-model:visible="dialogVisible" :actions="dialogActions">
       <p>This is a test dialog.</p>
