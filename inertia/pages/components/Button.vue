@@ -2,7 +2,7 @@
   <button
     :disabled="disabled"
     class="p-2 text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-    :class="buttonClasses"
+    :class="[buttonClasses, hoverButtonClasses]"
   >
   <div class="flex items-center text-center justify-center gap-2">
     <slot>
@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { bgSeverityClasses, Severity } from '~/types/severity'
+import { bgSeverityClasses, Severity, hoverSeverityClasses } from '~/types/severity'
 
 export default defineComponent({
   name: 'Button',
@@ -40,6 +40,9 @@ export default defineComponent({
   computed: {
     buttonClasses(): string {
       return bgSeverityClasses[this.severity]
+    },
+    hoverButtonClasses(): string {
+      return hoverSeverityClasses[this.severity]
     },
   }
 })
