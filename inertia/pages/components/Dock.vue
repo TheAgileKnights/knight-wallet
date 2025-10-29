@@ -14,18 +14,31 @@
     </div>
   </div>
   <Popover ref="popover">
-    {{ visibleMenu }}
+    <OnClickOutside @trigger="navStore.closeMenu()">
+      <div
+        v-for="(item, index) in visibleMenu?.menuItems"
+        :key="index"
+        class="flex gap-2 items-center mb-2 hover:scale-110 transition-transform duration-200 cursor-pointer" 
+        @click="item.action"
+      >
+        <div class="font-semibold">{{ item.name }}</div>
+        <icon :v-if="item.icon" :icon="item.icon" :alt="item.name" class="w-8 h-8" />
+      </div>
+    </OnClickOutside>
   </Popover>
 </template>
 
 <script lang="ts">
 import { useNavStore, createDefaultDock } from '~/stores/use_nav_store'
 import Popover from './Popover.vue'
-import { MenuInfo } from '~/types/dock';
+import { DockItem, MenuInfo } from '~/types/dock'
+import { OnClickOutside } from "@vueuse/components"
+
 export default {
   name: 'DockComponent',
   components: {
     Popover,
+    OnClickOutside
   },
   data() {
     const navStore = useNavStore()
@@ -43,22 +56,27 @@ export default {
     visibleMenuId(): MenuInfo | null {
       return this.navStore.getVisibleMenu
     },
-    visibleMenu() {
-    },
     isMenuVisible(): boolean {
       return this.visibleMenuId !== null
-    }
+    },
+    visibleMenu(): DockItem | null {
+      if (this.visibleMenuId) {
+        return this.navStore.getItemById(this.visibleMenuId.id) ?? null
+      }
+      return null
+    },
+    popover() {
+      return this.$refs.popover as InstanceType<typeof Popover>
+    },
   },
   watch: {
     isMenuVisible(visible: boolean) {
-      const popover = this.$refs.popover as InstanceType<typeof Popover>
       if (visible) {
         if (this.visibleMenuId?.pointerEvent) {
-          // console.log((this.visibleMenuId.pointerEvent.currentTarget as HTMLElement).getBoundingClientRect().x)
-          popover.open(this.visibleMenuId.pointerEvent)
+          this.popover.open(this.visibleMenuId.pointerEvent)
         }
       } else {
-        popover.close()
+        this.popover.close()
       }
     },
   },

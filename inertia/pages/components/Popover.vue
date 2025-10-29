@@ -1,6 +1,6 @@
 <template>
   <div class="fixed" :style="popoverStyle">
-    <div class="bg-background rounded-xl">
+    <div class="">
       <slot></slot>
     </div>
   </div>
@@ -18,10 +18,10 @@ export default {
   computed: {
     popoverStyle() {
       if (this.lastEvent && this.isOpen) {
-        const { x, y } = (this.lastEvent.currentTarget as HTMLElement).getBoundingClientRect()
+        const { x, y, width } = (this.lastEvent.currentTarget as HTMLElement).getBoundingClientRect()
         return {
           bottom: `calc(100vh - ${y}px)`,
-          right: `calc(100vw - ${x}px)`,
+          right: `calc(100vw - ${x}px - ${width}px)`,
           display: 'block',
         }
       }

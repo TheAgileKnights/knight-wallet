@@ -10,6 +10,9 @@ export const useNavStore = defineStore('nav', {
   getters: {
     getVisibleMenu: (state) => state.visibleMenu,
     getItems: (state) => state.items,
+    getItemById: (state) => {
+      return (id: string): DockItem | undefined => state.items.find((item) => item.id === id)
+    },
   },
   actions: {
     initializeDock(items: DockItemTemplate[]) {
