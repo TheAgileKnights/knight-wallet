@@ -9,5 +9,43 @@
 
 
 <script lang="ts">
+import { Severity } from '~/types/severity';
+import Button from './components/Button.vue';
+import Dialog from './components/Dialog.vue';
+
+
+export default {
+  name: 'DebugPage',
+  components: {
+    Button,
+    Dialog
+  },
+  data() {
+    return {
+      dialogVisible: false,
+      myText: 'This is some debug text.',
+    }
+  },
+  computed: {
+    dialogActions() {
+      return [
+        {
+          label: 'Cancel',
+          severity: 'secondary' as Severity,
+          action: () => {
+            this.myText = 'Dialog was cancelled.';
+          }
+        },
+        {
+          label: 'Confirm',
+          severity: 'primary' as Severity,
+          action: () => {
+            this.myText = 'Dialog was confirmed.';
+          }
+        }
+      ];
+    }
+  }
+}
 
 </script>
