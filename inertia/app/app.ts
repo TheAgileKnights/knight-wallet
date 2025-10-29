@@ -7,6 +7,7 @@ import type { DefineComponent } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
 import { Icon } from '@iconify/vue'
+import { createPinia } from 'pinia'
 
 const appName = import.meta.env.VITE_APP_NAME || 'Knight Wallet'
 
@@ -29,8 +30,11 @@ createInertiaApp({
   },
 
   setup({ el, App, props, plugin }) {
+    const pinia = createPinia()
+
     createApp({ render: () => h(App, props) })
       .use(plugin)
+      .use(pinia)
       .component('Icon', Icon)
       .mount(el)
   },

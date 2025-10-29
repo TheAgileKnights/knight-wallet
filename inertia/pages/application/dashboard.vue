@@ -10,9 +10,12 @@
 </template>
 
 <script lang="ts">
+import AppLayout from '../layouts/AppLayout.vue';
+
 
 export default {
   name: 'DashboardPage',
+  layout: AppLayout,
   props: {
     user: {
       type: Object
