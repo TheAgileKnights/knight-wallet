@@ -13,6 +13,8 @@ export default defineConfig({
     tailwindcss(),
   ],
 
+  publicDir: false,
+
   server: {
     allowedHosts: ['kw.martipops.net', 'localhost'],
   },
@@ -24,6 +26,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '~/': `${getDirname(import.meta.url)}/inertia/`,
+      '/images': `${getDirname(import.meta.url)}/public/images`,
     },
   },
 })
