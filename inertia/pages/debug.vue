@@ -4,6 +4,11 @@
     <div>
       <img src="/images/headshot.jpg" class="aspect-square h-48"/>
     </div>
+    <Button @click="dialogVisible=true" label="Open Dialog"/>
+    <Dialog header="Test Header" v-model:visible="dialogVisible" :actions="dialogActions">
+      <p>This is a test dialog.</p>
+    </Dialog>
+    {{ myText }}
   </div>
 </template>
 
