@@ -22,7 +22,7 @@
         @click="item.action"
       >
         <div class="font-semibold">{{ item.name }}</div>
-        <icon :v-if="item.icon" :icon="item.icon" :alt="item.name" class="w-8 h-8" />
+        <icon v-if="item.icon" :icon="item.icon" :alt="item.name" class="w-8 h-8" />
       </div>
     </OnClickOutside>
   </Popover>
