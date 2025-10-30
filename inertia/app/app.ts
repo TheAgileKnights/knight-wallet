@@ -8,8 +8,16 @@ import { createInertiaApp } from '@inertiajs/vue3'
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
 import { Icon } from '@iconify/vue'
 import { createPinia } from 'pinia'
+import axios from 'axios'
 
 const appName = import.meta.env.VITE_APP_NAME || 'Knight Wallet'
+const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3333'
+
+// Configure axios to use absolute URLs for Capacitor
+axios.defaults.baseURL = apiUrl
+axios.defaults.withCredentials = true
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+axios.defaults.headers.common['Accept'] = 'application/json'
 
 createInertiaApp({
   progress: { color: '#5468FF' },
