@@ -33,6 +33,8 @@ export default class Project extends BaseModel {
   @manyToMany(() => User, {
     pivotTable: 'project_collaborators',
     pivotColumns: ['role'],
+    pivotForeignKey: 'project_id',
+    pivotRelatedForeignKey: 'user_id',
   })
   declare collaborators: ManyToMany<typeof User>
 

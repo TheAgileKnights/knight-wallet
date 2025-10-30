@@ -40,6 +40,8 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @manyToMany(() => Project, {
     pivotTable: 'project_collaborators',
     pivotColumns: ['role'],
+    pivotForeignKey: 'user_id',
+    pivotRelatedForeignKey: 'project_id',
   })
   declare collaboratingProjects: ManyToMany<typeof Project>
 

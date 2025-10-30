@@ -7,7 +7,7 @@ export default class ProjectInvitationsController {
   private invitationService = new InvitationService()
   private projectService = new ProjectService()
 
-  async store({ params, response, session, bouncer }: HttpContext) {
+  async store({ params, response, session, bouncer, auth }: HttpContext) {
     try {
       const project = await this.projectService.getProject(params.projectId)
 
@@ -18,7 +18,7 @@ export default class ProjectInvitationsController {
 
       const invitation = await this.invitationService.createInvitation(
         params.projectId,
-        project.ownerId,
+        auth.user!.id,
         'member'
       )
 
@@ -55,11 +55,8 @@ export default class ProjectInvitationsController {
     const user = auth.user!
 
     try {
-      await this.invitationService.acceptInvitation(params.token, user)
-
+      const { invitation } = await this.invitationService.acceptInvitation(params.token, user)
       session.flash('success', 'You have successfully joined the project!')
-
-      const invitation = await this.invitationService.getInvitationByToken(params.token)
       return response.redirect().toRoute('projects.show', { id: invitation.projectId })
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Failed to accept invitation'
