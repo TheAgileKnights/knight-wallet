@@ -8,8 +8,20 @@ import { defineConfig } from '@adonisjs/cors'
  */
 const corsConfig = defineConfig({
   enabled: true,
-  origin: [],
-  methods: ['GET', 'HEAD', 'POST', 'PUT', 'DELETE'],
+  origin: (origin) => {
+    // Allow Capacitor origins (capacitor:// and ionic://)
+    if (origin?.startsWith('capacitor://') || origin?.startsWith('ionic://')) {
+      return true
+    }
+    // Allow localhost for development
+    if (origin?.includes('localhost')) {
+      return true
+    }
+    // Add your production domain here
+    const allowedOrigins = ['http://localhost:3333', 'https://kw.martipops.net']
+    return allowedOrigins.includes(origin || '')
+  },
+  methods: ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'PATCH'],
   headers: true,
   exposeHeaders: [],
   credentials: true,
