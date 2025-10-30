@@ -2,9 +2,10 @@ import Project from '#models/project'
 import ProjectCollaborator from '#models/project_collaborator'
 import User from '#models/user'
 import { randomUUID } from 'node:crypto'
+import type { UserProjects } from '../types/project.js'
 
 export default class ProjectService {
-  async getUserProjects(user: User) {
+  async getUserProjects(user: User): Promise<UserProjects> {
     const ownedProjects = await user.related('ownedProjects').query()
     const collaboratingProjects = await user
       .related('collaboratingProjects')

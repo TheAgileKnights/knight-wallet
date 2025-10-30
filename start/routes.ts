@@ -39,8 +39,12 @@ router
     router.delete('/projects/:id', [ProjectsController, 'destroy']).as('projects.destroy')
 
     // Project invitations routes
-    router.post('/projects/:projectId/invitations', [ProjectInvitationsController, 'store']).as('projects.invitations.store')
-    router.delete('/invitations/:token', [ProjectInvitationsController, 'destroy']).as('invitations.destroy')
+    router
+      .post('/projects/:projectId/invitations', [ProjectInvitationsController, 'store'])
+      .as('projects.invitations.store')
+    router
+      .delete('/invitations/:token', [ProjectInvitationsController, 'destroy'])
+      .as('invitations.destroy')
   })
   .use(middleware.auth())
 
