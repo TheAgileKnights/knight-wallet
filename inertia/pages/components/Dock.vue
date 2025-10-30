@@ -3,8 +3,8 @@
     <div
       v-for="(item, index) in items"
       :key="index"
-      class="flex flex-col items-center group cursor-pointer"
-      @click="(event: PointerEvent) => item.action(event)"
+      :class="['flex flex-col items-center group cursor-pointer', { 'dock-menu-item': item.type === 'menu' }]"
+      @click.stop="(event: PointerEvent) => item.action(event)"
     >
       <icon
         :icon="item.icon"
@@ -14,11 +14,11 @@
     </div>
   </div>
   <Popover ref="popover">
-    <OnClickOutside @trigger="navStore.closeMenu()">
+    <OnClickOutside @trigger="handleClickOutside">
       <div
         v-for="(item, index) in visibleMenu?.menuItems"
         :key="index"
-        class="flex gap-2 items-center mb-2 hover:scale-110 transition-transform duration-200 cursor-pointer" 
+        class="flex gap-2 items-center mb-2 hover:scale-110 transition-transform duration-200 cursor-pointer"
         @click="item.action"
       >
         <div class="font-semibold">{{ item.name }}</div>
@@ -77,6 +77,18 @@ export default {
         }
       } else {
         this.popover.close()
+      }
+    },
+  },
+  methods: {
+    handleClickOutside(event: Event) {
+      // Check if the click is on a menu dock item
+      const target = event.target as HTMLElement
+      const isMenuIcon = target.closest('.dock-menu-item')
+
+      // Only close if we didn't click on a menu icon
+      if (!isMenuIcon) {
+        this.navStore.closeMenu()
       }
     },
   },
