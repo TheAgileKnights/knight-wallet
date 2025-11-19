@@ -3,7 +3,10 @@
   <input
     :type="type"
     :placeholder="placeholder"
-    class="block p-2 text-text-secondary border-border bg-background-light focus:border-accent border-2 rounded-xl outline-0 placeholder:text-shadow-text-secondary"
+    :value="modelValue"
+    :disabled="disabled"
+    @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+    class="block p-2 text-text-secondary border-border bg-background-light focus:border-accent border-2 rounded-xl outline-0 placeholder:text-shadow-text-secondary disabled:opacity-50 disabled:cursor-not-allowed w-full"
   />
 </template>
 
@@ -25,6 +28,16 @@ export default {
       type: String,
       required: false,
     },
+    modelValue: {
+      type: [String, Number],
+      required: false,
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
+  emits: ['update:modelValue'],
 }
 </script>
