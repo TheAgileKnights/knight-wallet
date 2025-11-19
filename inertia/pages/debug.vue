@@ -19,21 +19,32 @@
       v-model="selection"
       :single="true"
     />
+    <FormBuilder :form="exampleForm" v-model="exampleFormData" @submit="handleFormSubmit" />
   </div>
 </template>
 
 <script lang="ts">
+import * as z from 'zod'
 import { Severity } from '~/types/severity'
 import Button from './components/Button.vue'
 import Dialog from './components/Dialog.vue'
+import FormBuilder, { defineForm } from './components/FormBuilder.vue'
 import Input from './components/Input.vue'
 import SelectChips from './components/SelectChips.vue'
+
+interface MyFormData {
+  name: string
+  email: string
+  message: string
+  agreeToTerms: boolean
+}
 
 export default {
   name: 'DebugPage',
   components: {
     Button,
     Dialog,
+    FormBuilder,
     Input,
     SelectChips,
   },
@@ -42,6 +53,56 @@ export default {
       dialogVisible: false,
       myText: 'This is some debug text.',
       selection: 1,
+      exampleFormData: {
+        name: '',
+        email: '',
+        message: '',
+        agreeToTerms: false,
+      } as MyFormData,
+      exampleForm: defineForm<MyFormData>({
+        headerPersonalInfo: {
+          type: 'header',
+          text: 'Personal Information',
+          level: 2,
+        },
+        name: {
+          type: 'text',
+          label: 'Name',
+          validator: z.string().min(2, 'Name must be at least 2 characters'),
+        },
+        email: {
+          type: 'email',
+          label: 'Email',
+          validator: z.string().email('Invalid email address'),
+          disabled: (formData: MyFormData) => formData.name.length < 2,
+        },
+        divider1: {
+          type: 'divider',
+          spacing: 'md',
+        },
+        headerMessage: {
+          type: 'header',
+          text: 'Your Message',
+          level: 3,
+        },
+        message: {
+          type: 'textarea',
+          label: 'Message',
+          validator: z.string().min(10, 'Message must be at least 10 characters'),
+          disabled: (formData: MyFormData) => !formData.email || !formData.agreeToTerms,
+          helpText: 'Please provide detailed information',
+        },
+        divider2: {
+          type: 'divider',
+        },
+        agreeToTerms: {
+          type: 'checkbox',
+          label: 'I agree to the terms',
+          validator: z.boolean().refine((val) => val === true, {
+            message: 'You must agree to the terms',
+          }),
+        },
+      }),
     }
   },
   computed: {
@@ -62,6 +123,12 @@ export default {
           },
         },
       ]
+    },
+  },
+  methods: {
+    handleFormSubmit(formData: MyFormData) {
+      console.log('Form submitted successfully:', formData)
+      alert('Form submitted successfully!')
     },
   },
 }
