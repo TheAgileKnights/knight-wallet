@@ -9,6 +9,7 @@
       <p>This is a test dialog.</p>
     </Dialog>
     {{ myText }}
+    <Input placeholder="Test..." />
   </div>
   <FormBuilder />
 </template>
@@ -18,6 +19,7 @@ import { Severity } from '~/types/severity'
 import Button from './components/Button.vue'
 import Dialog from './components/Dialog.vue'
 import FormBuilder from './components/FormBuilder.vue'
+import Input from './components/Input.vue'
 
 export default {
   name: 'DebugPage',
@@ -25,6 +27,7 @@ export default {
     Button,
     Dialog,
     FormBuilder,
+    Input,
   },
   data() {
     return {
