@@ -34,7 +34,7 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @hasMany(() => Project, { foreignKey: 'ownerId' })
   declare ownedProjects: HasMany<typeof Project>
 
-  @hasMany(() => ProjectCollaborator)
+  @hasMany(() => ProjectCollaborator, { foreignKey: 'userId' })
   declare collaboratorRecords: HasMany<typeof ProjectCollaborator>
 
   @manyToMany(() => Project, {
