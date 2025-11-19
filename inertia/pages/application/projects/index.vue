@@ -8,7 +8,7 @@
         {{ project.description }}
       </template>
     </Card>
-    <Card v-else class="col-span-full">
+    <Card v-else class="col-span-full" :hover-effect="false">
       <template #title> No Projects </template>
       <template #description> You don't have any projects yet. </template>
     </Card>
