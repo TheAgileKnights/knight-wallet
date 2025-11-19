@@ -3,7 +3,7 @@
   <input
     :type="type"
     :placeholder="placeholder"
-    class="block p-2 text-text-secondary border-border focus:border-accent border-2 rounded-xl outline-0 placeholder:text-shadow-text-secondary"
+    class="block p-2 text-text-secondary border-border bg-background-light focus:border-accent border-2 rounded-xl outline-0 placeholder:text-shadow-text-secondary"
   />
 </template>
 

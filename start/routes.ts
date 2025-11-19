@@ -13,6 +13,8 @@ import { middleware } from './kernel.js'
 
 const DashboardController = () => import('#controllers/dashboard_controller')
 const AuthController = () => import('#controllers/auth_controller')
+const ProjectsController = () => import('#controllers/projects_controller')
+const ProjectInvitationsController = () => import('#controllers/project_invitations_controller')
 
 router.on('/').renderInertia('home').as('home')
 router.on('/debug').renderInertia('debug').as('debug')
@@ -26,7 +28,31 @@ router
   .group(() => {
     router.get('/dashboard', [DashboardController, 'index']).as('dashboard')
     router.get('/auth/logout', [AuthController, 'logout']).as('auth.logout')
+
+    // Projects routes
+    router.get('/projects', [ProjectsController, 'index']).as('projects.index')
+    router.get('/projects/create', [ProjectsController, 'create']).as('projects.create')
+    router.post('/projects', [ProjectsController, 'store']).as('projects.store')
+    router.get('/projects/:id', [ProjectsController, 'show']).as('projects.show')
+    router.get('/projects/:id/edit', [ProjectsController, 'edit']).as('projects.edit')
+    router.put('/projects/:id', [ProjectsController, 'update']).as('projects.update')
+    router.delete('/projects/:id', [ProjectsController, 'destroy']).as('projects.destroy')
+
+    // Project invitations routes
+    router
+      .post('/projects/:projectId/invitations', [ProjectInvitationsController, 'store'])
+      .as('projects.invitations.store')
+    router
+      .delete('/invitations/:token', [ProjectInvitationsController, 'destroy'])
+      .as('invitations.destroy')
   })
+  .use(middleware.auth())
+
+// Public invitation routes (no auth required)
+router.get('/invite/:token', [ProjectInvitationsController, 'show']).as('invitations.show')
+router
+  .post('/invite/:token/accept', [ProjectInvitationsController, 'accept'])
+  .as('invitations.accept')
   .use(middleware.auth())
 
 // Design Artifacts routes

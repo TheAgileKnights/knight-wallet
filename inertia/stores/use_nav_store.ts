@@ -42,6 +42,12 @@ function getDefaultDockItems(): DockItemTemplate[] {
       action: '/',
     },
     {
+      id: 'projects',
+      name: 'Projects',
+      icon: 'majesticons:folder-line',
+      action: '/projects',
+    },
+    {
       id: 'settings',
       name: 'Settings',
       icon: 'majesticons:settings-cog-line',
