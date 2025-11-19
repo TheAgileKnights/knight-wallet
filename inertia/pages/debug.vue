@@ -10,6 +10,15 @@
     </Dialog>
     {{ myText }}
     <Input placeholder="Test..." />
+    <SelectChips
+      :options="[
+        { label: 'Option 1', value: 1 },
+        { label: 'Option 2', value: 2 },
+        { label: 'Option 3', value: 3 },
+      ]"
+      v-model="selection"
+      :single="true"
+    />
   </div>
 </template>
 
@@ -18,6 +27,7 @@ import { Severity } from '~/types/severity'
 import Button from './components/Button.vue'
 import Dialog from './components/Dialog.vue'
 import Input from './components/Input.vue'
+import SelectChips from './components/SelectChips.vue'
 
 export default {
   name: 'DebugPage',
@@ -25,11 +35,13 @@ export default {
     Button,
     Dialog,
     Input,
+    SelectChips,
   },
   data() {
     return {
       dialogVisible: false,
       myText: 'This is some debug text.',
+      selection: 1,
     }
   },
   computed: {
