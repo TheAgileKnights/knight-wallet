@@ -2,7 +2,7 @@
   <div class="flex gap-1">
     <template v-for="option in options" :key="option.value">
       <div
-        class="cursor-pointer rounded-xl px-4 py-2 border-2 border-border"
+        class="cursor-pointer rounded-xl px-4 py-[6px] border-2 border-border"
         :class="{
           'bg-accent text-white border-accent-hover!': single
             ? modelValue === option.value

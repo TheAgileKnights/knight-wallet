@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Form Builder Example</h1>
     <form @submit.prevent="handleSubmit" class="space-y-4">
       <template v-for="(element, key) in form" :key="key">
         <!-- Header -->
@@ -132,7 +131,6 @@ import TextArea from './TextArea.vue'
 import SelectChips from './SelectChips.vue'
 
 interface FormBuilderInputBase<T> {
-  type: string
   label: string
   validator?: z.ZodType<any>
   disabled?: (formData: T) => boolean
@@ -206,58 +204,9 @@ type FormElement<T> = InputFieldConfig<T> | HeaderConfig | DividerConfig | TextC
 // Allows any keys, but constrains each value to be a FormElement<T>
 type FormBase<T extends Record<string, any>> = Record<string, FormElement<T>>
 
-interface MyFormData {
-  name: string
-  email: string
-  message: string
-  agreeToTerms: boolean
-}
-
-const formConfig: FormBase<MyFormData> = {
-  headerPersonalInfo: {
-    type: 'header',
-    text: 'Personal Information',
-    level: 2,
-  },
-  name: {
-    type: 'text',
-    label: 'Name',
-    validator: z.string().min(2, 'Name must be at least 2 characters'),
-  },
-  email: {
-    type: 'email',
-    label: 'Email',
-    validator: z.string().email('Invalid email address'),
-    // The disabled function now has access to typed formData!
-    disabled: (formData) => formData.name.length < 2,
-  },
-  divider1: {
-    type: 'divider',
-    spacing: 'md',
-  },
-  headerMessage: {
-    type: 'header',
-    text: 'Your Message',
-    level: 3,
-  },
-  message: {
-    type: 'textarea',
-    label: 'Message',
-    validator: z.string().min(10, 'Message must be at least 10 characters'),
-    // TypeScript knows all the properties of formData
-    disabled: (formData) => !formData.email || !formData.agreeToTerms,
-    helpText: 'Please provide detailed information',
-  },
-  divider2: {
-    type: 'divider',
-  },
-  agreeToTerms: {
-    type: 'checkbox',
-    label: 'I agree to the terms',
-    validator: z.boolean().refine((val) => val === true, {
-      message: 'You must agree to the terms',
-    }),
-  },
+// Helper function to create a form with proper type inference
+export function defineForm<T extends Record<string, any>>(form: FormBase<T>): FormBase<T> {
+  return form
 }
 
 export default {
@@ -267,19 +216,31 @@ export default {
     TextArea,
     SelectChips,
   },
+  props: {
+    form: {
+      type: Object as () => FormBase<any>,
+      required: true,
+    },
+    modelValue: {
+      type: Object as () => Record<string, any>,
+      required: true,
+    },
+  },
+  emits: ['update:modelValue', 'submit'],
   data() {
     return {
-      form: formConfig,
-      formData: {
-        name: '',
-        email: '',
-        message: '',
-        agreeToTerms: false,
-      } as MyFormData,
       errors: {} as Record<string, string>,
     }
   },
   computed: {
+    formData: {
+      get() {
+        return this.modelValue
+      },
+      set(value: Record<string, any>) {
+        this.$emit('update:modelValue', value)
+      },
+    },
     checkboxOptions() {
       return [
         { label: 'Yes', value: true },
@@ -310,10 +271,9 @@ export default {
         }
       }
 
-      // If no errors, submit the form
+      // If no errors, emit submit event
       if (Object.keys(this.errors).length === 0) {
-        console.log('Form submitted successfully:', this.formData)
-        alert('Form submitted successfully!')
+        this.$emit('submit', this.formData)
       } else {
         console.log('Form has errors:', this.errors)
       }
