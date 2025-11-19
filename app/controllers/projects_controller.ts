@@ -10,13 +10,14 @@ export default class ProjectsController {
     const user = auth.user!
     const projects = await this.projectService.getUserProjects(user)
 
-    return inertia.render('projects/index', {
+    return inertia.render('application/projects/index', {
+      user: auth.user,
       projects,
     })
   }
 
   async create({ inertia }: HttpContext) {
-    return inertia.render('projects/create')
+    return inertia.render('application/projects/create')
   }
 
   async store({ auth, request, response, session }: HttpContext) {
@@ -44,7 +45,7 @@ export default class ProjectsController {
 
       const userRole = await this.projectService.getUserRole(params.id, auth.user!.id)
 
-      return inertia.render('projects/show', {
+      return inertia.render('application/projects/show', {
         project,
         userRole,
       })
@@ -63,7 +64,7 @@ export default class ProjectsController {
         return response.redirect().toRoute('projects.show', { id: params.id })
       }
 
-      return inertia.render('projects/edit', {
+      return inertia.render('application/projects/edit', {
         project,
       })
     } catch (error) {
