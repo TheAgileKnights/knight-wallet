@@ -27,7 +27,7 @@ export default class Project extends BaseModel {
   @belongsTo(() => User, { foreignKey: 'ownerId' })
   declare owner: BelongsTo<typeof User>
 
-  @hasMany(() => ProjectCollaborator)
+  @hasMany(() => ProjectCollaborator, { foreignKey: 'projectId' })
   declare collaboratorRecords: HasMany<typeof ProjectCollaborator>
 
   @manyToMany(() => User, {
@@ -38,6 +38,6 @@ export default class Project extends BaseModel {
   })
   declare collaborators: ManyToMany<typeof User>
 
-  @hasMany(() => ProjectInvitation)
+  @hasMany(() => ProjectInvitation, { foreignKey: 'projectId' })
   declare invitations: HasMany<typeof ProjectInvitation>
 }
