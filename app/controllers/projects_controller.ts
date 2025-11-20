@@ -32,29 +32,20 @@ export default class ProjectsController {
 
   async show({ auth, params, inertia, response, session, bouncer }: HttpContext) {
     try {
-      console.log('[ProjectsController.show] Fetching project:', params.id)
       const project = await this.projectService.getProject(params.id)
-      console.log('[ProjectsController.show] Project found:', project.id, project.name)
-
-      console.log('[ProjectsController.show] Checking bouncer for user:', auth.user!.id)
-      const canView = await bouncer.with(ProjectPolicy).allows('view', project)
-      console.log('[ProjectsController.show] Can view:', canView)
 
       if (await bouncer.with(ProjectPolicy).denies('view', project)) {
-        console.log('[ProjectsController.show] Access denied')
         session.flash('error', 'Project not found or you do not have access')
         return response.redirect().toRoute('projects.index')
       }
 
       const userRole = await this.projectService.getUserRole(params.id, auth.user!.id)
-      console.log('[ProjectsController.show] User role:', userRole)
 
       return inertia.render('application/projects/show', {
         project,
         userRole,
       })
     } catch (error) {
-      console.log('[ProjectsController.show] Error:', error)
       session.flash('error', 'Project not found')
       return response.redirect().toRoute('projects.index')
     }

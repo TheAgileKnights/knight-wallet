@@ -127,7 +127,6 @@ export default {
   },
   methods: {
     handleFormSubmit(formData: MyFormData) {
-      console.log('Form submitted successfully:', formData)
       alert('Form submitted successfully!')
     },
   },

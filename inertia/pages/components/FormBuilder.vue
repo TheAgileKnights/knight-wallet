@@ -269,8 +269,6 @@ export default {
       // If no errors, emit submit event
       if (Object.keys(this.errors).length === 0) {
         this.$emit('submit', this.formData)
-      } else {
-        console.log('Form has errors:', this.errors)
       }
     },
   },

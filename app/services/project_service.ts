@@ -5,14 +5,11 @@ import type { UserProjects } from '../types/project.js'
 
 export default class ProjectService {
   async getUserProjects(user: User): Promise<UserProjects> {
-    const projects = await user
-      .related('collaboratingProjects')
-      .query()
-      .pivotColumns(['role'])
+    const projects = await user.related('collaboratingProjects').query().pivotColumns(['role'])
 
     return {
-      owned: projects.filter(p => p.$extras.pivot_role === 'owner'),
-      collaborating: projects.filter(p => p.$extras.pivot_role !== 'owner'),
+      owned: projects.filter((p) => p.$extras.pivot_role === 'owner'),
+      collaborating: projects.filter((p) => p.$extras.pivot_role !== 'owner'),
     }
   }
 
@@ -27,21 +24,17 @@ export default class ProjectService {
   }
 
   async createProject(ownerId: number, data: { name: string; description?: string }) {
-    console.log('[ProjectService.createProject] Creating project for owner:', ownerId)
     const project = await Project.create({
       name: data.name,
       description: data.description,
       ownerId,
     })
-    console.log('[ProjectService.createProject] Project created:', project.id)
 
-    console.log('[ProjectService.createProject] Creating collaborator record')
-    const collaborator = await ProjectCollaborator.create({
-      projectId: project.id,
-      userId: ownerId,
-      role: 'owner',
-    })
-    console.log('[ProjectService.createProject] Collaborator created:', collaborator.id)
+    // const collaborator = await ProjectCollaborator.create({
+    //   projectId: project.id,
+    //   userId: ownerId,
+    //   role: 'owner',
+    // })
 
     return project
   }
