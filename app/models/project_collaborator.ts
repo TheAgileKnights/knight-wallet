@@ -14,10 +14,10 @@ export default class ProjectCollaborator extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
 
-  @column()
-  declare projectId: string
+  @column({ columnName: 'project_id' })
+  declare projectId: number
 
-  @column()
+  @column({ columnName: 'user_id' })
   declare userId: number
 
   @column()

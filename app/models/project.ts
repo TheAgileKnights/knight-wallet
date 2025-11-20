@@ -7,7 +7,7 @@ import ProjectInvitation from './project_invitation.js'
 
 export default class Project extends BaseModel {
   @column({ isPrimary: true })
-  declare id: string
+  declare id: number
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
@@ -21,7 +21,7 @@ export default class Project extends BaseModel {
   @column()
   declare description: string
 
-  @column()
+  @column({ columnName: 'owner_id' })
   declare ownerId: number
 
   @belongsTo(() => User, { foreignKey: 'ownerId' })

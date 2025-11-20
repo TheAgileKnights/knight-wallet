@@ -31,7 +31,6 @@ router
 
     // Projects routes
     router.get('/projects', [ProjectsController, 'index']).as('projects.index')
-    router.get('/projects/create', [ProjectsController, 'create']).as('projects.create')
     router.post('/projects', [ProjectsController, 'store']).as('projects.store')
     router.get('/projects/:id', [ProjectsController, 'show']).as('projects.show')
     router.get('/projects/:id/edit', [ProjectsController, 'edit']).as('projects.edit')

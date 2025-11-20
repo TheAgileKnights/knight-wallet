@@ -12,10 +12,11 @@ export default class ProjectPolicy extends BasePolicy {
     project: Project,
     user: User
   ): Promise<'owner' | 'admin' | 'member' | null> {
-    const collaborator = await ProjectCollaborator.query()
-      .where('projectId', project.id)
-      .where('userId', user.id)
-      .first()
+    const query = ProjectCollaborator.query()
+      .where('project_id', project.id)
+      .where('user_id', user.id)
+
+    const collaborator = await query.first()
 
     return collaborator?.role || null
   }

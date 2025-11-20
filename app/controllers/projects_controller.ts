@@ -16,10 +16,6 @@ export default class ProjectsController {
     })
   }
 
-  async create({ inertia }: HttpContext) {
-    return inertia.render('application/projects/create')
-  }
-
   async store({ auth, request, response, session }: HttpContext) {
     const user = auth.user!
     const data = await request.validateUsing(createProjectValidator)

@@ -1,20 +1,15 @@
 import Project from '#models/project'
 import ProjectCollaborator from '#models/project_collaborator'
 import User from '#models/user'
-import { randomUUID } from 'node:crypto'
 import type { UserProjects } from '../types/project.js'
 
 export default class ProjectService {
   async getUserProjects(user: User): Promise<UserProjects> {
-    const ownedProjects = await user.related('ownedProjects').query()
-    const collaboratingProjects = await user
-      .related('collaboratingProjects')
-      .query()
-      .pivotColumns(['role'])
+    const projects = await user.related('collaboratingProjects').query().pivotColumns(['role'])
 
     return {
-      owned: ownedProjects,
-      collaborating: collaboratingProjects,
+      owned: projects.filter((p) => p.$extras.pivot_role === 'owner'),
+      collaborating: projects.filter((p) => p.$extras.pivot_role !== 'owner'),
     }
   }
 
@@ -30,17 +25,16 @@ export default class ProjectService {
 
   async createProject(ownerId: number, data: { name: string; description?: string }) {
     const project = await Project.create({
-      id: randomUUID(),
       name: data.name,
       description: data.description,
       ownerId,
     })
 
-    await ProjectCollaborator.create({
-      projectId: project.id,
-      userId: ownerId,
-      role: 'owner',
-    })
+    // const collaborator = await ProjectCollaborator.create({
+    //   projectId: project.id,
+    //   userId: ownerId,
+    //   role: 'owner',
+    // })
 
     return project
   }
