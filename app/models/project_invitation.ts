@@ -16,7 +16,7 @@ export default class ProjectInvitation extends BaseModel {
   declare updatedAt: DateTime
 
   @column()
-  declare projectId: string
+  declare projectId: number
 
   @column()
   declare invitedBy: number

@@ -9,7 +9,7 @@ export default class extends BaseSchema {
       table.timestamp('created_at')
       table.timestamp('updated_at')
 
-      table.uuid('project_id').notNullable()
+      table.integer('project_id').unsigned().notNullable()
       table.integer('invited_by').unsigned().notNullable()
       table.string('token').notNullable().unique()
       table.enum('role', ['admin', 'member']).defaultTo('member')

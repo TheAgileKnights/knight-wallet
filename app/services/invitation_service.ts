@@ -4,7 +4,7 @@ import User from '#models/user'
 
 export default class InvitationService {
   async createInvitation(
-    projectId: string,
+    projectId: number,
     invitedBy: number,
     role: 'admin' | 'member' = 'member'
   ) {
@@ -23,6 +23,12 @@ export default class InvitationService {
       .preload('project')
       .preload('inviter')
       .firstOrFail()
+
+    // Clean up if expired
+    if (invitation.isExpired) {
+      await invitation.delete()
+      throw new Error('Invitation has expired and has been removed')
+    }
 
     return invitation
   }
@@ -52,7 +58,7 @@ export default class InvitationService {
     return { invitation, collaborator }
   }
 
-  async getProjectInvitations(projectId: string) {
+  async getProjectInvitations(projectId: number) {
     return await ProjectInvitation.query()
       .where('projectId', projectId)
       .preload('inviter')
@@ -64,7 +70,7 @@ export default class InvitationService {
     await invitation.delete()
   }
 
-  async cleanupExpiredInvitations(projectId: string) {
+  async cleanupExpiredInvitations(projectId: number) {
     const now = new Date()
     await ProjectInvitation.query()
       .where('projectId', projectId)

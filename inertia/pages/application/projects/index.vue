@@ -1,4 +1,9 @@
 <template>
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold text-text">Projects</h1>
+    <Button label="Join" icon="majesticons:user-plus" @click="openJoinDialog" />
+  </div>
+
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-2">
     <div
       v-if="userProjects.length >= 1"
@@ -9,7 +14,10 @@
     >
       <Card>
         <template #title>
-          {{ project.name }}
+          <div class="flex items-center gap-2">
+            <span>{{ project.name }}</span>
+            <span class="text-xs opacity-50">{{ getProjectRole(project.id) }}</span>
+          </div>
         </template>
         <template #description>
           {{ project.description }}
@@ -34,6 +42,8 @@
   <Dialog v-model:visible="showCreateDialog" header="Create New Project">
     <FormBuilder :form="projectForm" v-model="formData" @submit="handleSubmit" />
   </Dialog>
+
+  <JoinProjectDialog v-model:visible="showJoinDialog" />
 </template>
 
 <script lang="ts">
@@ -47,6 +57,7 @@ import { UserProjects } from '../../../../app/types/project'
 import Button from '~/pages/components/Button.vue'
 import Dialog from '~/pages/components/Dialog.vue'
 import FormBuilder, { defineForm } from '~/pages/components/FormBuilder.vue'
+import JoinProjectDialog from '~/pages/components/JoinProjectDialog.vue'
 
 interface ProjectFormData {
   name: string
@@ -61,6 +72,7 @@ export default {
     Button,
     Dialog,
     FormBuilder,
+    JoinProjectDialog,
   },
   props: {
     user: {
@@ -77,6 +89,7 @@ export default {
   data() {
     return {
       showCreateDialog: false,
+      showJoinDialog: false,
       formData: {
         name: '',
         description: '',
@@ -112,11 +125,20 @@ export default {
     openCreateDialog() {
       this.showCreateDialog = true
     },
+    openJoinDialog() {
+      this.showJoinDialog = true
+    },
     navigateToProject(projectId: string) {
       router.visit(`/projects/${projectId}`)
     },
     handleSubmit(data: ProjectFormData) {
       router.post('/projects', data as Record<string, any>)
+    },
+    getProjectRole(projectId: number) {
+      if (this.projects?.owned?.some((p: any) => p.id === projectId)) {
+        return 'Owner'
+      }
+      return 'Shared'
     },
   },
 }
