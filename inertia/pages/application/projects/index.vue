@@ -86,7 +86,11 @@ export default {
           type: 'text',
           label: 'Project Name',
           placeholder: 'Enter project name',
-          validator: z.string().trim().min(1, 'Project name is required').max(255, 'Project name must be less than 255 characters'),
+          validator: z
+            .string()
+            .trim()
+            .min(1, 'Project name is required')
+            .max(255, 'Project name must be less than 255 characters'),
           helpText: 'Give your project a descriptive name',
         },
         description: {
@@ -109,7 +113,6 @@ export default {
       this.showCreateDialog = true
     },
     navigateToProject(projectId: string) {
-      console.log('Navigating to project:', projectId)
       router.visit(`/projects/${projectId}`)
     },
     handleSubmit(data: ProjectFormData) {
