@@ -12,11 +12,15 @@ export default class ProjectPolicy extends BasePolicy {
     project: Project,
     user: User
   ): Promise<'owner' | 'admin' | 'member' | null> {
-    const collaborator = await ProjectCollaborator.query()
-      .where('projectId', project.id)
-      .where('userId', user.id)
-      .first()
+    console.log('[ProjectPolicy.getUserRole] Querying for projectId:', project.id, 'userId:', user.id)
+    const query = ProjectCollaborator.query()
+      .where('project_id', project.id)
+      .where('user_id', user.id)
 
+    console.log('[ProjectPolicy.getUserRole] SQL:', query.toSQL())
+    const collaborator = await query.first()
+
+    console.log('[ProjectPolicy.getUserRole] Collaborator found:', collaborator?.id, 'role:', collaborator?.role)
     return collaborator?.role || null
   }
 
@@ -24,7 +28,9 @@ export default class ProjectPolicy extends BasePolicy {
    * Any collaborator can view the project
    */
   async view(user: User, project: Project): Promise<AuthorizerResponse> {
+    console.log('[ProjectPolicy.view] Checking view for user:', user.id, 'project:', project.id)
     const role = await this.getUserRole(project, user)
+    console.log('[ProjectPolicy.view] User role:', role)
     return role !== null
   }
 

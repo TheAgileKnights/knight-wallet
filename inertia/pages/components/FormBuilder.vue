@@ -116,11 +116,6 @@
         Submit
       </button>
     </form>
-
-    <div class="mt-8">
-      <h3 class="text-text text-lg font-bold">Form Data:</h3>
-      <pre class="text-text-secondary">{{ formData }}</pre>
-    </div>
   </div>
 </template>
 
