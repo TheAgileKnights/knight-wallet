@@ -42,11 +42,9 @@
       @click="openCreateDialog"
     />
   </div>
-
   <Dialog v-model:visible="showCreateDialog" header="Create New Project">
     <FormBuilder :form="projectForm" v-model="formData" @submit="handleSubmit" />
   </Dialog>
-
   <JoinProjectDialog v-model:visible="showJoinDialog" />
 </template>
 
