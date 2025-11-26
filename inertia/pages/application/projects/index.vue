@@ -9,14 +9,18 @@
       v-if="userProjects.length >= 1"
       v-for="project in userProjects"
       :key="project.id"
-      @click="navigateToProject(project.id)"
       class="cursor-pointer"
     >
-      <Card alignment="left">
+      <Card alignment="left" @click="navigateToProject(project.id)">
         <template #title>
-          <div class="flex flex-col gap-0">
-            <span>{{ project.name }}</span>
-            <span class="text-xs opacity-50">{{ getProjectRole(project.id) }}</span>
+          <div class="flex w-full">
+            <div class="flex flex-col">
+              <span>{{ project.name }}</span>
+              <span class="text-xs opacity-50">{{ getProjectRole(project.id) }}</span>
+            </div>
+            <div class="ml-auto">
+              <Button icon="majesticons:settings-cog" @click.stop="console.log('test')"> </Button>
+            </div>
           </div>
         </template>
         <template #description>
