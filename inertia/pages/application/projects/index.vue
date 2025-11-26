@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-between items-center mb-4">
     <h1 class="text-2xl font-bold text-text">Projects</h1>
-    <Button label="Join" icon="majesticons:user-plus" @click="openJoinDialog" />
+    <Button label="Join" icon="majesticons:send" @click="openJoinDialog" />
   </div>
 
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-2">
@@ -12,9 +12,9 @@
       @click="navigateToProject(project.id)"
       class="cursor-pointer"
     >
-      <Card>
+      <Card alignment="left">
         <template #title>
-          <div class="flex items-center gap-2">
+          <div class="flex flex-col gap-0">
             <span>{{ project.name }}</span>
             <span class="text-xs opacity-50">{{ getProjectRole(project.id) }}</span>
           </div>
@@ -29,7 +29,7 @@
       <template #description> You don't have any projects yet. </template>
     </Card>
   </div>
-  <div class="fixed bottom-12 right-4">
+  <div class="fixed bottom-20 right-4">
     <Button
       icon="majesticons:plus"
       size="large"
