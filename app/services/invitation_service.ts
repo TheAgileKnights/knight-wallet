@@ -27,7 +27,9 @@ export default class InvitationService {
     // Clean up if expired
     if (invitation.isExpired) {
       await invitation.delete()
-      throw new Error('Invitation has expired and has been removed')
+      throw new Error(
+        'This invitation has expired. Please request a new invitation from the project owner.'
+      )
     }
 
     return invitation

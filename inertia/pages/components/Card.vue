@@ -37,6 +37,5 @@ export default defineComponent({
       default: 'center',
     },
   },
-  computed: {},
 })
 </script>

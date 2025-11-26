@@ -10,8 +10,9 @@
       v-for="project in userProjects"
       :key="project.id"
       class="cursor-pointer"
+      @click="navigateToProject(project.id)"
     >
-      <Card alignment="left" @click="navigateToProject(project.id)">
+      <Card alignment="left">
         <template #title>
           <div class="flex w-full">
             <div class="flex flex-col">
@@ -19,7 +20,7 @@
               <span class="text-xs opacity-50">{{ getProjectRole(project.id) }}</span>
             </div>
             <div class="ml-auto">
-              <Button icon="majesticons:settings-cog" @click.stop="console.log('test')"> </Button>
+              <Button icon="majesticons:settings-cog" @click.stop=""> </Button>
             </div>
           </div>
         </template>
@@ -130,7 +131,7 @@ export default {
     openJoinDialog() {
       this.showJoinDialog = true
     },
-    navigateToProject(projectId: string) {
+    navigateToProject(projectId: number) {
       router.visit(`/projects/${projectId}`)
     },
     handleSubmit(data: ProjectFormData) {

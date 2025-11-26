@@ -14,11 +14,7 @@
     }}</pre>
   </div>
 
-  <ShareProjectDialog
-    v-model:visible="showShareDialog"
-    :invitation="currentInvitation"
-    :project-id="project.id"
-  />
+  <ShareProjectDialog v-model:visible="showShareDialog" :invitation="currentInvitation" />
 </template>
 
 <script lang="ts">

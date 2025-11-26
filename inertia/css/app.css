@@ -9,7 +9,7 @@ html, body {
   scrollbar-gutter: stable;
   overflow: auto;
   scrollbar-width: thin;
-  scrollbar-color: transparent;
+  scrollbar-color: var(--color-text-contrast-secondary) transparent;
 }
 
 .card {
