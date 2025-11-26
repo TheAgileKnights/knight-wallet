@@ -4,6 +4,8 @@ import type { BelongsTo, HasMany, ManyToMany } from '@adonisjs/lucid/types/relat
 import User from './user.js'
 import ProjectCollaborator from './project_collaborator.js'
 import ProjectInvitation from './project_invitation.js'
+import Category from './category.js'
+import Currency from './currency.js'
 
 export default class Project extends BaseModel {
   @column({ isPrimary: true })
@@ -40,4 +42,14 @@ export default class Project extends BaseModel {
 
   @hasMany(() => ProjectInvitation, { foreignKey: 'projectId' })
   declare invitations: HasMany<typeof ProjectInvitation>
+
+  @hasMany(() => Category, { foreignKey: 'projectId' })
+  declare categories: HasMany<typeof Category>
+
+  @manyToMany(() => Currency, {
+    pivotTable: 'project_currencies',
+    pivotForeignKey: 'project_id',
+    pivotRelatedForeignKey: 'currency_id',
+  })
+  declare currencies: ManyToMany<typeof Currency>
 }

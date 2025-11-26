@@ -1,7 +1,28 @@
 import Project from '#models/project'
 import ProjectCollaborator from '#models/project_collaborator'
 import User from '#models/user'
+import Currency from '#models/currency'
+import Icon from '#models/icon'
+import Category from '#models/category'
 import type { UserProjects } from '../types/project.js'
+
+const DEFAULT_CATEGORIES = [
+  {
+    name: 'Food & Dining',
+    description: 'Meals, groceries, and dining expenses',
+    iconString: 'majesticons:food',
+  },
+  {
+    name: 'Transportation',
+    description: 'Travel, gas, and commute expenses',
+    iconString: 'majesticons:car',
+  },
+  {
+    name: 'Entertainment',
+    description: 'Movies, events, and leisure activities',
+    iconString: 'majesticons:movie',
+  },
+]
 
 export default class ProjectService {
   async getUserProjects(user: User): Promise<UserProjects> {
@@ -35,6 +56,30 @@ export default class ProjectService {
     //   userId: ownerId,
     //   role: 'owner',
     // })
+
+    // Attach all currencies to the project
+    const currencies = await Currency.all()
+    await project.related('currencies').attach(currencies.map((c) => c.id))
+
+    // Create default categories
+    const icons = await Icon.query().whereIn(
+      'iconString',
+      DEFAULT_CATEGORIES.map((cat) => cat.iconString)
+    )
+
+    const categoriesData = DEFAULT_CATEGORIES.map((categoryDef) => {
+      const icon = icons.find((i) => i.iconString === categoryDef.iconString)
+      if (!icon) throw new Error(`Icon not found: ${categoryDef.iconString}`)
+
+      return {
+        projectId: project.id,
+        name: categoryDef.name,
+        description: categoryDef.description,
+        iconId: icon.id,
+      }
+    })
+
+    await Category.createMany(categoriesData)
 
     return project
   }
