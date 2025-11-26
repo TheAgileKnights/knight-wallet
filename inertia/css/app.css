@@ -5,6 +5,13 @@ html, body {
   background-color: var(--color-background);
 }
 
+:root {
+  scrollbar-gutter: stable;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-text-contrast-secondary) transparent;
+}
+
 .card {
   background-color: var(--color-background-light);
   color: var(--color-text);

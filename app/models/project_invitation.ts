@@ -15,8 +15,8 @@ export default class ProjectInvitation extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
 
-  @column()
-  declare projectId: string
+  @column({ columnName: 'project_id' })
+  declare projectId: number
 
   @column()
   declare invitedBy: number
