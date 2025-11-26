@@ -6,6 +6,7 @@ import ProjectCollaborator from './project_collaborator.js'
 import ProjectInvitation from './project_invitation.js'
 import Category from './category.js'
 import Currency from './currency.js'
+import Expense from './expense.js'
 
 export default class Project extends BaseModel {
   @column({ isPrimary: true })
@@ -52,4 +53,7 @@ export default class Project extends BaseModel {
     pivotRelatedForeignKey: 'currency_id',
   })
   declare currencies: ManyToMany<typeof Currency>
+
+  @hasMany(() => Expense, { foreignKey: 'projectId' })
+  declare expenses: HasMany<typeof Expense>
 }
