@@ -2,12 +2,16 @@
   <div>
     <div class="flex justify-between items-center mb-6">
       <h1 class="text-3xl font-bold text-text">Project Details</h1>
-      <Button
-        v-if="userRole === 'owner'"
-        label="Share Project"
-        icon="majesticons:share"
-        @click="handleShareProject"
-      />
+      <div class="flex gap-2">
+        <Button label="Expenses" icon="majesticons:money-line" @click="navigateToExpenses" />
+        <Button label="Categories" icon="majesticons:tag" @click="navigateToCategories" />
+        <Button
+          v-if="userRole === 'owner'"
+          label="Share Project"
+          icon="majesticons:share"
+          @click="handleShareProject"
+        />
+      </div>
     </div>
     <pre class="text-text-secondary bg-background-secondary p-4 rounded-lg overflow-auto">{{
       project
@@ -58,6 +62,12 @@ export default {
     }
   },
   methods: {
+    navigateToExpenses() {
+      router.visit(`/projects/${this.project.id}/expenses`)
+    },
+    navigateToCategories() {
+      router.visit(`/projects/${this.project.id}/categories`)
+    },
     handleShareProject() {
       if (this.currentInvitation) {
         this.showShareDialog = true

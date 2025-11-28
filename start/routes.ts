@@ -15,6 +15,8 @@ const DashboardController = () => import('#controllers/dashboard_controller')
 const AuthController = () => import('#controllers/auth_controller')
 const ProjectsController = () => import('#controllers/projects_controller')
 const ProjectInvitationsController = () => import('#controllers/project_invitations_controller')
+const CategoriesController = () => import('#controllers/categories_controller')
+const ExpensesController = () => import('#controllers/expenses_controller')
 
 router.on('/').renderInertia('home').as('home')
 router.on('/debug').renderInertia('debug').as('debug')
@@ -36,6 +38,24 @@ router
     router.get('/projects/:id/edit', [ProjectsController, 'edit']).as('projects.edit')
     router.put('/projects/:id', [ProjectsController, 'update']).as('projects.update')
     router.delete('/projects/:id', [ProjectsController, 'destroy']).as('projects.destroy')
+
+    // Categories routes
+    router
+      .get('/projects/:projectId/categories', [CategoriesController, 'index'])
+      .as('categories.index')
+    router
+      .post('/projects/:projectId/categories', [CategoriesController, 'store'])
+      .as('categories.store')
+    router.put('/categories/:id', [CategoriesController, 'update']).as('categories.update')
+    router.delete('/categories/:id', [CategoriesController, 'destroy']).as('categories.destroy')
+
+    // Expenses routes
+    router.get('/projects/:projectId/expenses', [ExpensesController, 'index']).as('expenses.index')
+    router
+      .post('/projects/:projectId/expenses', [ExpensesController, 'store'])
+      .as('expenses.store')
+    router.put('/expenses/:id', [ExpensesController, 'update']).as('expenses.update')
+    router.delete('/expenses/:id', [ExpensesController, 'destroy']).as('expenses.destroy')
 
     // Project invitations routes
     router

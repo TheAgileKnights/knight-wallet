@@ -1,10 +1,7 @@
 <template>
   <!-- Nav Bar -->
   <Transition>
-    <div
-      v-if="showSticky"
-      class="fixed top-4 left-4 bg-primary px-4 py-2 rounded-lg shadow-lg z-2"
-    >
+    <div v-if="showSticky" class="fixed top-4 left-4 bg-primary px-4 py-2 rounded-lg shadow-lg z-2">
       <h3 class="font-bold text-2xl text-text-contrast">Knight Wallet</h3>
     </div>
   </Transition>
@@ -24,10 +21,20 @@
               @update:is-typing="handleTypingStatus"
             />
             <Transition name="slide-in">
-            <div v-if="!isTyping">
-              <button @click="$inertia.visit('/dashboard')" class="bg-text-contrast rounded-md text-primary mt-8 mr-2 px-5 py-2 hover:bg-white hove:text-accent hover:cursor-pointer">Open App</button>
-              <button @click="$inertia.visit('/design-artifacts')" class="outline-text-contrast text-text-contrast rounded-md outline px-5 py-2 hover:cursor-pointer hover:bg-white hover:text-accent">Design Artifacts</button>
-            </div>
+              <div v-if="!isTyping">
+                <button
+                  @click="$inertia.visit('/dashboard')"
+                  class="bg-text-contrast rounded-md text-primary mt-8 mr-2 px-5 py-2 hover:bg-white hove:text-accent hover:cursor-pointer"
+                >
+                  Open App
+                </button>
+                <button
+                  @click="$inertia.visit('/design-artifacts')"
+                  class="outline-text-contrast text-text-contrast rounded-md outline px-5 py-2 hover:cursor-pointer hover:bg-white hover:text-accent"
+                >
+                  Design Artifacts
+                </button>
+              </div>
             </Transition>
           </div>
         </div>
@@ -75,7 +82,7 @@
           class="cursor-pointer"
         >
           <template #icon>
-            <Icon class="text-7xl text-accent" :icon="card.icon" />
+            <icon class="text-7xl text-accent" :icon="card.icon" />
           </template>
           <template #title>
             {{ card.name }}
@@ -136,7 +143,7 @@ export default {
     Typewriter,
     Card,
     VideoContainer,
-    Dialog
+    Dialog,
   },
   data() {
     return {
@@ -217,8 +224,8 @@ export default {
     })
   },
   methods: {
-    handleTypingStatus(typingStatus: boolean){
-      this.isTyping = typingStatus;
+    handleTypingStatus(typingStatus: boolean) {
+      this.isTyping = typingStatus
     },
     shuffleCards() {
       for (let i = this.featureCards.length - 1; i > 0; i--) {

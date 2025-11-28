@@ -13,7 +13,10 @@
         }"
         @click="selectOption(option)"
       >
-        {{ option.label }}
+        <div class="flex items-center gap-2">
+          <icon v-if="!!option.icon" :icon="option.icon" />
+          {{ option.label }}
+        </div>
       </div>
     </template>
   </div>
@@ -25,6 +28,7 @@ import { PropType } from 'vue'
 export interface SelectChipsOption {
   label: string
   value: any
+  icon?: string
 }
 
 export type SelectChipsValue<T> = Array<T> | T

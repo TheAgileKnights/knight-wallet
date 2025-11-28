@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center w-full p-2 fixed bottom-0 z-50">
+  <div class="flex justify-center w-full p-2 fixed bottom-0 z-5">
     <Dock />
   </div>
   <div class="flex flex-col min-h-screen max-w-screen">
