@@ -9,7 +9,7 @@
       <Card alignment="left">
         <template #title>
           <div class="flex w-full items-center">
-            <Icon :name="expense.category.icon.iconString" class="mr-2" />
+            <icon :icon="expense.category.icon.iconString" class="mr-2" />
             <div class="flex flex-col">
               <span>{{ expense.name }}</span>
               <span class="text-xs opacity-50">{{ expense.category.name }}</span>
@@ -85,7 +85,6 @@ import Card from '~/pages/components/Card.vue'
 import Button from '~/pages/components/Button.vue'
 import Dialog from '~/pages/components/Dialog.vue'
 import FormBuilder, { defineForm } from '~/pages/components/FormBuilder.vue'
-import IconComponent from '~/pages/components/Icon.vue'
 
 interface ExpenseFormData {
   name: string
@@ -104,7 +103,6 @@ export default {
     Button,
     Dialog,
     FormBuilder,
-    Icon: IconComponent,
   },
   props: {
     project: {
@@ -165,7 +163,7 @@ export default {
           helpText: 'What was this expense for?',
         },
         categoryId: {
-          type: 'select',
+          type: 'singleselect',
           label: 'Category',
           placeholder: 'Select a category',
           validator: z.number().positive('Please select a category'),
@@ -173,7 +171,7 @@ export default {
           options: [],
         },
         payerId: {
-          type: 'select',
+          type: 'singleselect',
           label: 'Paid By',
           placeholder: 'Select who paid',
           validator: z.number().positive('Please select who paid'),
@@ -184,11 +182,11 @@ export default {
           type: 'number',
           label: 'Cost',
           placeholder: 'Enter amount',
-          validator: z.number().positive('Cost must be greater than 0'),
+          validator: z.coerce.number().positive('Cost must be greater than 0'),
           helpText: 'Total amount of the expense',
         },
         currencyId: {
-          type: 'select',
+          type: 'singleselect',
           label: 'Currency',
           placeholder: 'Select currency',
           validator: z.number().positive('Please select a currency'),
@@ -196,35 +194,31 @@ export default {
           options: [],
         },
         collaboratorIds: {
-          type: 'select',
+          type: 'multiselect',
           label: 'Split With (Optional)',
           placeholder: 'Select collaborators',
-          validator: z.array(z.number()).optional(),
+          validator: z.array(z.number()),
           helpText: 'Who should this expense be split with?',
           options: [],
-          multiple: true,
         },
       }),
     }
   },
   mounted() {
     // Populate form options
-    this.expenseForm.categoryId.options = this.categories.map((cat: any) => ({
+    ;(this.expenseForm.categoryId as any).options = this.categories.map((cat: any) => ({
       label: cat.name,
       value: cat.id,
     }))
-
-    this.expenseForm.payerId.options = this.collaborators.map((user: any) => ({
+    ;(this.expenseForm.payerId as any).options = this.collaborators.map((user: any) => ({
       label: user.fullName,
       value: user.id,
     }))
-
-    this.expenseForm.currencyId.options = this.currencies.map((curr: any) => ({
+    ;(this.expenseForm.currencyId as any).options = this.currencies.map((curr: any) => ({
       label: `${curr.code} (${curr.symbol})`,
       value: curr.id,
     }))
-
-    this.expenseForm.collaboratorIds.options = this.collaborators.map((user: any) => ({
+    ;(this.expenseForm.collaboratorIds as any).options = this.collaborators.map((user: any) => ({
       label: user.fullName,
       value: user.id,
     }))

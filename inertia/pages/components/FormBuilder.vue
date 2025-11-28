@@ -85,13 +85,26 @@
           <small v-if="errors[key]" class="text-red-500">{{ errors[key] }}</small>
         </div>
 
-        <!-- Select (using SelectChips) -->
-        <div v-else-if="element.type === 'select'" class="flex flex-col gap-1">
+        <!-- Single Select (using SelectChips) -->
+        <div v-else-if="element.type === 'singleselect'" class="flex flex-col gap-1">
           <small class="text-text">{{ element.label }}</small>
           <SelectChips
             :options="element.options"
             v-model="(formData as any)[key]"
             :single="true"
+            :disabled="isFieldDisabled(element)"
+          />
+          <small v-if="element.helpText" class="text-text-secondary">{{ element.helpText }}</small>
+          <small v-if="errors[key]" class="text-red-500">{{ errors[key] }}</small>
+        </div>
+
+        <!-- Multi Select (using SelectChips) -->
+        <div v-else-if="element.type === 'multiselect'" class="flex flex-col gap-1">
+          <small class="text-text">{{ element.label }}</small>
+          <SelectChips
+            :options="element.options"
+            v-model="(formData as any)[key]"
+            :single="false"
             :disabled="isFieldDisabled(element)"
           />
           <small v-if="element.helpText" class="text-text-secondary">{{ element.helpText }}</small>
@@ -150,10 +163,18 @@ interface FormBuilderNumberInput<T> extends FormBuilderInputBase<T> {
   placeholder?: string
 }
 
-interface FormBuilderSelectInput<T> extends FormBuilderInputBase<T> {
-  type: 'select'
+interface FormBuilderSingleSelectInput<T> extends FormBuilderInputBase<T> {
+  type: 'singleselect'
   options: Array<{ label: string; value: any }>
   validator?: z.ZodType<any>
+  placeholder?: string
+}
+
+interface FormBuilderMultiSelectInput<T> extends FormBuilderInputBase<T> {
+  type: 'multiselect'
+  options: Array<{ label: string; value: any }>
+  validator?: z.ZodType<any[]>
+  placeholder?: string
 }
 
 interface FormBuilderCheckboxInput<T> extends FormBuilderInputBase<T> {
@@ -172,7 +193,8 @@ type InputFieldConfig<T> =
   | FormBuilderEmailInput<T>
   | FormBuilderNumberInput<T>
   | FormBuilderTextareaInput<T>
-  | FormBuilderSelectInput<T>
+  | FormBuilderSingleSelectInput<T>
+  | FormBuilderMultiSelectInput<T>
   | FormBuilderCheckboxInput<T>
 
 // Non-input elements

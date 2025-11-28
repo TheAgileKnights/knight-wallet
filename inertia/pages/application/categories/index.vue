@@ -14,7 +14,7 @@
       <Card alignment="left">
         <template #title>
           <div class="flex w-full items-center">
-            <Icon :name="category.icon.iconString" class="mr-2" />
+            <icon :icon="category.icon.iconString" class="mr-2" />
             <span>{{ category.name }}</span>
             <div class="ml-auto flex gap-2">
               <Button
@@ -73,7 +73,6 @@ import Card from '~/pages/components/Card.vue'
 import Button from '~/pages/components/Button.vue'
 import Dialog from '~/pages/components/Dialog.vue'
 import FormBuilder, { defineForm } from '~/pages/components/FormBuilder.vue'
-import IconComponent from '~/pages/components/Icon.vue'
 
 interface CategoryFormData {
   name: string
@@ -89,7 +88,6 @@ export default {
     Button,
     Dialog,
     FormBuilder,
-    Icon: IconComponent,
   },
   props: {
     project: {
@@ -143,7 +141,7 @@ export default {
           helpText: 'Briefly describe what this category is for',
         },
         iconId: {
-          type: 'select',
+          type: 'singleselect',
           label: 'Icon',
           placeholder: 'Select an icon',
           validator: z.number().positive('Please select an icon'),
@@ -155,7 +153,7 @@ export default {
   },
   mounted() {
     // Populate icon options
-    this.categoryForm.iconId.options = this.icons.map((icon: any) => ({
+    ;(this.categoryForm.iconId as any).options = this.icons.map((icon: any) => ({
       label: icon.name,
       value: icon.id,
     }))
