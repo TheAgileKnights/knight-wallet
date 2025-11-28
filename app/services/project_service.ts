@@ -5,24 +5,7 @@ import Currency from '#models/currency'
 import Icon from '#models/icon'
 import Category from '#models/category'
 import type { UserProjects } from '../types/project.js'
-
-const DEFAULT_CATEGORIES = [
-  {
-    name: 'Food & Dining',
-    description: 'Meals, groceries, and dining expenses',
-    iconString: 'majesticons:food',
-  },
-  {
-    name: 'Transportation',
-    description: 'Travel, gas, and commute expenses',
-    iconString: 'majesticons:car',
-  },
-  {
-    name: 'Entertainment',
-    description: 'Movies, events, and leisure activities',
-    iconString: 'majesticons:movie',
-  },
-]
+import { DEFAULT_CATEGORIES } from '../constants/icons.js'
 
 export default class ProjectService {
   async getUserProjects(user: User): Promise<UserProjects> {
@@ -51,11 +34,11 @@ export default class ProjectService {
       ownerId,
     })
 
-    // const collaborator = await ProjectCollaborator.create({
-    //   projectId: project.id,
-    //   userId: ownerId,
-    //   role: 'owner',
-    // })
+    await ProjectCollaborator.create({
+      projectId: project.id,
+      userId: ownerId,
+      role: 'owner',
+    })
 
     // Attach all currencies to the project
     const currencies = await Currency.all()
