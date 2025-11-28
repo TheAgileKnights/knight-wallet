@@ -89,7 +89,7 @@
         <div v-else-if="element.type === 'singleselect'" class="flex flex-col gap-1">
           <small class="text-text">{{ element.label }}</small>
           <SelectChips
-            :options="element.options"
+            :options="getOptions(element)"
             v-model="(formData as any)[key]"
             :single="true"
             :disabled="isFieldDisabled(element)"
@@ -102,7 +102,7 @@
         <div v-else-if="element.type === 'multiselect'" class="flex flex-col gap-1">
           <small class="text-text">{{ element.label }}</small>
           <SelectChips
-            :options="element.options"
+            :options="getOptions(element)"
             v-model="(formData as any)[key]"
             :single="false"
             :disabled="isFieldDisabled(element)"
@@ -125,9 +125,9 @@
         </div>
       </template>
 
-      <button type="submit" class="px-4 py-2 bg-accent text-white rounded-xl hover:bg-accent-hover">
+      <Button type="submit" class="px-4 py-2 bg-accent text-white rounded-xl hover:bg-accent-hover">
         Submit
-      </button>
+      </Button>
     </form>
   </div>
 </template>
@@ -137,6 +137,7 @@ import * as z from 'zod'
 import Input from './Input.vue'
 import TextArea from './TextArea.vue'
 import SelectChips from './SelectChips.vue'
+import Button from './Button.vue'
 
 interface FormBuilderInputBase<T> {
   label: string
@@ -165,14 +166,14 @@ interface FormBuilderNumberInput<T> extends FormBuilderInputBase<T> {
 
 interface FormBuilderSingleSelectInput<T> extends FormBuilderInputBase<T> {
   type: 'singleselect'
-  options: Array<{ label: string; value: any }>
+  options: Array<{ label: string; value: any }> | (() => Array<{ label: string; value: any }>)
   validator?: z.ZodType<any>
   placeholder?: string
 }
 
 interface FormBuilderMultiSelectInput<T> extends FormBuilderInputBase<T> {
   type: 'multiselect'
-  options: Array<{ label: string; value: any }>
+  options: Array<{ label: string; value: any }> | (() => Array<{ label: string; value: any }>)
   validator?: z.ZodType<any[]>
   placeholder?: string
 }
@@ -232,6 +233,7 @@ export default {
     Input,
     TextArea,
     SelectChips,
+    Button,
   },
   props: {
     form: {
@@ -266,6 +268,12 @@ export default {
     },
   },
   methods: {
+    getOptions(element: any): Array<{ label: string; value: any }> {
+      if ('options' in element) {
+        return typeof element.options === 'function' ? element.options() : element.options
+      }
+      return []
+    },
     isFieldDisabled(element: any) {
       if ('disabled' in element && element.disabled) {
         return element.disabled(this.formData)

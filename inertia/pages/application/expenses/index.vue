@@ -168,7 +168,12 @@ export default {
           placeholder: 'Select a category',
           validator: z.number().positive('Please select a category'),
           helpText: 'Choose a category for this expense',
-          options: [],
+          options: () =>
+            this.categories.map((cat) => ({
+              label: cat.name,
+              icon: cat.icon.iconString,
+              value: cat.id,
+            })),
         },
         payerId: {
           type: 'singleselect',
@@ -176,7 +181,11 @@ export default {
           placeholder: 'Select who paid',
           validator: z.number().positive('Please select who paid'),
           helpText: 'Who paid for this expense?',
-          options: [],
+          options: () =>
+            this.collaborators.map((user) => ({
+              label: user.fullName || 'Unknown',
+              value: user.id,
+            })),
         },
         cost: {
           type: 'number',
@@ -191,7 +200,11 @@ export default {
           placeholder: 'Select currency',
           validator: z.number().positive('Please select a currency'),
           helpText: 'Currency used for this expense',
-          options: [],
+          options: () =>
+            this.currencies.map((curr) => ({
+              label: `${curr.code} (${curr.symbol})`,
+              value: curr.id,
+            })),
         },
         collaboratorIds: {
           type: 'multiselect',
@@ -199,29 +212,14 @@ export default {
           placeholder: 'Select collaborators',
           validator: z.array(z.number()),
           helpText: 'Who should this expense be split with?',
-          options: [],
+          options: () =>
+            this.collaborators.map((user) => ({
+              label: user.fullName || 'Unknown',
+              value: user.id,
+            })),
         },
       }),
     }
-  },
-  mounted() {
-    // Populate form options
-    ;(this.expenseForm.categoryId as any).options = this.categories.map((cat: any) => ({
-      label: cat.name,
-      value: cat.id,
-    }))
-    ;(this.expenseForm.payerId as any).options = this.collaborators.map((user: any) => ({
-      label: user.fullName,
-      value: user.id,
-    }))
-    ;(this.expenseForm.currencyId as any).options = this.currencies.map((curr: any) => ({
-      label: `${curr.code} (${curr.symbol})`,
-      value: curr.id,
-    }))
-    ;(this.expenseForm.collaboratorIds as any).options = this.collaborators.map((user: any) => ({
-      label: user.fullName,
-      value: user.id,
-    }))
   },
   methods: {
     openCreateDialog() {

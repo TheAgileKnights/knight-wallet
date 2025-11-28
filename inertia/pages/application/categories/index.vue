@@ -146,17 +146,14 @@ export default {
           placeholder: 'Select an icon',
           validator: z.number().positive('Please select an icon'),
           helpText: 'Choose an icon to represent this category',
-          options: [],
+          options: () =>
+            this.icons.map((icon) => ({
+              label: icon.name,
+              value: icon.id,
+            })),
         },
       }),
     }
-  },
-  mounted() {
-    // Populate icon options
-    ;(this.categoryForm.iconId as any).options = this.icons.map((icon: any) => ({
-      label: icon.name,
-      value: icon.id,
-    }))
   },
   methods: {
     openCreateDialog() {
