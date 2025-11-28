@@ -70,6 +70,9 @@ mkdir tmp
 
 # Run database migrations
 node ace migration:run
+
+# Run database seeders
+node ace db:seed
 ```
 
 ### VsCode Setup (Optional but Recommended):
