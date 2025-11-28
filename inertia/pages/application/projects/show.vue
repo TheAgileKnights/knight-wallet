@@ -3,7 +3,7 @@
     <div class="flex justify-between items-center mb-6">
       <h1 class="text-3xl font-bold text-text">Project Details</h1>
       <div class="flex gap-2">
-        <Button label="Expenses" icon="majesticons:bill" @click="navigateToExpenses" />
+        <Button label="Expenses" icon="majesticons:money-line" @click="navigateToExpenses" />
         <Button label="Categories" icon="majesticons:tag" @click="navigateToCategories" />
         <Button
           v-if="userRole === 'owner'"
