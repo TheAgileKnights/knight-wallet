@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-background-light shadow-[0_10px_30px_rgba(0,0,0,0.1)] border-[1px] border-border rounded-3xl flex flex-col justify-start p-8 transition-transform duration-300 gap-2 w-full"
+    class="bg-background-light shadow-[0_10px_30px_rgba(0,0,0,0.1)] border-[1px] border-border rounded-3xl flex flex-col justify-start p-8 transition-transform duration-300 gap-2"
     :class="{
       'hover:scale-105': hoverEffect,
       'items-center text-center': alignment === 'center',
