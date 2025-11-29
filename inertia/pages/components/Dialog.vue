@@ -15,14 +15,14 @@
       ref="dialog"
       popover="auto"
       @keydown.esc="closeDialog"
-      class="dialog-class z-20 p-6 max-w-screen max-h-screen rounded-2xl fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 m-0 drop-shadow-[0_10px_30px_rgba(0,0,0,0.6)]"
+      class="dialog-class z-20 w-full lg:w-fit h-full lg:h-fit bg-background-light lg:border-border! lg:border-[1px]! p-6 max-w-screen max-h-screen lg:rounded-2xl fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 m-0 drop-shadow-[0_10px_30px_rgba(0,0,0,0.6)]"
       open
     >
       <div class="flex flex-col">
         <div class="flex justify-end items-center gap-4">
           <div class="grow">
             <slot name="header">
-              <h3 class="text-xl font-bold">
+              <h3 class="text-xl font-bold text-text">
                 {{ header }}
               </h3>
             </slot>
@@ -37,7 +37,13 @@
           <slot></slot>
         </div>
         <div class="flex justify-end mt-4 gap-2" v-if="actions && actions.length > 0">
-          <Button v-for="action in actions" :key="action.label" :label="action.label" :severity="action.severity" @click="action.action" />
+          <Button
+            v-for="action in actions"
+            :key="action.label"
+            :label="action.label"
+            :severity="action.severity"
+            @click="action.action"
+          />
         </div>
       </div>
     </dialog>
@@ -45,14 +51,14 @@
 </template>
 
 <script lang="ts">
-import { Severity } from '~/types/severity';
+import { Severity } from '~/types/severity'
 import Button from './Button.vue'
-import { PropType } from 'vue';
+import { PropType } from 'vue'
 
 export interface DialogAction {
-  label: string;
+  label: string
   severity: Severity
-  action: () => void;
+  action: () => void
 }
 
 export default {
@@ -72,7 +78,7 @@ export default {
     actions: {
       type: Array as PropType<DialogAction[]>,
       required: false,
-    }
+    },
   },
   emits: ['update:visible'],
   methods: {

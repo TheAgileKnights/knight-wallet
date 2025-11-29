@@ -125,9 +125,7 @@
         </div>
       </template>
 
-      <Button type="submit" class="px-4 py-2 bg-accent text-white rounded-xl hover:bg-accent-hover">
-        Submit
-      </Button>
+      <Button type="submit"> Submit </Button>
     </form>
   </div>
 </template>
