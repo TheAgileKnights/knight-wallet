@@ -33,8 +33,19 @@ export type DockItemTemplate = DockItemFunction | DockItemRoute | DockItemMenu
 export interface DockState {
   items: DockItem[]
   visibleMenu: MenuInfo | null
+  currentProjectId: number | null
 }
+
 export interface MenuInfo {
   id: string
   pointerEvent: PointerEvent
+}
+
+export interface ProjectContext {
+  projectId: number
+  userRole?: string
+  invitation?: {
+    token: string
+    projectId: number
+  } | null
 }

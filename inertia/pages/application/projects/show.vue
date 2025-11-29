@@ -63,17 +63,17 @@ export default {
   },
   methods: {
     navigateToExpenses() {
-      router.visit(`/projects/${this.project.id}/expenses`)
+      router.visit(`/app/projects/${this.project.id}/expenses`)
     },
     navigateToCategories() {
-      router.visit(`/projects/${this.project.id}/categories`)
+      router.visit(`/app/projects/${this.project.id}/categories`)
     },
     handleShareProject() {
       if (this.currentInvitation) {
         this.showShareDialog = true
       } else {
         router.post(
-          `/projects/${this.project.id}/invitations`,
+          `/app/projects/${this.project.id}/invitations`,
           { role: 'member' },
           {
             onSuccess: () => {

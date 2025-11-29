@@ -1,7 +1,6 @@
 <template>
   <div class="flex justify-between items-center mb-4">
     <h1 class="text-2xl font-bold text-text">Categories</h1>
-    <Button label="Back to Project" icon="majesticons:arrow-left" @click="navigateToProject" />
   </div>
 
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-2">
@@ -11,7 +10,7 @@
       :key="category.id"
       class="cursor-pointer"
     >
-      <Card alignment="left">
+      <Card alignment="left" :hover-effect="false">
         <template #title>
           <div class="flex w-full items-center">
             <icon :icon="category.icon.iconString" class="mr-2" />
@@ -25,7 +24,6 @@
               <Button
                 icon="majesticons:delete-bin"
                 size="small"
-                severity="danger"
                 @click.stop="handleDelete(category.id)"
               />
             </div>
@@ -173,20 +171,17 @@ export default {
       }
       this.showEditDialog = true
     },
-    navigateToProject() {
-      router.visit(`/projects/${this.project.id}`)
-    },
     handleSubmit(data: CategoryFormData) {
-      router.post(`/projects/${this.project.id}/categories`, data as Record<string, any>)
+      router.post(`/app/projects/${this.project.id}/categories`, data as Record<string, any>)
     },
     handleUpdate(data: CategoryFormData) {
       if (this.editingCategoryId) {
-        router.put(`/categories/${this.editingCategoryId}`, data as Record<string, any>)
+        router.put(`/app/categories/${this.editingCategoryId}`, data as Record<string, any>)
       }
     },
     handleDelete(categoryId: number) {
       if (confirm('Are you sure you want to delete this category?')) {
-        router.delete(`/categories/${categoryId}`)
+        router.delete(`/app/categories/${categoryId}`)
       }
     },
   },

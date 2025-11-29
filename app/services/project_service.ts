@@ -92,6 +92,14 @@ export default class ProjectService {
     return collaborator?.role || null
   }
 
+  async getProjectCollaborators(projectId: string) {
+    const collaborators = await ProjectCollaborator.query()
+      .where('projectId', projectId)
+      .preload('user')
+
+    return collaborators.map((c) => c.user)
+  }
+
   async removeCollaborator(projectId: string, userId: number) {
     await ProjectCollaborator.query().where('projectId', projectId).where('userId', userId).delete()
   }

@@ -32,7 +32,8 @@
 </template>
 
 <script lang="ts">
-import { useNavStore, createDefaultDock } from '~/stores/use_nav_store'
+import { usePage } from '@inertiajs/vue3'
+import { useNavStore } from '~/stores/use_nav_store'
 import Popover from './Popover.vue'
 import { DockItem, MenuInfo } from '~/types/dock'
 import { OnClickOutside } from '@vueuse/components'
@@ -45,9 +46,6 @@ export default {
   },
   data() {
     const navStore = useNavStore()
-    if (navStore.getItems.length === 0) {
-      createDefaultDock()
-    }
     return {
       navStore,
     }
@@ -71,6 +69,9 @@ export default {
     popover() {
       return this.$refs.popover as InstanceType<typeof Popover>
     },
+    pageProps(): any {
+      return usePage().props
+    },
   },
   watch: {
     isMenuVisible(visible: boolean) {
@@ -82,6 +83,13 @@ export default {
         this.popover.close()
       }
     },
+    pageProps: {
+      handler(props: any) {
+        this.updateDockFromPageProps(props)
+      },
+      deep: true,
+      immediate: true,
+    },
   },
   methods: {
     handleClickOutside(event: Event) {
@@ -92,6 +100,19 @@ export default {
       // Only close if we didn't click on a menu icon
       if (!isMenuIcon) {
         this.navStore.closeMenu()
+      }
+    },
+    updateDockFromPageProps(props: any) {
+      // Check if we're in a project context
+      if (props.project && props.project.id) {
+        this.navStore.updateDockContext({
+          projectId: props.project.id,
+          userRole: props.userRole,
+          invitation: props.invitation || null,
+        })
+      } else {
+        // Global context (projects index or other pages)
+        this.navStore.updateDockContext()
       }
     },
   },

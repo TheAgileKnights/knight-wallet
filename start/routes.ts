@@ -11,12 +11,13 @@ import router from '@adonisjs/core/services/router'
 import designArtifactsData from '../inertia/data/designArtifacts.json' with { type: 'json' }
 import { middleware } from './kernel.js'
 
-const DashboardController = () => import('#controllers/dashboard_controller')
 const AuthController = () => import('#controllers/auth_controller')
 const ProjectsController = () => import('#controllers/projects_controller')
 const ProjectInvitationsController = () => import('#controllers/project_invitations_controller')
 const CategoriesController = () => import('#controllers/categories_controller')
 const ExpensesController = () => import('#controllers/expenses_controller')
+const CollaboratorsController = () => import('#controllers/collaborators_controller')
+const AppController = () => import('#controllers/app_controller')
 
 router.on('/').renderInertia('home').as('home')
 router.on('/debug').renderInertia('debug').as('debug')
@@ -28,41 +29,55 @@ router.get('/auth/login', [AuthController, 'login']).as('auth.login')
 
 router
   .group(() => {
-    router.get('/dashboard', [DashboardController, 'index']).as('dashboard')
     router.get('/auth/logout', [AuthController, 'logout']).as('auth.logout')
 
+    // App index route - redirects to last project or projects index
+    router.get('/app', [AppController, 'index']).as('app.index')
+
     // Projects routes
-    router.get('/projects', [ProjectsController, 'index']).as('projects.index')
-    router.post('/projects', [ProjectsController, 'store']).as('projects.store')
-    router.get('/projects/:id', [ProjectsController, 'show']).as('projects.show')
-    router.get('/projects/:id/edit', [ProjectsController, 'edit']).as('projects.edit')
-    router.put('/projects/:id', [ProjectsController, 'update']).as('projects.update')
-    router.delete('/projects/:id', [ProjectsController, 'destroy']).as('projects.destroy')
+    router.get('/app/projects', [ProjectsController, 'index']).as('projects.index')
+    router.post('/app/projects', [ProjectsController, 'store']).as('projects.store')
+    router.get('/app/projects/:id', [ProjectsController, 'show']).as('projects.show')
+    router.get('/app/projects/:id/edit', [ProjectsController, 'edit']).as('projects.edit')
+    router.put('/app/projects/:id', [ProjectsController, 'update']).as('projects.update')
+    router.delete('/app/projects/:id', [ProjectsController, 'destroy']).as('projects.destroy')
 
     // Categories routes
     router
-      .get('/projects/:projectId/categories', [CategoriesController, 'index'])
+      .get('/app/projects/:projectId/categories', [CategoriesController, 'index'])
       .as('categories.index')
     router
-      .post('/projects/:projectId/categories', [CategoriesController, 'store'])
+      .post('/app/projects/:projectId/categories', [CategoriesController, 'store'])
       .as('categories.store')
-    router.put('/categories/:id', [CategoriesController, 'update']).as('categories.update')
-    router.delete('/categories/:id', [CategoriesController, 'destroy']).as('categories.destroy')
+    router.put('/app/categories/:id', [CategoriesController, 'update']).as('categories.update')
+    router
+      .delete('/app/categories/:id', [CategoriesController, 'destroy'])
+      .as('categories.destroy')
 
     // Expenses routes
-    router.get('/projects/:projectId/expenses', [ExpensesController, 'index']).as('expenses.index')
     router
-      .post('/projects/:projectId/expenses', [ExpensesController, 'store'])
+      .get('/app/projects/:projectId/expenses', [ExpensesController, 'index'])
+      .as('expenses.index')
+    router
+      .post('/app/projects/:projectId/expenses', [ExpensesController, 'store'])
       .as('expenses.store')
-    router.put('/expenses/:id', [ExpensesController, 'update']).as('expenses.update')
-    router.delete('/expenses/:id', [ExpensesController, 'destroy']).as('expenses.destroy')
+    router.put('/app/expenses/:id', [ExpensesController, 'update']).as('expenses.update')
+    router.delete('/app/expenses/:id', [ExpensesController, 'destroy']).as('expenses.destroy')
+
+    // Collaborators routes
+    router
+      .get('/app/projects/:projectId/collaborators', [CollaboratorsController, 'index'])
+      .as('collaborators.index')
+    router
+      .delete('/app/projects/:projectId/collaborators/:userId', [CollaboratorsController, 'destroy'])
+      .as('collaborators.destroy')
 
     // Project invitations routes
     router
-      .post('/projects/:projectId/invitations', [ProjectInvitationsController, 'store'])
+      .post('/app/projects/:projectId/invitations', [ProjectInvitationsController, 'store'])
       .as('projects.invitations.store')
     router
-      .delete('/invitations/:token', [ProjectInvitationsController, 'destroy'])
+      .delete('/app/invitations/:token', [ProjectInvitationsController, 'destroy'])
       .as('invitations.destroy')
   })
   .use(middleware.auth())
