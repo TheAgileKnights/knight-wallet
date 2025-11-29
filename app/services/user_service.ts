@@ -19,7 +19,7 @@ export class UserService {
   static async loginUser(user: User, ctx: HttpContext) {
     await ctx.auth.use('web').login(user)
     ctx.session.flash('success', 'You are now logged in.')
-    return ctx.response.redirect().toRoute('dashboard')
+    return ctx.response.redirect().toRoute('app.index')
   }
   static async registerAndLoginGoogleUser(googleUser: GoogleUser, ctx: HttpContext) {
     const user = await this.findOrCreateUserFromGoogle(googleUser)

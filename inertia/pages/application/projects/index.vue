@@ -132,10 +132,14 @@ export default {
       this.showJoinDialog = true
     },
     navigateToProject(projectId: number) {
-      router.visit(`/projects/${projectId}`)
+      router.visit(`/app/projects/${projectId}/expenses`)
     },
     handleSubmit(data: ProjectFormData) {
-      router.post('/projects', data as Record<string, any>)
+      router.post('/app/projects', data as Record<string, any>, {
+        onSuccess: () => {
+          this.showCreateDialog = false
+        },
+      })
     },
     getProjectRole(projectId: number) {
       if (this.projects?.owned?.some((p: any) => p.id === projectId)) {

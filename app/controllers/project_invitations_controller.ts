@@ -68,7 +68,7 @@ export default class ProjectInvitationsController {
   async destroy({ params, response, session, bouncer }: HttpContext) {
     try {
       const invitation = await this.invitationService.getInvitationByToken(params.token)
-      const project = await this.projectService.getProject(invitation.projectId)
+      const project = await this.projectService.getProject(String(invitation.projectId))
 
       if (await bouncer.with(ProjectPolicy).denies('invite', project)) {
         session.flash('error', 'You do not have permission to delete this invitation')

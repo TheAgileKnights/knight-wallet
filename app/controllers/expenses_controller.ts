@@ -42,7 +42,7 @@ export default class ExpensesController {
     }
   }
 
-  async store({ auth, params, request, response, session, bouncer }: HttpContext) {
+  async store({ params, request, response, session, bouncer }: HttpContext) {
     try {
       const project = await this.projectService.getProject(params.projectId)
 
@@ -65,7 +65,7 @@ export default class ExpensesController {
   async update({ params, request, response, session, bouncer }: HttpContext) {
     try {
       const expense = await this.expenseService.getExpense(params.id)
-      const project = await this.projectService.getProject(expense.projectId)
+      const project = await this.projectService.getProject(String(expense.projectId))
 
       if (await bouncer.with(ProjectPolicy).denies('view', project)) {
         session.flash('error', 'You do not have permission to update this expense')
@@ -86,7 +86,7 @@ export default class ExpensesController {
   async destroy({ params, response, session, bouncer }: HttpContext) {
     try {
       const expense = await this.expenseService.getExpense(params.id)
-      const project = await this.projectService.getProject(expense.projectId)
+      const project = await this.projectService.getProject(String(expense.projectId))
 
       if (await bouncer.with(ProjectPolicy).denies('view', project)) {
         session.flash('error', 'You do not have permission to delete this expense')

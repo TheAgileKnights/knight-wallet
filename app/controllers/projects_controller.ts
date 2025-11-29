@@ -25,7 +25,7 @@ export default class ProjectsController {
     try {
       const project = await this.projectService.createProject(user.id, data)
       session.flash('success', 'Project created successfully')
-      return response.redirect().toRoute('projects.show', { id: project.id })
+      return response.redirect().toRoute('expenses.index', { projectId: project.id })
     } catch (error) {
       session.flash('error', 'Failed to create project')
       return response.redirect().back()

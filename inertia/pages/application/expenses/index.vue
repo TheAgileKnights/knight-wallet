@@ -1,12 +1,11 @@
 <template>
   <div class="flex justify-between items-center mb-4">
     <h1 class="text-2xl font-bold text-text">Expenses</h1>
-    <Button label="Back to Project" icon="majesticons:arrow-left" @click="navigateToProject" />
   </div>
 
   <div class="grid grid-cols-1 gap-2">
     <div v-if="expenses.length >= 1" v-for="expense in expenses" :key="expense.id">
-      <Card alignment="left">
+      <Card alignment="left" :hover-effect="false">
         <template #title>
           <div class="flex w-full items-center">
             <icon :icon="expense.category.icon.iconString" class="mr-2" />
@@ -26,7 +25,6 @@
               <Button
                 icon="majesticons:delete-bin"
                 size="small"
-                severity="danger"
                 @click.stop="handleDelete(expense.id)"
               />
             </div>
@@ -245,20 +243,25 @@ export default {
       }
       this.showEditDialog = true
     },
-    navigateToProject() {
-      router.visit(`/projects/${this.project.id}`)
-    },
     handleSubmit(data: ExpenseFormData) {
-      router.post(`/projects/${this.project.id}/expenses`, data as Record<string, any>)
+      router.post(`/app/projects/${this.project.id}/expenses`, data as Record<string, any>, {
+        onSuccess: () => {
+          this.showCreateDialog = false
+        },
+      })
     },
     handleUpdate(data: ExpenseFormData) {
       if (this.editingExpenseId) {
-        router.put(`/expenses/${this.editingExpenseId}`, data as Record<string, any>)
+        router.put(`/app/expenses/${this.editingExpenseId}`, data as Record<string, any>, {
+          onSuccess: () => {
+            this.showEditDialog = false
+          },
+        })
       }
     },
     handleDelete(expenseId: number) {
       if (confirm('Are you sure you want to delete this expense?')) {
-        router.delete(`/expenses/${expenseId}`)
+        router.delete(`/app/expenses/${expenseId}`)
       }
     },
   },
