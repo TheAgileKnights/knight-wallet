@@ -33,7 +33,7 @@ export default class CategoriesController {
     }
   }
 
-  async store({ auth, params, request, response, session, bouncer }: HttpContext) {
+  async store({ params, request, response, session, bouncer }: HttpContext) {
     try {
       const project = await this.projectService.getProject(params.projectId)
 
@@ -56,7 +56,7 @@ export default class CategoriesController {
   async update({ params, request, response, session, bouncer }: HttpContext) {
     try {
       const category = await this.categoryService.getCategory(params.id)
-      const project = await this.projectService.getProject(category.projectId)
+      const project = await this.projectService.getProject(String(category.projectId))
 
       if (await bouncer.with(ProjectPolicy).denies('view', project)) {
         session.flash('error', 'You do not have permission to update this category')
@@ -79,7 +79,7 @@ export default class CategoriesController {
   async destroy({ params, response, session, bouncer }: HttpContext) {
     try {
       const category = await this.categoryService.getCategory(params.id)
-      const project = await this.projectService.getProject(category.projectId)
+      const project = await this.projectService.getProject(String(category.projectId))
 
       if (await bouncer.with(ProjectPolicy).denies('view', project)) {
         session.flash('error', 'You do not have permission to delete this category')

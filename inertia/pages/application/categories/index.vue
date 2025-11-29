@@ -172,11 +172,19 @@ export default {
       this.showEditDialog = true
     },
     handleSubmit(data: CategoryFormData) {
-      router.post(`/app/projects/${this.project.id}/categories`, data as Record<string, any>)
+      router.post(`/app/projects/${this.project.id}/categories`, data as Record<string, any>, {
+        onSuccess: () => {
+          this.showCreateDialog = false
+        },
+      })
     },
     handleUpdate(data: CategoryFormData) {
       if (this.editingCategoryId) {
-        router.put(`/app/categories/${this.editingCategoryId}`, data as Record<string, any>)
+        router.put(`/app/categories/${this.editingCategoryId}`, data as Record<string, any>, {
+          onSuccess: () => {
+            this.showEditDialog = false
+          },
+        })
       }
     },
     handleDelete(categoryId: number) {

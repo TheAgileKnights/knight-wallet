@@ -244,11 +244,19 @@ export default {
       this.showEditDialog = true
     },
     handleSubmit(data: ExpenseFormData) {
-      router.post(`/app/projects/${this.project.id}/expenses`, data as Record<string, any>)
+      router.post(`/app/projects/${this.project.id}/expenses`, data as Record<string, any>, {
+        onSuccess: () => {
+          this.showCreateDialog = false
+        },
+      })
     },
     handleUpdate(data: ExpenseFormData) {
       if (this.editingExpenseId) {
-        router.put(`/app/expenses/${this.editingExpenseId}`, data as Record<string, any>)
+        router.put(`/app/expenses/${this.editingExpenseId}`, data as Record<string, any>, {
+          onSuccess: () => {
+            this.showEditDialog = false
+          },
+        })
       }
     },
     handleDelete(expenseId: number) {

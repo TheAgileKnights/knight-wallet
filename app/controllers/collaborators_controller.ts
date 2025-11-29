@@ -45,7 +45,7 @@ export default class CollaboratorsController {
     }
   }
 
-  async destroy({ auth, params, response, session, bouncer }: HttpContext) {
+  async destroy({ params, response, session, bouncer }: HttpContext) {
     try {
       const project = await this.projectService.getProject(params.projectId)
 
