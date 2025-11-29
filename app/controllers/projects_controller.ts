@@ -1,12 +1,10 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import ProjectService from '#services/project_service'
-import InvitationService from '#services/invitation_service'
 import { createProjectValidator, updateProjectValidator } from '#validators/project'
 import ProjectPolicy from '#policies/project_policy'
 
 export default class ProjectsController {
   private projectService = new ProjectService()
-  private invitationService = new InvitationService()
 
   async index({ auth, inertia }: HttpContext) {
     const user = auth.user!
@@ -32,29 +30,10 @@ export default class ProjectsController {
     }
   }
 
-  async show({ auth, params, inertia, response, session, bouncer }: HttpContext) {
+  async show({ params, response, session }: HttpContext) {
     try {
       const project = await this.projectService.getProject(params.id)
-
-      if (await bouncer.with(ProjectPolicy).denies('view', project)) {
-        session.flash('error', 'Project not found or you do not have access')
-        return response.redirect().toRoute('projects.index')
-      }
-
-      const userRole = await this.projectService.getUserRole(params.id, auth.user!.id)
-
-      // Get active invitation for owner
-      let invitation = null
-      if (userRole === 'owner') {
-        const invitations = await this.invitationService.getProjectInvitations(params.id)
-        invitation = invitations.find((inv) => inv.isValid) || null
-      }
-
-      return inertia.render('application/projects/show', {
-        project,
-        userRole,
-        invitation,
-      })
+      return response.redirect().toRoute('expenses.index', { projectId: project.id })
     } catch (error) {
       session.flash('error', 'Project not found')
       return response.redirect().toRoute('projects.index')

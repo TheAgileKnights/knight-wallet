@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-1">
+  <div class="flex gap-1 flex-wrap">
     <template v-for="option in options" :key="option.value">
       <div
         class="cursor-pointer rounded-xl px-4 py-[6px] border-2 border-border"

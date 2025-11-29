@@ -4,13 +4,8 @@
   </div>
 
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-2">
-    <div
-      v-if="categories.length >= 1"
-      v-for="category in categories"
-      :key="category.id"
-      class="cursor-pointer"
-    >
-      <Card alignment="left" :hover-effect="false">
+    <div v-if="categories.length >= 1" v-for="category in categories" :key="category.id">
+      <Card alignment="left" :hover-effect="false" class="h-full">
         <template #title>
           <div class="flex w-full items-center">
             <icon :icon="category.icon.iconString" class="mr-2" />

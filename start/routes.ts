@@ -50,9 +50,7 @@ router
       .post('/app/projects/:projectId/categories', [CategoriesController, 'store'])
       .as('categories.store')
     router.put('/app/categories/:id', [CategoriesController, 'update']).as('categories.update')
-    router
-      .delete('/app/categories/:id', [CategoriesController, 'destroy'])
-      .as('categories.destroy')
+    router.delete('/app/categories/:id', [CategoriesController, 'destroy']).as('categories.destroy')
 
     // Expenses routes
     router
@@ -69,7 +67,10 @@ router
       .get('/app/projects/:projectId/collaborators', [CollaboratorsController, 'index'])
       .as('collaborators.index')
     router
-      .delete('/app/projects/:projectId/collaborators/:userId', [CollaboratorsController, 'destroy'])
+      .delete('/app/projects/:projectId/collaborators/:userId', [
+        CollaboratorsController,
+        'destroy',
+      ])
       .as('collaborators.destroy')
 
     // Project invitations routes
