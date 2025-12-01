@@ -32,7 +32,7 @@ export default class ProjectInvitationsController {
     }
   }
 
-  async show({ params, inertia, response, session }: HttpContext) {
+  async show({ params, response, session }: HttpContext) {
     try {
       const invitation = await this.invitationService.getInvitationByToken(params.token)
 
@@ -41,10 +41,8 @@ export default class ProjectInvitationsController {
         return response.redirect().toRoute('home')
       }
 
-      return inertia.render('invitations/show', {
-        invitation,
-        project: invitation.project,
-      })
+      // Redirect to accept endpoint - auth middleware will handle login if needed
+      return response.redirect().toRoute('invitations.accept', { token: params.token })
     } catch (error) {
       session.flash('error', 'Invalid invitation link')
       return response.redirect().toRoute('home')
@@ -55,13 +53,22 @@ export default class ProjectInvitationsController {
     const user = auth.user!
 
     try {
-      const { invitation } = await this.invitationService.acceptInvitation(params.token, user)
-      session.flash('success', 'You have successfully joined the project!')
+      const { invitation, alreadyMember } = await this.invitationService.acceptInvitation(
+        params.token,
+        user
+      )
+
+      if (alreadyMember) {
+        session.flash('info', 'You are already a member of this project')
+      } else {
+        session.flash('success', 'You have successfully joined the project!')
+      }
+
       return response.redirect().toRoute('projects.show', { id: invitation.projectId })
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Failed to accept invitation'
       session.flash('error', message)
-      return response.redirect().back()
+      return response.redirect().toRoute('home')
     }
   }
 
