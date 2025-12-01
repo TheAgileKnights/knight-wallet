@@ -18,6 +18,12 @@ export default class AuthMiddleware {
       guards?: (keyof Authenticators)[]
     } = {}
   ) {
+    // Store the intended URL in session before redirecting to login
+    const isAuthenticated = await ctx.auth.check()
+    if (!isAuthenticated) {
+      ctx.session.put('intended_url', ctx.request.url())
+    }
+
     await ctx.auth.authenticateUsing(options.guards, { loginRoute: this.redirectTo })
     return next()
   }

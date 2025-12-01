@@ -86,8 +86,11 @@ router
 // Public invitation routes (no auth required)
 router.get('/invite/:token', [ProjectInvitationsController, 'show']).as('invitations.show')
 router
-  .post('/invite/:token/accept', [ProjectInvitationsController, 'accept'])
+  .get('/invite/:token/accept', [ProjectInvitationsController, 'accept'])
   .as('invitations.accept')
+  .use(middleware.auth())
+router
+  .post('/invite/:token/accept', [ProjectInvitationsController, 'accept'])
   .use(middleware.auth())
 
 // Design Artifacts routes

@@ -19,6 +19,14 @@ export class UserService {
   static async loginUser(user: User, ctx: HttpContext) {
     await ctx.auth.use('web').login(user)
     ctx.session.flash('success', 'You are now logged in.')
+
+    // Check if there's an intended URL to redirect to
+    const intendedUrl = ctx.session.get('intended_url')
+    if (intendedUrl) {
+      ctx.session.forget('intended_url')
+      return ctx.response.redirect(intendedUrl)
+    }
+
     return ctx.response.redirect().toRoute('app.index')
   }
   static async registerAndLoginGoogleUser(googleUser: GoogleUser, ctx: HttpContext) {

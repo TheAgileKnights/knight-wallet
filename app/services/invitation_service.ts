@@ -48,7 +48,7 @@ export default class InvitationService {
       .first()
 
     if (existingCollaborator) {
-      throw new Error('You are already a member of this project')
+      return { invitation, collaborator: existingCollaborator, alreadyMember: true }
     }
 
     const collaborator = await ProjectCollaborator.create({
@@ -57,7 +57,7 @@ export default class InvitationService {
       role: invitation.role,
     })
 
-    return { invitation, collaborator }
+    return { invitation, collaborator, alreadyMember: false }
   }
 
   async getProjectInvitations(projectId: number) {
