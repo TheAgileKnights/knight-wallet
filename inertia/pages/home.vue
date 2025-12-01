@@ -5,17 +5,21 @@
       <h3 class="font-bold text-2xl text-text-contrast">Knight Wallet</h3>
     </div>
   </Transition>
+  <div class="fixed top-4 right-4 rounded-lg shadow-lg z-2">
+    <Button icon="majesticons:open" label="Open App" @click="$inertia.visit('/app')" />
+  </div>
   <!-- Title Area -->
   <div class="flex flex-col min-h-screen w-full bg-gradient-to-br from-primary to-accent">
     <div class="p-12 md:p-24 w-full grid xl:grid-cols-2 text-center xl:text-left grid-cols-1 grow">
       <div class="flex justify-center items-center mb-12">
-        <div class="flex flex-col text-text-contrast w-min">
-          <div class="drop-shadow-[0_10px_60px_rgba(0,0,0,1)] shrink">
-            <h1 class="md:text-[6rem] text-[4rem] font-extrabold text-nowrap">Knight Wallet</h1>
+        <div class="flex flex-col text-text-contrast">
+          <div class="drop-shadow-[0_10px_60px_rgba(0,0,0,1)]">
+            <h1 class="md:text-[6rem] text-[4rem] font-extrabold">Knight Wallet</h1>
             <p class="text-3xl font-medium">"Track Together, Settle Smarter"</p>
           </div>
-          <div class="mt-4 text-xl font-mono shrink min-h-[6rem]">
+          <div class="mt-4 text-xl shrink min-h-[6rem]">
             <Typewriter
+              class="font-mono"
               text="Simplify shared expenses among friends and family. Add costs, split bills, and settle up seamlessly for trips, events, and everyday life."
               :speed="100"
               @update:is-typing="handleTypingStatus"
@@ -98,7 +102,7 @@
   <div class="flex min-h-screen w-full py-16 bg-gradient-to-br from-primary to-accent">
     <div class="mx-8 md:mx-16 lg:mx-32 my-auto">
       <p
-        class="font-bold text-6xl w-full text-center mb-12 text-text-contrast drop-shadow-[0_10px_60px_rgba(0,0,0,1)]"
+        class="font-bold text-4xl lg:text-6xl w-full text-center mb-12 text-text-contrast drop-shadow-[0_10px_60px_rgba(0,0,0,1)]"
       >
         Meet the Development Team
       </p>
@@ -124,7 +128,9 @@
 
   <div class="flex flex-col items-center justify-center min-h-screen p-16">
     <div class="">
-      <p class="font-bold text-6xl w-full text-center mb-12">Watch Our Introduction Video</p>
+      <p class="font-bold text-4xl lg:text-6xl w-full text-center mb-12">
+        Watch Our Introduction Video
+      </p>
       <VideoContainer
         url="https://cdnapisec.kaltura.com/p/2619912/sp/261991200/embedIframeJs/uiconf_id/45753661/partner_id/2619912?iframeembed=true&playerId=kaltura_player&entry_id=1_oltyq32v&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[hotspots.plugin]=1&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_6ker1nld"
       />
@@ -137,6 +143,7 @@ import Card from './components/Card.vue'
 import Typewriter from './components/Typewriter.vue'
 import VideoContainer from './components/VideoContainer.vue'
 import Dialog from './components/Dialog.vue'
+import Button from './components/Button.vue'
 
 export default {
   components: {
@@ -144,6 +151,7 @@ export default {
     Card,
     VideoContainer,
     Dialog,
+    Button,
   },
   data() {
     return {

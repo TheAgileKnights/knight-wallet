@@ -25,7 +25,6 @@
                 v-if="userRole === 'owner' && getCollaboratorRole(collaborator.id) !== 'Owner'"
                 icon="majesticons:delete-bin"
                 size="small"
-                severity="danger"
                 @click.stop="handleRemoveCollaborator(collaborator.id)"
               />
             </div>
