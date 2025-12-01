@@ -9,7 +9,7 @@
     }"
   >
     <slot>
-      <div class="my-4 w-full" v-if="$slots.icon">
+      <div class="my-4" v-if="$slots.icon">
         <slot name="icon" />
       </div>
       <div class="font-bold text-2xl w-full">
